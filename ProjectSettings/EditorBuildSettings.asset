@@ -5,7 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Member/Sakai/Scenes/Clear.unity
+    guid: 096d66f1c2696b64e89eab498317d101
+  - enabled: 1
+    path: Assets/Member/Sakai/Scenes/Game.unity
+    guid: 08361fa1b43942e40a4c5257a8a00e40
+  - enabled: 1
+    path: Assets/Member/Sakai/Scenes/GameOver.unity
+    guid: b63d113e0e04f7247b6704d049687d79
+  - enabled: 1
+    path: Assets/Member/Sakai/Scenes/Title.unity
+    guid: 05ad92f533bc7a947bae270dd2ea31e6
   m_configObjects: {}

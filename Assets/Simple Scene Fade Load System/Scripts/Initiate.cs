@@ -10,7 +10,7 @@ public static class Initiate
     {
         if (areWeFading)
         {
-            Debug.Log("Already Fading");
+          
             return;
         }
 

@@ -6,6 +6,7 @@ public class ItemDragDrop : MonoBehaviour
 {
     private bool isDragging = false;
     private Vector3 offset;
+    private bool test = false;
 
     enum Item
     {
@@ -26,11 +27,15 @@ public class ItemDragDrop : MonoBehaviour
     void OnMouseUp()
     {
         isDragging = false;
+        if(test == true)
+        {
+            sceneManagement.OnClear();
+        }
     }
 
     void Update()
     {
-       
+      
         if (isDragging)
         {
             Vector3 mousePos = GetMouseWorldPosition();
@@ -47,10 +52,14 @@ public class ItemDragDrop : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Bomb" && item == Item.Key)
+        if (collision.gameObject.tag == "Bomb" && item == Item.Key )
         {
-            
-            sceneManagement.OnClear();
+            test = true;
+           
+        }
+        else
+        {
+            test = false;
         }
     }
 }

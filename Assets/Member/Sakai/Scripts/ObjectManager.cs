@@ -15,12 +15,15 @@ public class ObjectManager : MonoBehaviour
 
     private bool OnBox = false;
     private bool OnPass = false;
+
+    Timer timer;
     private void Start()
     {
         password.SetActive(false);
         judgeButton.SetActive(false);
         inputField.SetActive(false);
         key.SetActive(false);
+       timer =  FindFirstObjectByType<Timer>();
 }
     void Update()
     {
@@ -47,11 +50,13 @@ public class ObjectManager : MonoBehaviour
                     {
                         password.SetActive(true);
                         OnBox = true;
+                        timer.Stop();
                     }
                     else
                     {
                         password.SetActive(false);
                         OnBox = false;
+                        timer.Restart();
                     }
                 }
                 if(hit.collider.gameObject == targetObjectPass)

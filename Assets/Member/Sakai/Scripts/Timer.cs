@@ -7,27 +7,25 @@ public class Timer : MonoBehaviour
 {
     public Text timerText;
     public float timeRemaining = 180f; // タイマーの初期値を3分に設定
-
+    private bool isPaused = false;
     private bool OneGameOver = false;
     [SerializeField]
     SceneManagement sceneManagement;
 
     void Update()
     {
-        if (timeRemaining > 0)
+        if (!isPaused && timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime; // 経過時間を減算
             DisplayTime(timeRemaining); // 残り時間を表示
         }
-        else
+        else if(timeRemaining <= 0 && !OneGameOver)
         {
             timeRemaining = 0; // タイマーが0になったら、時間を0に設定
             DisplayTime(timeRemaining); // 残り時間を表示
-            if (OneGameOver == false)
-            {
                 sceneManagement.OnGameOver();
                 OneGameOver = true;
-            }
+            
         }
     }
 
@@ -39,5 +37,15 @@ public class Timer : MonoBehaviour
 
         // タイマーの表示形式を設定（00:00）
         timerText.text = string.Format("{0}:{1:00}", minutes, seconds);
+    }
+    public void Stop()
+    {
+        isPaused = true;
+    }
+
+    // タイマーを再開する関数
+    public void Restart()
+    {
+        isPaused = false;
     }
 }

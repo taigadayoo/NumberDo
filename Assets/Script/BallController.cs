@@ -17,7 +17,7 @@ public class BallController : MonoBehaviour
     {
         transform.Translate(0, -0.005f, 0);
 
-        if(transform.position.y < -5.0f)
+        if(transform.position.y < -3.0f)
         {
             Destroy(gameObject);
         }

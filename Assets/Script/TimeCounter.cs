@@ -7,7 +7,7 @@ public class TimeCounter : MonoBehaviour
 {
     //カウントダウン
     public float countdown = 5.0f;
-
+    public GameObject popup;
 
     // Update is called once per frame
     void Update()
@@ -18,7 +18,7 @@ public class TimeCounter : MonoBehaviour
         //countdownが0以下になったとき
         if (countdown <= 0)
         {
-            gameObject.SetActive(false);
+            popup.SetActive(false);
             Debug.Log("クリア");
         }
     }

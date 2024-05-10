@@ -8,11 +8,14 @@ public class Password : MonoBehaviour
     private string correctPassword = "1234"; // 正しいパスワード
 
     ObjectManager objectManager;
+
+    ItemBer itemBer;
     [SerializeField]
     SceneManagement sceneManagement;
     private void Start()
     {
        objectManager =  FindObjectOfType<ObjectManager>();
+        itemBer = FindObjectOfType<ItemBer>();
     }
 
     public void CheckPassword()
@@ -21,7 +24,10 @@ public class Password : MonoBehaviour
 
         if (inputPassword == correctPassword)
         {
-            objectManager.key.SetActive(true);
+            //objectManager.key
+            //objectManager.key.SetActive(true);
+            itemBer.AddItem(objectManager.key);
+
         }
         else
         {

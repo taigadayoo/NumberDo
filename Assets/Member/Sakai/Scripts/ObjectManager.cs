@@ -15,6 +15,7 @@ public class ObjectManager : MonoBehaviour
 
     private bool OnBox = false;
     private bool OnPass = false;
+    ItemBer itemBer;
 
     Timer timer;
     private void Start()
@@ -22,7 +23,8 @@ public class ObjectManager : MonoBehaviour
         password.SetActive(false);
         judgeButton.SetActive(false);
         inputField.SetActive(false);
-        key.SetActive(false);
+
+        itemBer = FindObjectOfType<ItemBer>();
        timer =  FindFirstObjectByType<Timer>();
 }
     void Update()
@@ -49,6 +51,7 @@ public class ObjectManager : MonoBehaviour
                     if (OnBox == false)
                     {
                         password.SetActive(true);
+                       
                         OnBox = true;
                         timer.Stop();
                     }

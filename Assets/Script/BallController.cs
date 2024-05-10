@@ -17,13 +17,19 @@ public class BallController : MonoBehaviour
     {
         transform.Translate(0, -0.005f, 0);
 
+        //yが-3.0fになったとき削除する
         if(transform.position.y < -3.0f)
         {
             Destroy(gameObject);
         }
+
+
     }
+
+
     void OnCollisionEnter2D(Collision2D collision)
 　　{
+        //ballがplayerに当たったらゲームオーバーにする
         if(collision.gameObject.name == "Player")
         {
             Debug.Log("ゲームオーバー");

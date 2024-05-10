@@ -5,8 +5,11 @@ using UnityEngine;
 public class Ballgenerator : MonoBehaviour
 {
     public GameObject BallPrefab;
+    public GameObject popup;
+    public TimeCounter timeCounter;
 
-    float time = 1.0f;
+
+    float time = 0.5f;
     float delta = 0;
 
 
@@ -19,13 +22,19 @@ public class Ballgenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ƒ‰ƒ“ƒ_ƒ€¶¬
         this.delta += Time.deltaTime;
         if (this.delta > this.time)
         {
-            this.delta = 0;
-            GameObject s = Instantiate(BallPrefab) as GameObject;
-            int px = Random.Range(-5, 6);
-            s.transform.position = new Vector2(px, 7);
+            //1.3•b‚É‚È‚Á‚½‚Æ‚«
+            if (1.3 <= timeCounter.countdown)
+            {
+                this.delta = 0;
+                GameObject s = Instantiate(BallPrefab) as GameObject;
+                int px = Random.Range(-5, 5);
+                s.transform.position = new Vector2(px, 3);
+            }
         }
+
     }
 }

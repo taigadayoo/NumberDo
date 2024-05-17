@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class GameSystem : MonoBehaviour
 { 
-    bool isCalledOnce = false;
-
+   public bool isCalledOnce = false;
+    [SerializeField]
+    SceneManagement sceneManagement;
 
     public void GameOver()
     {
         if(!isCalledOnce) 
         {
             isCalledOnce = true;
+            sceneManagement.OnGameOver();
         }
     }
 }

@@ -13,9 +13,17 @@ public class TimeCounter : MonoBehaviour
     public bool isclier = false;
     public GameObject popup;
     public GameObject prefab;
-
+    public GameObject passWord;
+    public GameObject buttons;
+    ObjectManager objectManager;
+    Timer timer;
+    private void Start()
+    {
+        timer = FindFirstObjectByType<Timer>();
+        objectManager = FindObjectOfType<ObjectManager>();
+    }
     // Update is called once per frame
-     void Update()
+    void Update()
     {
         //時間をカウントダウンする
         countdown -= Time.deltaTime;
@@ -23,8 +31,13 @@ public class TimeCounter : MonoBehaviour
         //countdownが0以下になったとき
         if (countdown <= 0)
         {
+            timer.Restart();
             popup.SetActive(false);
-            Debug.Log("クリア");
+            passWord.SetActive(true);
+            buttons.SetActive(false) ;
+            objectManager.targetObjectBox.SetActive(true);
+            objectManager.targetObjectPass.SetActive(true);
+            isclier = true;
         }
 
     }

@@ -12,11 +12,12 @@ public class ObjectManager : MonoBehaviour
     public GameObject password;
     public GameObject judgeButton;
     public GameObject inputField;
-
+    public GameObject gameCanvas;
     private bool OnBox = false;
     private bool OnPass = false;
     ItemBer itemBer;
 
+    ButtonCotroller buttonCotroller;
     Timer timer;
     private void Start()
     {
@@ -24,13 +25,14 @@ public class ObjectManager : MonoBehaviour
         judgeButton.SetActive(false);
         inputField.SetActive(false);
 
+       
         itemBer = FindObjectOfType<ItemBer>();
+        buttonCotroller = FindObjectOfType<ButtonCotroller>();
        timer =  FindFirstObjectByType<Timer>();
 }
     void Update()
     {
         ObjectTouch();
-        
 
     }
     private void ObjectTouch()
@@ -50,17 +52,15 @@ public class ObjectManager : MonoBehaviour
                 {
                     if (OnBox == false)
                     {
-                        password.SetActive(true);
-                       
+                        buttonCotroller.OnButtonClick();
                         OnBox = true;
                         timer.Stop();
                     }
-                    else
-                    {
-                        password.SetActive(false);
-                        OnBox = false;
-                        timer.Restart();
-                    }
+                    //else
+                    //{
+                    //    OnBox = false;
+                    //    timer.Restart();
+                    //}
                 }
                 if(hit.collider.gameObject == targetObjectPass)
                 {

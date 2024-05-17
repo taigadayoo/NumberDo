@@ -7,17 +7,14 @@ public class Ballgenerator : MonoBehaviour
     public GameObject BallPrefab;
     public GameObject popup;
     public TimeCounter timeCounter;
-
+    [SerializeField] private Transform[] positions;
 
     float time = 0.5f;
     float delta = 0;
 
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -27,12 +24,14 @@ public class Ballgenerator : MonoBehaviour
         if (this.delta > this.time)
         {
             //1.3•b‚É‚È‚Á‚½‚Æ‚«
-            if (1.3 <= timeCounter.countdown)
+            if (1 <= timeCounter.countdown)
             {
                 this.delta = 0;
-                GameObject s = Instantiate(BallPrefab) as GameObject;
-                int px = Random.Range(-5, 5);
-                s.transform.position = new Vector2(px, 3);
+                int randomIndex = Random.Range(0, positions.Length);
+                Vector2 randomPosition = positions[randomIndex].position;
+
+                Instantiate(BallPrefab, randomPosition, Quaternion.identity);
+             
             }
         }
 

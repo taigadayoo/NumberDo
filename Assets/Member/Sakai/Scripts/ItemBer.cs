@@ -61,11 +61,11 @@ public class ItemBer : MonoBehaviour
     public void AddItem(GameObject item)
     {
         getItemList.Add(item);
-        if(spawnedItemCount == 0)
-        {
-            item.SetActive(false);
-        }
-       
+        //if(spawnedItemCount == 0)
+        //{
+        //    item.SetActive(false);
+        //}
+
         if (spawnedItemCount < getItemList.Count && spawnedItemCount < spawnPositions.Length)
         {
 
@@ -74,6 +74,9 @@ public class ItemBer : MonoBehaviour
 
             // アイテムを対応する位置にスポーン
             GameObject spawnedObject =  Instantiate(getItemList[spawnedItemCount], targetPosition.position, targetPosition.rotation);
+
+            getItemList.Remove(item);
+            getItemList.Add(spawnedObject);
 
             spawnedObject.transform.SetParent(canvas.transform, false);
         

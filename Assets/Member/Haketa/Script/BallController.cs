@@ -6,23 +6,27 @@ public class BallController : MonoBehaviour
 {
     bool isTouch = false;
 
+    TimeCounter timeCounter;
     // Start is called before the first frame update
     void Start()
     {
-
+       timeCounter =  FindObjectOfType<TimeCounter>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, -0.005f, 0);
+        transform.Translate(0, -0.02f, 0);
 
         //y‚ª-3.0f‚É‚È‚Á‚½‚Æ‚«íœ‚·‚é
         if(transform.position.y < -3.0f)
         {
             Destroy(gameObject);
         }
-
+        if(timeCounter.isclier == true)
+        {
+            Destroy(this.gameObject);
+        }
 
     }
 

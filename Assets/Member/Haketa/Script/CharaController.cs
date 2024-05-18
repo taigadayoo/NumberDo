@@ -7,10 +7,9 @@ public class CharaController : MonoBehaviour
 {
     //Xの上限
     float xLimit = 7f;
-
     public bool isDead = false;
-   [SerializeField]
-    SceneManagement sceneManagement;
+
+ 
     public void RbuttonClick()
     {
         transform.Translate(1, 0, 0);
@@ -42,15 +41,13 @@ public class CharaController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ballprefab")) // 弾と衝突したらプレイヤーを消滅させる
         {
-            gameObject.SetActive(false);
-
-            //ゲーム内の時間を止める
-            Time.timeScale = 0f;
-
             //GameOverSceneを呼び出す
             isDead = true;
+            SceneManagement.Instance.OnGameOver();
+            gameObject.SetActive(false);
 
-            Debug.Log("ゲームオーバー");
+            ////ゲーム内の時間を止める
+            //Time.timeScale = 0f;          
         }
     }
 }

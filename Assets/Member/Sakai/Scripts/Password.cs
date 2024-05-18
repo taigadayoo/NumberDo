@@ -27,7 +27,7 @@ public class Password : MonoBehaviour
             //objectManager.key
             //objectManager.key.SetActive(true);
             itemBer.AddItem(objectManager.key);
-
+            this.gameObject.SetActive(false);
         }
         else
         {

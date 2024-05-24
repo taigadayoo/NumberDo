@@ -9,7 +9,7 @@ public class Title : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SampleSoundManager.Instance.PlayBgm(BgmType.BGM1);
     }
 
     // Update is called once per frame
@@ -17,7 +17,9 @@ public class Title : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            SampleSoundManager.Instance.StopBgm();
             sceneManagement.OnStart();
+           
         }
     }
 }

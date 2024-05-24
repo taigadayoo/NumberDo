@@ -28,6 +28,7 @@ public class Password : MonoBehaviour
             //objectManager.key.SetActive(true);
             itemBer.AddItem(objectManager.key);
             this.gameObject.SetActive(false);
+            SampleSoundManager.Instance.PlaySe(SeType.SE4);
         }
         else
         {

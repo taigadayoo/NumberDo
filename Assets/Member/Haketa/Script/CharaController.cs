@@ -13,11 +13,13 @@ public class CharaController : MonoBehaviour
     public void RbuttonClick()
     {
         transform.Translate(1, 0, 0);
+        SampleSoundManager.Instance.PlaySe(SeType.SE3);
     }
 
     public void LButtonClick()
     {
         transform.Translate(-1, 0, 0);
+        SampleSoundManager.Instance.PlaySe(SeType.SE3);
     }
 
     void Update()

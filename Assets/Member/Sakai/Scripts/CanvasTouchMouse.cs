@@ -55,7 +55,8 @@ public class CanvasTouchMouse : MonoBehaviour
                 GameObject hitObject = result.gameObject;
                
                 CheckBool clickableObject = hitObject.GetComponent<CheckBool>();
-                
+
+               
                 if (clickableObject != null)
                 {
                     // 前回クリックされたオブジェクトのisCheckをfalseに設定し、アルファ値を元に戻す
@@ -68,7 +69,7 @@ public class CanvasTouchMouse : MonoBehaviour
                     // 現在のオブジェクトのisCheckをtrueに設定し、アルファ値を半透明にする
                     clickableObject.isCheck = true;
                     SetAlpha(hitObject, 1f); // アルファ値を半透明に設定
-
+                    SampleSoundManager.Instance.PlaySe(SeType.SE1);
                     // 現在のオブジェクトをlastClickedObjectとして記憶
                     lastClickedObject = clickableObject;
                     if (hitObject.CompareTag(keyTag))

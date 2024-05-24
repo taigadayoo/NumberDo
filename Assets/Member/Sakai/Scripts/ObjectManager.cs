@@ -55,6 +55,7 @@ public class ObjectManager : MonoBehaviour
                         buttonCotroller.OnButtonClick();
                         OnBox = true;
                         timer.Stop();
+                        SampleSoundManager.Instance.PlaySe(SeType.SE2);
                     }
                     //else
                     //{
@@ -66,6 +67,7 @@ public class ObjectManager : MonoBehaviour
                 {
                     if (OnPass == false)
                     {
+                        SampleSoundManager.Instance.PlaySe(SeType.SE3);
                         judgeButton.SetActive(true);
                         inputField.SetActive(true);
                         OnPass = true;

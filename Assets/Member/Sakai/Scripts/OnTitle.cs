@@ -15,6 +15,7 @@ public class OnTitle : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            SampleSoundManager.Instance.StopBgm();
             SceneManagement.Instance.OnTitle();
         }
     }

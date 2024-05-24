@@ -38,6 +38,7 @@ public class TimeCounter : MonoBehaviour
             objectManager.targetObjectBox.SetActive(true);
             objectManager.targetObjectPass.SetActive(true);
             isclier = true;
+            SampleSoundManager.Instance.PlaySe(SeType.SE5);
         }
 
     }

@@ -6,6 +6,8 @@ public class Title : MonoBehaviour
 {
     [SerializeField]
     SceneManagement sceneManagement;
+    [SerializeField]
+    TitleAnim anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,11 +15,12 @@ public class Title : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
             SampleSoundManager.Instance.StopBgm();
+            await anim.TitleAnimation();
             sceneManagement.OnStart();
            
         }

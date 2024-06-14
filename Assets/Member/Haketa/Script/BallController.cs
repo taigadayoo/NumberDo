@@ -16,7 +16,7 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, -0.02f, 0);
+        transform.Translate(0, -0.05f, 0);
 
         //y‚ª-3.0f‚É‚È‚Á‚½‚Æ‚«íœ‚·‚é
         if(transform.position.y < -3.0f)

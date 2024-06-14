@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,7 +26,6 @@ public class ButtonCotroller : MonoBehaviour
         popup.SetActive(true);
         prefab.SetActive(true);
         buttons.SetActive(true);
-        objectManager.targetObjectBox.SetActive(false);
-        objectManager.targetObjectPass.SetActive(false);
+        objectManager.DeactivateAllObjects();
     }
 }

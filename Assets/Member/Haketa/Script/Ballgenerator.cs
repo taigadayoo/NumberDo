@@ -24,7 +24,7 @@ public class Ballgenerator : MonoBehaviour
         if (this.delta > this.time)
         {
             //1.3•b‚É‚È‚Á‚½‚Æ‚«
-            if (0.5 <= timeCounter.countdown)
+            if (1 <= timeCounter.countdown)
             {
                 this.delta = 0;
                 int randomIndex = Random.Range(0, positions.Length);

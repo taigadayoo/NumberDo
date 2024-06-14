@@ -9,7 +9,6 @@ public class CanvasTouchMouse : MonoBehaviour
     public GraphicRaycaster raycaster;
     public EventSystem eventSystem;
 
-
     public bool isCheck = false;
 
     private GameObject clickBomb;
@@ -18,8 +17,17 @@ public class CanvasTouchMouse : MonoBehaviour
     // 特定のオブジェクトを識別するためのタグ
     public string keyTag = "Key";
     public string bombTag = "Bomb";
-    private CheckBool lastClickedObject;
+
+    public CheckBool lastClickedObject;
+    public CheckBool previousClickedObject; // ひとつ前にクリックされたオブジェクト
+
     SceneManagement sceneManagement;
+    ItemLight itemLight;
+    ItemLight itemNextLight;
+
+    // クリックされた最後の2つのオブジェクトを格納するリスト
+    private List<CheckBool> clickedObjects = new List<CheckBool>();
+
     void Start()
     {
         sceneManagement = FindObjectOfType<SceneManagement>();
@@ -53,34 +61,73 @@ public class CanvasTouchMouse : MonoBehaviour
             foreach (RaycastResult result in results)
             {
                 GameObject hitObject = result.gameObject;
-               
                 CheckBool clickableObject = hitObject.GetComponent<CheckBool>();
 
-               
                 if (clickableObject != null)
                 {
-                    // 前回クリックされたオブジェクトのisCheckをfalseに設定し、アルファ値を元に戻す
-                    if (lastClickedObject != null && lastClickedObject != clickableObject)
+                    itemNextLight = clickableObject.GetComponent<ItemLight>();
+
+                    // 同じオブジェクトが再度クリックされた場合
+                    if (clickableObject == lastClickedObject)
                     {
-                        lastClickedObject.isCheck = false;
-                        SetAlpha(lastClickedObject.gameObject, 0.5f); // アルファ値を元に戻す
+                        // 選択を解除
+                        clickableObject.isCheck = false;
+                        itemNextLight.ChangeNomal();
+                        Debug.Log("Deselected: " + hitObject.name);
+
+                        // lastClickedObjectとpreviousClickedObjectをリセット
+                        lastClickedObject = null;
+                        if (previousClickedObject == clickableObject)
+                        {
+                            previousClickedObject = null;
+                        }
+                        else if (previousClickedObject != null)
+                        {
+                            // 一つ前のオブジェクトは選択されたまま
+                            lastClickedObject = previousClickedObject;
+                            itemLight = previousClickedObject.GetComponent<ItemLight>();
+                            itemLight.ChangeLight();
+                        }
+                    }
+                    else
+                    {
+                        // 前にクリックされたオブジェクトの処理
+                        if (previousClickedObject != null)
+                        {
+                            itemLight = previousClickedObject.GetComponent<ItemLight>();
+                            previousClickedObject.isCheck = false;
+                            itemLight.ChangeNomal();
+                        }
+
+                        // 現在のオブジェクトのisCheckをtrueに設定し、ChangeLightを呼び出してスプライトを入れ替える
+                        clickableObject.isCheck = true;
+                        itemNextLight.ChangeLight();
+                        //SampleSoundManager.Instance.PlaySe(SeType.SE1);
+
+                        // lastClickedObjectをpreviousClickedObjectに移す
+                        previousClickedObject = lastClickedObject;
+
+                        // 現在のオブジェクトをlastClickedObjectとして記憶
+                        lastClickedObject = clickableObject;
+
+                        // クリックされた最後の2つのオブジェクトを管理
+                        clickedObjects.Add(clickableObject);
+                        if (clickedObjects.Count > 2)
+                        {
+                            clickedObjects.RemoveAt(0);
+                        }
                     }
 
-                    // 現在のオブジェクトのisCheckをtrueに設定し、アルファ値を半透明にする
-                    clickableObject.isCheck = true;
-                    SetAlpha(hitObject, 1f); // アルファ値を半透明に設定
-                    SampleSoundManager.Instance.PlaySe(SeType.SE1);
-                    // 現在のオブジェクトをlastClickedObjectとして記憶
-                    lastClickedObject = clickableObject;
                     if (hitObject.CompareTag(keyTag))
                     {
                         isKeySelected = true;
                     }
                 }
 
-
-                break;
+                break; // 最初のヒットしたUI要素のみ処理
             }
+
+            // シーン上のオブジェクトを検出
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(clickPosition), Vector2.zero);
             if (hit.collider != null && hit.collider.CompareTag(bombTag))
             {
@@ -93,6 +140,7 @@ public class CanvasTouchMouse : MonoBehaviour
             }
         }
     }
+
     private void SetAlpha(GameObject obj, float alpha)
     {
         Image image = obj.GetComponent<Image>();
@@ -102,8 +150,8 @@ public class CanvasTouchMouse : MonoBehaviour
             color.a = alpha;
             image.color = color;
         }
-       
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         // ドアがクリックされ、カギが選択されていて、ドアに触れた場合
@@ -111,8 +159,6 @@ public class CanvasTouchMouse : MonoBehaviour
         {
             // ドアに触れた際にシーンを変更する処理
             Debug.Log("Door unlocked with key! Changing scene...");
-          
         }
     }
-
 }

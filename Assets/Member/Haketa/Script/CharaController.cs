@@ -6,19 +6,19 @@ using UnityEngine.SceneManagement;
 public class CharaController : MonoBehaviour
 {
     //XÇÃè„å¿
-    float xLimit = 7f;
+    float xLimit = 4f;
     public bool isDead = false;
 
  
     public void RbuttonClick()
     {
-        transform.Translate(1, 0, 0);
+        transform.Translate(2, 0, 0);
         SampleSoundManager.Instance.PlaySe(SeType.SE3);
     }
 
     public void LButtonClick()
     {
-        transform.Translate(-1, 0, 0);
+        transform.Translate(-2, 0, 0);
         SampleSoundManager.Instance.PlaySe(SeType.SE3);
     }
 

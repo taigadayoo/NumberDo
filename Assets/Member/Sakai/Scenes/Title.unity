@@ -654,20 +654,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmList:
   - Type: 1
-    Clip: {fileID: 8300000, guid: ac2cb5fb620f3444f97368e482120c4f, type: 3}
+    Clip: {fileID: 8300000, guid: b3a5dae6a573ef648a1d2d715495de14, type: 3}
     Volume: 0.35
   - Type: 2
-    Clip: {fileID: 8300000, guid: aaa1743f226b9cc42869e2efcde4bef7, type: 3}
+    Clip: {fileID: 8300000, guid: 47167f943de3f3b42b2fc05c7533c739, type: 3}
     Volume: 0.77
   seList:
   - Type: 1
-    Clip: {fileID: 8300000, guid: 0bc64ef31d5a9c143902acf58f091426, type: 3}
+    Clip: {fileID: 8300000, guid: ec00ed7e5f936bb46825739bf87bcea1, type: 3}
     Volume: 1
   - Type: 2
-    Clip: {fileID: 8300000, guid: 0a410130c57f4f0438137a31f35ef9b4, type: 3}
+    Clip: {fileID: 8300000, guid: 0b0bb468e6ff7874f941e51553a44f1f, type: 3}
     Volume: 1
   - Type: 3
-    Clip: {fileID: 8300000, guid: 03c05b251a972964a9c613457fcbd22c, type: 3}
+    Clip: {fileID: 8300000, guid: cfc7ef33dd6c31c4cb1db1f6d291cf70, type: 3}
     Volume: 1
   - Type: 4
     Clip: {fileID: 8300000, guid: 5e4b3076fcc2a9845bd5cbab463388b9, type: 3}

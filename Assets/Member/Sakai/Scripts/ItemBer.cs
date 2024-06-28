@@ -15,6 +15,8 @@ public class ItemBer : MonoBehaviour
     public bool ischak = false;
     [SerializeField]
    public Image image;
+    [SerializeField]
+    GameObject itemGetPanel;
 
     public GameObject Pages;
     public GameObject page;
@@ -79,6 +81,7 @@ public class ItemBer : MonoBehaviour
     public void AddItem(GameObject item)
     {
         getItemList.Add(item);
+        itemGetPanel.SetActive(true);
         //if(spawnedItemCount == 0)
         //{
         //    item.SetActive(false);

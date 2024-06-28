@@ -15,6 +15,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject judgeButton;
     public GameObject inputField;
     public GameObject gameCanvas;
+    public GameObject itemGetPanel;
 
     public List<GameObject> touchObject = new List<GameObject>();
     private bool OnBox = false;
@@ -26,6 +27,8 @@ public class ObjectManager : MonoBehaviour
     ButtonCotroller buttonCotroller;
     Timer timer;
     Password passwordScripts;
+    [SerializeField]
+    ItemGetSet getSet;
    
     private void Start()
     {
@@ -113,18 +116,33 @@ public class ObjectManager : MonoBehaviour
                 if (hit.collider.gameObject == targetObjectPass && passwordScripts.OnePassWord)
                 {
                     itemBer.AddItem(key);
+                    if (getSet != null)
+                    {
+                        getSet.ImageChange(0);
+                    }
                 }
                     if (hit.collider.gameObject == targetObjectBox2 && !OnBox2)
                 {
                     itemBer.AddItem(items[0]);
+                    if (getSet != null)
+                    {
+                        getSet.ImageChange(0);
+                    }
 
                     OnBox2 = true;
                 }
                 if (hit.collider.gameObject == targetObjectBox3 && !OnBox3)
                 {
                     itemBer.AddItem(items[1]);
-
+                    if (getSet != null)
+                    {
+                        getSet.ImageChange(1);
+                    }
                     OnBox3 = true;
+                }
+                if(hit.collider.gameObject == itemGetPanel)
+                {
+                    itemGetPanel.SetActive(false);
                 }
             }
         }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1983013599335236735}
   - component: {fileID: 8289372231047077485}
   - component: {fileID: 1999550885723271945}
+  - component: {fileID: -6068223288962376908}
   m_Layer: 0
   m_Name: key
   m_TagString: Key
@@ -30,7 +31,7 @@ RectTransform:
   m_GameObject: {fileID: 9169443778130632048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.88208264, y: 0.88208264, z: 0.88208264}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.88208264}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -133,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.47058824}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -163,3 +164,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCheck: 0
+--- !u!114 &-6068223288962376908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169443778130632048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 860545f275272154c8f4b8740b2bf471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightSprite:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: ceab235af75d77d4aba17a93865fe5aa, type: 3}
+  itemName: 3

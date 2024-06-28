@@ -7,20 +7,28 @@ public class GameManager : MonoBehaviour
     public bool isGameOver = false;
   
     SceneManagement sceneManagement;
-  
+
+    SampleSoundManager sampleSoundManager;
     // Start is called before the first frame update
     void Start()
     {
-        //SampleSoundManager.Instance.PlayBgm(BgmType.BGM2);
+        sampleSoundManager = FindFirstObjectByType<SampleSoundManager>();
+
+        if(sampleSoundManager != null)
+        {
+            sampleSoundManager.StopBgm();
+
+            sampleSoundManager.PlayBgm(BgmType.BGM2);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(isGameOver)
-        //{
-        //    sceneManagement.OnGameOver();
-        //}
+        if (isGameOver)
+        {
+            sceneManagement.OnGameOver();
+        }
     }
     
 }

@@ -34,7 +34,7 @@ public class Password : MonoBehaviour
         {
             //objectManager.key
             //objectManager.key.SetActive(true);
-            
+            itemBer.AddItem(objectManager.items[3]);
             this.gameObject.SetActive(false);
             OnePassWord = true;
           

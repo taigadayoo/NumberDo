@@ -547,8 +547,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.19245279, g: 0.031591296, b: 0.031591296, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b8e0f7428a1b0364aa4d7b6fbfa01c67, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -567,8 +567,8 @@ Transform:
   m_GameObject: {fileID: 1414026651}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: -0.23954, z: 0}
-  m_LocalScale: {x: 32.473553, y: 32.473553, z: 32.473553}
+  m_LocalPosition: {x: 0.01, y: -0.02, z: 0}
+  m_LocalScale: {x: 0.9294102, y: 0.9294102, z: 0.9294102}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -654,20 +654,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmList:
   - Type: 1
-    Clip: {fileID: 8300000, guid: aaf9278fe8608224b947563dd54875ea, type: 3}
-    Volume: 0.23
+    Clip: {fileID: 8300000, guid: ac2cb5fb620f3444f97368e482120c4f, type: 3}
+    Volume: 0.35
   - Type: 2
-    Clip: {fileID: 8300000, guid: 49417f5a596cb374f999e40c19adc01f, type: 3}
-    Volume: 0.31
+    Clip: {fileID: 8300000, guid: aaa1743f226b9cc42869e2efcde4bef7, type: 3}
+    Volume: 0.77
   seList:
   - Type: 1
-    Clip: {fileID: 8300000, guid: 1005cd5c29af4d948a54fd3a2916ad13, type: 3}
+    Clip: {fileID: 8300000, guid: 0bc64ef31d5a9c143902acf58f091426, type: 3}
     Volume: 1
   - Type: 2
-    Clip: {fileID: 8300000, guid: cace0a2a53ef6714589ed2f7219016e6, type: 3}
+    Clip: {fileID: 8300000, guid: 0a410130c57f4f0438137a31f35ef9b4, type: 3}
     Volume: 1
   - Type: 3
-    Clip: {fileID: 8300000, guid: d2330c0ddc23e2345ad9204cf72587ff, type: 3}
+    Clip: {fileID: 8300000, guid: 03c05b251a972964a9c613457fcbd22c, type: 3}
     Volume: 1
   - Type: 4
     Clip: {fileID: 8300000, guid: 5e4b3076fcc2a9845bd5cbab463388b9, type: 3}

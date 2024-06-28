@@ -13,6 +13,11 @@ public class MixButton : MonoBehaviour
     [SerializeField]
     ItemBer itemBer;
     // Update is called once per frame
+    SampleSoundManager sampleSoundManager;
+    private void Start()
+    {
+        sampleSoundManager = FindObjectOfType<SampleSoundManager>();
+    }
     void Update()
     {
 
@@ -21,16 +26,11 @@ public class MixButton : MonoBehaviour
     {
         if (canvasTouchMouse.lastClickedObject.gameObject.tag == "LeftMemo" && canvasTouchMouse.previousClickedObject.gameObject.tag == "RightMemo" || canvasTouchMouse.previousClickedObject.gameObject.tag == "LeftMemo" && canvasTouchMouse.lastClickedObject.gameObject.tag == "RightMemo")
         {
-
-          
-            itemBer.spawnedItemCount--;
-            itemBer.spawnedItemCount--;
-            Destroy(canvasTouchMouse.lastClickedObject.gameObject);
-            Destroy(canvasTouchMouse.previousClickedObject.gameObject);
-            itemBer.getItemList.Remove(canvasTouchMouse.lastClickedObject.gameObject);
-            itemBer.getItemList.Remove(canvasTouchMouse.previousClickedObject.gameObject);
-
+            itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
+            itemBer.RemoveItem(canvasTouchMouse.previousClickedObject.gameObject);
+            sampleSoundManager.PlaySe(SeType.SE1);
             itemBer.AddItem(objectManager.items[2]);
+            //itemBer.spawnedItemCount++;
         }
         else
         {

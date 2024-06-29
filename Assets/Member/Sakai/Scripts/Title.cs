@@ -20,6 +20,14 @@ public class Title : MonoBehaviour
     private Image startImage;
     private Image scenarioImage;
     private Image exitImage;
+
+    private GraphicRaycaster raycaster;
+    private PointerEventData pointerEventData;
+    private EventSystem eventSystem;
+
+    private GameObject previousHoverStart = null;
+    private GameObject previousHoverScenario = null;
+    private GameObject previousHoverExit = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +39,9 @@ public class Title : MonoBehaviour
         DefaultStart();
         DefaultScenario();
         DefaultExit();
+
+        raycaster = GetComponent<GraphicRaycaster>();
+        eventSystem = GetComponent<EventSystem>();
 
         SampleSoundManager.Instance.PlayBgm(BgmType.BGM1);
     }
@@ -58,36 +69,75 @@ public class Title : MonoBehaviour
         #endif
         }
     }
+
     void Update()
     {
-        // マウスの位置からRayを飛ばして衝突判定
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        // Raycastの結果を保存するリスト
+        List<RaycastResult> results = new List<RaycastResult>();
 
-        if (Physics.Raycast(ray, out hit))
+        // マウスの位置からRaycastを行う
+        pointerEventData = new PointerEventData(eventSystem)
         {
-            GameObject hitObject = hit.collider.gameObject;
+            position = Input.mousePosition
+        };
 
-            // 衝突したオブジェクトに応じて処理を行う
-            if (hitObject == start)
+        raycaster.Raycast(pointerEventData, results);
+
+        bool isHoveringStart = false;
+        bool isHoveringScenario = false;
+        bool isHoveringExit = false;
+
+        // Raycast結果があった場合
+        if (results.Count > 0)
+        {
+            foreach (var result in results)
             {
-                ChangeStart();
-            }
-            else if (hitObject == scenario)
-            {
-                ChangeScenario();
-            }
-            else if (hitObject == exit)
-            {
-                ChangeExit();
+                GameObject hitObject = result.gameObject;
+
+                // 各オブジェクトに対する処理
+                if (hitObject == start)
+                {
+                    isHoveringStart = true;
+                    if (hitObject != previousHoverStart)
+                    {
+                        ChangeStart();
+                        previousHoverStart = hitObject;
+                    }
+                }
+                else if (hitObject == scenario)
+                {
+                    isHoveringScenario = true;
+                    if (hitObject != previousHoverScenario)
+                    {
+                        ChangeScenario();
+                        previousHoverScenario = hitObject;
+                    }
+                }
+                else if (hitObject == exit)
+                {
+                    isHoveringExit = true;
+                    if (hitObject != previousHoverExit)
+                    {
+                        ChangeExit();
+                        previousHoverExit = hitObject;
+                    }
+                }
             }
         }
-        else
+        if (!isHoveringStart && previousHoverStart != null)
         {
-            // Rayが何も当たらなかった場合の処理
             DefaultStart();
+            previousHoverStart = null;
+        }
+        if (!isHoveringScenario && previousHoverScenario != null)
+        {
             DefaultScenario();
+            previousHoverScenario = null;
+        }
+        if (!isHoveringExit && previousHoverExit != null)
+        {
             DefaultExit();
+            previousHoverExit = null;
         }
     }
 

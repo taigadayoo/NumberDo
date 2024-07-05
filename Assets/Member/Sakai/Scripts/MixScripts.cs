@@ -14,9 +14,12 @@ public class MixButton : MonoBehaviour
     ItemBer itemBer;
     // Update is called once per frame
     SampleSoundManager sampleSoundManager;
+    [SerializeField]
+    MixImageScripts mixImageScripts;
     private void Start()
     {
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
+      
     }
     void Update()
     {
@@ -30,7 +33,9 @@ public class MixButton : MonoBehaviour
             itemBer.RemoveItem(canvasTouchMouse.previousClickedObject.gameObject);
             sampleSoundManager.PlaySe(SeType.SE1);
             itemBer.AddItem(objectManager.items[2]);
-            //itemBer.spawnedItemCount++;
+            mixImageScripts.mixImage.enabled = false;
+            canvasTouchMouse.lastClickedObject = null;
+            canvasTouchMouse.previousClickedObject = null;
         }
         else
         {

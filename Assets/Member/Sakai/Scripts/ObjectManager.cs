@@ -9,19 +9,23 @@ public class ObjectManager : MonoBehaviour
     public GameObject targetObjectBox2;
     public GameObject targetObjectBox3;
     public GameObject targetObjectPass;
+    public GameObject targetObjectBox4;
     public GameObject key;
     public List<GameObject> items = new List<GameObject>();
     public GameObject password;
-    public GameObject judgeButton;
-    public GameObject inputField;
+   
     public GameObject gameCanvas;
     public GameObject itemGetPanel;
+    public GameObject zoomShelf;
 
     public List<GameObject> touchObject = new List<GameObject>();
     private bool OnBox = false;
     private bool OnPass = false;
     private bool OnBox2 = false;
     private bool OnBox3 = false;
+    private bool OnBox4 = false;
+    public bool OnePassWord = false;
+    public bool ItemGet = false;
     ItemBer itemBer;
     SampleSoundManager sampleSoundManager;
     ButtonCotroller buttonCotroller;
@@ -33,18 +37,20 @@ public class ObjectManager : MonoBehaviour
     private void Start()
     {
         password.SetActive(false);
-        judgeButton.SetActive(false);
-        inputField.SetActive(false);
-        passwordScripts = FindObjectOfType<Password>();
+       
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
         itemBer = FindObjectOfType<ItemBer>();
         buttonCotroller = FindObjectOfType<ButtonCotroller>();
        timer =  FindFirstObjectByType<Timer>();
+        zoomShelf.SetActive(false);
 }
     void Update()
     {
         ObjectTouch();
-     
+     if(passwordScripts!= null)
+        {
+            passwordScripts = FindObjectOfType<Password>();
+        }
 
     }
    public void DeactivateAllObjects()
@@ -77,7 +83,47 @@ public class ObjectManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector2.zero);
 
             // RayがCollider2Dに当たったかを検出する
-            if (hit.collider != null)
+            if (hit.collider != null && !ItemGet)
+            {
+                if (hit.collider.gameObject == targetObjectPass && !OnePassWord)
+                {
+                    if (OnPass == false)
+                    {
+                        if (sampleSoundManager != null)
+                        {
+                            SampleSoundManager.Instance.PlaySe(SeType.SE3);
+                        }
+                        password.SetActive(true);
+                        zoomShelf.SetActive(false);
+                        OnPass = true;
+                    }
+                    else
+                    {
+                        password.SetActive(false);
+                        OnPass = false;
+                    }
+                }
+                if (hit.collider.gameObject == targetObjectPass && OnePassWord && !ItemGet)
+                {
+                    itemBer.AddItem(key);
+                    if (getSet != null)
+                    {
+                        getSet.ImageChange(0);
+                        ItemGet = true;
+                    }
+                }
+                if (hit.collider.gameObject == targetObjectBox4 && !OnBox4)
+                {
+                    zoomShelf.SetActive(true);
+                    OnBox4 = true;
+                }
+                else if (hit.collider.gameObject == targetObjectBox4 && OnBox4)
+                {
+                    zoomShelf.SetActive(false);
+                    OnBox4 = false;
+                }
+            }
+            if (hit.collider != null && !OnBox4)
             {
                 // 当たったCollider2DのGameObjectが特定のオブジェクトであるかを確認する
                 if (hit.collider.gameObject == targetObjectBox)
@@ -94,39 +140,14 @@ public class ObjectManager : MonoBehaviour
                     }
                    
                 }
-                if(hit.collider.gameObject == targetObjectPass && !passwordScripts.OnePassWord)
-                {
-                    if (OnPass == false)
-                    {
-                        if (sampleSoundManager != null)
-                        {
-                            SampleSoundManager.Instance.PlaySe(SeType.SE3);
-                        }
-                        judgeButton.SetActive(true);
-                        inputField.SetActive(true);
-                        OnPass = true;
-                    }
-                    else
-                    {
-                        judgeButton.SetActive(false);
-                        inputField.SetActive(false);
-                        OnPass = false;
-                    }
-                }
-                if (hit.collider.gameObject == targetObjectPass && passwordScripts.OnePassWord)
-                {
-                    itemBer.AddItem(key);
-                    if (getSet != null)
-                    {
-                        getSet.ImageChange(0);
-                    }
-                }
+                
                     if (hit.collider.gameObject == targetObjectBox2 && !OnBox2)
                 {
                     itemBer.AddItem(items[0]);
                     if (getSet != null)
                     {
                         getSet.ImageChange(0);
+                        ItemGet = true;
                     }
 
                     OnBox2 = true;
@@ -137,12 +158,19 @@ public class ObjectManager : MonoBehaviour
                     if (getSet != null)
                     {
                         getSet.ImageChange(1);
+                        ItemGet = true;
                     }
                     OnBox3 = true;
                 }
-                if(hit.collider.gameObject == itemGetPanel)
+              
+               
+            }
+            if (hit.collider != null)
+            {
+                if (hit.collider.gameObject == itemGetPanel)
                 {
                     itemGetPanel.SetActive(false);
+                    ItemGet = false;
                 }
             }
         }

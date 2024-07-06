@@ -13,7 +13,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject key;
     public List<GameObject> items = new List<GameObject>();
     public GameObject password;
-   
+
     public GameObject gameCanvas;
     public GameObject itemGetPanel;
     public GameObject zoomShelf;
@@ -33,27 +33,27 @@ public class ObjectManager : MonoBehaviour
     Password passwordScripts;
     [SerializeField]
     ItemGetSet getSet;
-   
+
     private void Start()
     {
         password.SetActive(false);
-       
+
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
         itemBer = FindObjectOfType<ItemBer>();
         buttonCotroller = FindObjectOfType<ButtonCotroller>();
-       timer =  FindFirstObjectByType<Timer>();
+        timer = FindFirstObjectByType<Timer>();
         zoomShelf.SetActive(false);
-}
+    }
     void Update()
     {
         ObjectTouch();
-     if(passwordScripts!= null)
+        if (passwordScripts != null)
         {
             passwordScripts = FindObjectOfType<Password>();
         }
 
     }
-   public void DeactivateAllObjects()
+    public void DeactivateAllObjects()
     {
         foreach (GameObject obj in touchObject)
         {
@@ -63,7 +63,7 @@ public class ObjectManager : MonoBehaviour
             }
         }
     }
-   public void ActivateAllObjects()
+    public void ActivateAllObjects()
     {
         foreach (GameObject obj in touchObject)
         {
@@ -75,8 +75,8 @@ public class ObjectManager : MonoBehaviour
     }
     private void ObjectTouch()
     {
-        
-            if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetMouseButtonDown(0))
         {
             // マウスの位置からRayを飛ばす
             Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -97,7 +97,7 @@ public class ObjectManager : MonoBehaviour
                         zoomShelf.SetActive(false);
                         OnPass = true;
                     }
-                    else
+                    else if (OnPass == true)
                     {
                         password.SetActive(false);
                         OnPass = false;
@@ -120,6 +120,7 @@ public class ObjectManager : MonoBehaviour
                 else if (hit.collider.gameObject == targetObjectBox4 && OnBox4)
                 {
                     zoomShelf.SetActive(false);
+                    password.SetActive(false);
                     OnBox4 = false;
                 }
             }
@@ -138,10 +139,10 @@ public class ObjectManager : MonoBehaviour
                             SampleSoundManager.Instance.PlaySe(SeType.SE2);
                         }
                     }
-                   
+
                 }
-                
-                    if (hit.collider.gameObject == targetObjectBox2 && !OnBox2)
+
+                if (hit.collider.gameObject == targetObjectBox2 && !OnBox2)
                 {
                     itemBer.AddItem(items[0]);
                     if (getSet != null)
@@ -162,8 +163,8 @@ public class ObjectManager : MonoBehaviour
                     }
                     OnBox3 = true;
                 }
-              
-               
+
+
             }
             if (hit.collider != null)
             {
@@ -174,6 +175,6 @@ public class ObjectManager : MonoBehaviour
                 }
             }
         }
-        
+
     }
 }

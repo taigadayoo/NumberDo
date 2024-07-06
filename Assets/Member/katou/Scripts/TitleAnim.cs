@@ -28,7 +28,7 @@ public class TitleAnim : MonoBehaviour
    public async UniTask TitleAnimation()
     {
         panel.SetActive(true);
-        await UniTask.Delay(TimeSpan.FromSeconds(0.2));
+        await UniTask.Delay(TimeSpan.FromSeconds(0.05));
         anim.SetBool("isTitle", true);
         await UniTask.Delay(TimeSpan.FromSeconds(1));
         FadeOut();

@@ -11,6 +11,8 @@ public class ItemGetSet : MonoBehaviour
     [SerializeField]
     Image image;
 
+    [SerializeField]
+    SimpleDialogueManager dialogueManager;
     // Start is called before the first frame update
     void Start()
     {

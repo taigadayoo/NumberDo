@@ -17,6 +17,7 @@ public class CanvasTouchMouse : MonoBehaviour
     // 特定のオブジェクトを識別するためのタグ
     public string keyTag = "Key";
     public string bombTag = "Bomb";
+    public string rockerTag = "Rocker";
 
     public CheckBool lastClickedObject;
     public CheckBool previousClickedObject; // ひとつ前にクリックされたオブジェクト
@@ -24,7 +25,8 @@ public class CanvasTouchMouse : MonoBehaviour
     SceneManagement sceneManagement;
     ItemLight itemLight;
     ItemLight itemNextLight;
-
+    [SerializeField]
+    RockerScripts rockerScripts;
     // クリックされた最後の2つのオブジェクトを格納するリスト
     private List<CheckBool> clickedObjects = new List<CheckBool>();
 
@@ -129,12 +131,12 @@ public class CanvasTouchMouse : MonoBehaviour
 
             // シーン上のオブジェクトを検出
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(clickPosition), Vector2.zero);
-            if (hit.collider != null && hit.collider.CompareTag(bombTag))
+            if (hit.collider != null && hit.collider.CompareTag(rockerTag))
             {
                 // ボムがマウスでクリックされた場合の処理
                 if (isKeySelected)
                 {
-                    sceneManagement.OnClear();
+                    rockerScripts.OpenRocker();
                 }
                 isKeySelected = false;
             }

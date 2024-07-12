@@ -20,12 +20,15 @@ public class ObjectManager : MonoBehaviour
 
     public List<GameObject> touchObject = new List<GameObject>();
     private bool OnBox = false;
-    private bool OnPass = false;
+    public bool OnPass = false;
     private bool OnBox2 = false;
     private bool OnBox3 = false;
     private bool OnBox4 = false;
     public bool OnePassWord = false;
     public bool ItemGet = false;
+
+    public int imageNum = 0;
+    public int addItemNum = 0;
     ItemBer itemBer;
     SampleSoundManager sampleSoundManager;
     ButtonCotroller buttonCotroller;
@@ -33,7 +36,8 @@ public class ObjectManager : MonoBehaviour
     Password passwordScripts;
     [SerializeField]
     ItemGetSet getSet;
-
+    [SerializeField]
+    SimpleDialogueManager dialogueManager;
     private void Start()
     {
         password.SetActive(false);
@@ -51,6 +55,11 @@ public class ObjectManager : MonoBehaviour
         {
             passwordScripts = FindObjectOfType<Password>();
         }
+        //if(dialogueManager.chatEnd)
+        //{
+        //    getSet.ImageChange(imageNum);
+        //    itemBer.AddItem(items[addItemNum]);
+        //}
 
     }
     public void DeactivateAllObjects()
@@ -81,9 +90,16 @@ public class ObjectManager : MonoBehaviour
             // マウスの位置からRayを飛ばす
             Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector2.zero);
-
+            if (hit.collider != null)
+            {
+                if (hit.collider.gameObject == itemGetPanel)
+                {
+                    itemGetPanel.SetActive(false);
+                    ItemGet = false;
+                }
+            }
             // RayがCollider2Dに当たったかを検出する
-            if (hit.collider != null && !ItemGet)
+            if (hit.collider != null && !ItemGet )
             {
                 if (hit.collider.gameObject == targetObjectPass && !OnePassWord)
                 {
@@ -97,18 +113,14 @@ public class ObjectManager : MonoBehaviour
                         zoomShelf.SetActive(false);
                         OnPass = true;
                     }
-                    else if (OnPass == true)
-                    {
-                        password.SetActive(false);
-                        OnPass = false;
-                    }
+                   
                 }
                 if (hit.collider.gameObject == targetObjectPass && OnePassWord && !ItemGet)
                 {
                     itemBer.AddItem(key);
                     if (getSet != null)
                     {
-                        getSet.ImageChange(0);
+                        imageNum = 3;
                         ItemGet = true;
                     }
                 }
@@ -124,7 +136,7 @@ public class ObjectManager : MonoBehaviour
                     OnBox4 = false;
                 }
             }
-            if (hit.collider != null && !OnBox4)
+            if (hit.collider != null && !OnBox4 && !OnPass)
             {
                 // 当たったCollider2DのGameObjectが特定のオブジェクトであるかを確認する
                 if (hit.collider.gameObject == targetObjectBox)
@@ -144,10 +156,10 @@ public class ObjectManager : MonoBehaviour
 
                 if (hit.collider.gameObject == targetObjectBox2 && !OnBox2)
                 {
-                    itemBer.AddItem(items[0]);
+                    addItemNum = 0;
                     if (getSet != null)
                     {
-                        getSet.ImageChange(0);
+                        imageNum = 0;
                         ItemGet = true;
                     }
 
@@ -155,10 +167,10 @@ public class ObjectManager : MonoBehaviour
                 }
                 if (hit.collider.gameObject == targetObjectBox3 && !OnBox3)
                 {
-                    itemBer.AddItem(items[1]);
+                    addItemNum = 1;
                     if (getSet != null)
                     {
-                        getSet.ImageChange(1);
+                        imageNum = 1;
                         ItemGet = true;
                     }
                     OnBox3 = true;
@@ -166,14 +178,7 @@ public class ObjectManager : MonoBehaviour
 
 
             }
-            if (hit.collider != null)
-            {
-                if (hit.collider.gameObject == itemGetPanel)
-                {
-                    itemGetPanel.SetActive(false);
-                    ItemGet = false;
-                }
-            }
+           
         }
 
     }

@@ -11,6 +11,8 @@ public class SceneManagement : MonoBehaviour
     [SerializeField] private string sceneNameTitle;
     [SerializeField] private Color fadeColor;
     [SerializeField] private float fadeSpeed;
+
+    private bool oneStart = false;
     public static SceneManagement Instance { get; private set; }
 
     private void Awake()
@@ -29,7 +31,10 @@ public class SceneManagement : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
     // Start is called before the first frame update
-
+    private void Start()
+    {
+        oneStart = false;
+    }
 
     public void OnClear()
     {
@@ -41,7 +46,10 @@ public class SceneManagement : MonoBehaviour
     }
     public void OnStart()
     {
-        Initiate.Fade(sceneNameGame, fadeColor, fadeSpeed);
+        if (!oneStart)
+        {
+            Initiate.Fade(sceneNameGame, fadeColor, fadeSpeed);
+        }
     }
     public void OnTitle()
     {

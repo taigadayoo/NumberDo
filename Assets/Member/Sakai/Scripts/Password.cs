@@ -9,11 +9,12 @@ public class Password : MonoBehaviour
 
    
     ObjectManager objectManager;
-
+    [SerializeField]
+    ItemGetSet getSet;
     ItemBer itemBer;
     [SerializeField]
     SceneManagement sceneManagement;
-
+    private bool okPass = false;
     SampleSoundManager sampleSoundManager;
 
     public Text digit1;
@@ -33,19 +34,15 @@ public class Password : MonoBehaviour
         itemBer = FindObjectOfType<ItemBer>();
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
        objectManager.OnePassWord = false;
+
     }
     private void Update()
     {
+    
         if (IsPasswordCorrect())
-        {
-            itemBer.AddItem(objectManager.items[3]);
-            this.gameObject.SetActive(false);
-           objectManager.OnePassWord = true;
-
-            if (sampleSoundManager != null)
-            {
-                SampleSoundManager.Instance.PlaySe(SeType.SE4);
-            }
+        {         
+                OkPass();
+          
         }
         CheckDigitClick(digit1, 0);
         CheckDigitClick(digit2, 1);
@@ -58,22 +55,46 @@ public class Password : MonoBehaviour
 
       
     }
+    private void OkPass()
+    {
+        itemBer.AddItem(objectManager.items[3]);
+        objectManager.imageNum = 3;
+        getSet.ImageChange(objectManager.imageNum);
+        this.gameObject.SetActive(false);
+        objectManager.OnePassWord = true;
+
+        if (sampleSoundManager != null)
+        {
+            SampleSoundManager.Instance.PlaySe(SeType.SE4);
+        }
+    }
     void CheckDigitClick(Text digitText, int digitIndex)
     {
         // マウスボタンが押され、クリックがUI要素上で行われた場合
-        if (Input.GetMouseButtonDown(0) && IsMouseOverUIElement(digitText))
+        if (Input.GetMouseButtonDown(0))
         {
-            // 対応する桁のカウントを増やす
-            digits[digitIndex]++;
-
-            // カウントが10になったら0に戻す
-            if (digits[digitIndex] > 9)
+            if (IsMouseOverUIElement(digitText))
             {
-                digits[digitIndex] = 0;
-            }
+                // 対応する桁のカウントを増やす
+                digits[digitIndex]++;
 
-            // 更新されたカウントをテキストに表示
-            UpdateDigitTexts();
+                // カウントが10になったら0に戻す
+                if (digits[digitIndex] > 9)
+                {
+                    digits[digitIndex] = 0;
+                }
+
+                // 更新されたカウントをテキストに表示
+                UpdateDigitTexts();
+            }
+            else if(!IsMouseOverUIElement(digit1) &&
+             !IsMouseOverUIElement(digit2) &&
+             !IsMouseOverUIElement(digit3) &&
+             !IsMouseOverUIElement(digit4))
+            {
+                this.gameObject.SetActive(false);
+                objectManager.OnPass = false;
+            }
         }
     }
 

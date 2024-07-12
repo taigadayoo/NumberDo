@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Collections;
 
 public class SimpleDialogueManager : MonoBehaviour
 {
@@ -8,20 +9,36 @@ public class SimpleDialogueManager : MonoBehaviour
     public Dialogue currentDialogue; // 現在表示中の会話データ
     private int currentLineIndex; // 現在の会話行のインデックス
     public bool chatEnd = false;
+    ObjectManager objectManager;
+    [SerializeField]
+    ItemGetSet getSet;
+    ItemBer itemBer;
 
+    GameManager gameManager;
     public event Action OnChatEnd;
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+        objectManager = FindFirstObjectByType<ObjectManager>();
+        itemBer = FindObjectOfType<ItemBer>();
         gameObject.SetActive(false); // 初期状態で非表示に設定
         chatEnd = false;
     }
-
+    
     public void StartDialogue(Dialogue dialogue)
     {
         currentDialogue = dialogue;
         currentLineIndex = 0;
         gameObject.SetActive(true); // 会話開始時に表示
         DisplayLine();
+    }
+    public void StartDialogue2(Dialogue dialogue)
+    {
+
+        currentDialogue = dialogue;
+        currentLineIndex = 0;
+        gameObject.SetActive(true); // 会話開始時に表示
+        DisplayLine2();
     }
     void Update()
     {
@@ -34,9 +51,16 @@ public class SimpleDialogueManager : MonoBehaviour
 
     public void NextLine()
     {
-     
-        DisplayLine();
-        currentLineIndex++;
+        if (gameManager.itemGet)
+        {
+            DisplayLine();
+            currentLineIndex++;
+        }
+        if (!gameManager.itemGet)
+        {
+            DisplayLine2();
+            currentLineIndex++;
+        }
     }
     public void DisplayLine()
     {
@@ -50,13 +74,35 @@ public class SimpleDialogueManager : MonoBehaviour
             EndDialogue();
         }
     }
- 
+    public void DisplayLine2()
+    {
+        if (currentLineIndex < currentDialogue.lines.Count)
+        {
+            var line = currentDialogue.lines[currentLineIndex];
+            dialogueText.text = line.dialogueText; // 会話内容のみ表示
+        }
+        else
+        {
+            EndDialogue2();
+        }
+    }
+
     public void EndDialogue()
     {
         // 会話終了時の処理
         dialogueText.text = "";
+        getSet.ImageChange(objectManager.imageNum);
+        itemBer.AddItem(objectManager.items[objectManager.addItemNum]);
         gameObject.SetActive(false); // 会話終了時に非表示に設定
-        chatEnd = true;
+       
+    }
+    public void EndDialogue2()
+    {
+        //Debug.Log("asaa");
+        // 会話終了時の処理
+        dialogueText.text = "";    
+        gameObject.SetActive(false); // 会話終了時に非表示に設定
 
     }
+    
 }

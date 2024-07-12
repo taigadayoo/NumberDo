@@ -10,6 +10,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject targetObjectBox3;
     public GameObject targetObjectPass;
     public GameObject targetObjectBox4;
+    public GameObject targetObjectKey;
     public GameObject key;
     public List<GameObject> items = new List<GameObject>();
     public GameObject password;
@@ -17,6 +18,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject gameCanvas;
     public GameObject itemGetPanel;
     public GameObject zoomShelf;
+    public GameObject unrockingRock;
 
     public List<GameObject> touchObject = new List<GameObject>();
     private bool OnBox = false;
@@ -24,9 +26,11 @@ public class ObjectManager : MonoBehaviour
     private bool OnBox2 = false;
     private bool OnBox3 = false;
     private bool OnBox4 = false;
+    private bool OneKey = false;
     public bool OnePassWord = false;
     public bool ItemGet = false;
-
+    public bool Ontext = false;
+    public bool unrocking = false;
     public int imageNum = 0;
     public int addItemNum = 0;
     ItemBer itemBer;
@@ -99,9 +103,9 @@ public class ObjectManager : MonoBehaviour
                 }
             }
             // RayÇ™Collider2DÇ…ìñÇΩÇ¡ÇΩÇ©ÇåüèoÇ∑ÇÈ
-            if (hit.collider != null && !ItemGet )
+            if (hit.collider != null && !ItemGet && !Ontext)
             {
-                if (hit.collider.gameObject == targetObjectPass && !OnePassWord)
+                if (hit.collider.gameObject == targetObjectPass && !OnePassWord )
                 {
                     if (OnPass == false)
                     {
@@ -111,19 +115,22 @@ public class ObjectManager : MonoBehaviour
                         }
                         password.SetActive(true);
                         zoomShelf.SetActive(false);
+                        Ontext = false;
                         OnPass = true;
+
                     }
                    
                 }
-                if (hit.collider.gameObject == targetObjectPass && OnePassWord && !ItemGet)
-                {
-                    itemBer.AddItem(key);
-                    if (getSet != null)
-                    {
-                        imageNum = 3;
-                        ItemGet = true;
-                    }
-                }
+               
+                //if (hit.collider.gameObject == targetObjectPass && OnePassWord && !ItemGet)
+                //{
+                //    itemBer.AddItem(key);
+                //    if (getSet != null)
+                //    {
+                //        imageNum = 3;
+                //        ItemGet = true;
+                //    }
+                //}
                 if (hit.collider.gameObject == targetObjectBox4 && !OnBox4)
                 {
                     zoomShelf.SetActive(true);
@@ -134,6 +141,22 @@ public class ObjectManager : MonoBehaviour
                     zoomShelf.SetActive(false);
                     password.SetActive(false);
                     OnBox4 = false;
+                }
+                 if (hit.collider.gameObject == targetObjectKey && !OneKey)
+                {
+                    addItemNum = 3;
+                    itemBer.AddItem(items[addItemNum]);
+                    imageNum = 3;
+                    getSet.ImageChange(imageNum);
+                    OnPass = false;
+                    OnePassWord = true;
+                    OnBox4 = false;
+                    if (sampleSoundManager != null)
+                    {
+                        SampleSoundManager.Instance.PlaySe(SeType.SE4);
+                    }
+                    unrockingRock.SetActive(false);
+                    OneKey = true;
                 }
             }
             if (hit.collider != null && !OnBox4 && !OnPass)
@@ -175,7 +198,7 @@ public class ObjectManager : MonoBehaviour
                     }
                     OnBox3 = true;
                 }
-
+               
 
             }
            

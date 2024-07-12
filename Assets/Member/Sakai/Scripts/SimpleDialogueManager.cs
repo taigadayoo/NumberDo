@@ -14,6 +14,7 @@ public class SimpleDialogueManager : MonoBehaviour
     ItemGetSet getSet;
     ItemBer itemBer;
 
+    
     GameManager gameManager;
     public event Action OnChatEnd;
     void Start()
@@ -23,6 +24,7 @@ public class SimpleDialogueManager : MonoBehaviour
         itemBer = FindObjectOfType<ItemBer>();
         gameObject.SetActive(false); // 初期状態で非表示に設定
         chatEnd = false;
+        
     }
     
     public void StartDialogue(Dialogue dialogue)
@@ -31,6 +33,7 @@ public class SimpleDialogueManager : MonoBehaviour
         currentLineIndex = 0;
         gameObject.SetActive(true); // 会話開始時に表示
         DisplayLine();
+        objectManager.Ontext = true;
     }
     public void StartDialogue2(Dialogue dialogue)
     {
@@ -39,6 +42,11 @@ public class SimpleDialogueManager : MonoBehaviour
         currentLineIndex = 0;
         gameObject.SetActive(true); // 会話開始時に表示
         DisplayLine2();
+      
+    }
+    public void StartDialogueItemGeted(Dialogue dialogue)
+    {
+
     }
     void Update()
     {
@@ -46,6 +54,14 @@ public class SimpleDialogueManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // 左クリックまたはタップ
         {
             NextLine();
+        }
+        if(this.gameObject.activeSelf)
+        {
+            objectManager.Ontext = true;
+        }
+        else
+        {
+            objectManager.Ontext = false;
         }
     }
 
@@ -94,7 +110,7 @@ public class SimpleDialogueManager : MonoBehaviour
         getSet.ImageChange(objectManager.imageNum);
         itemBer.AddItem(objectManager.items[objectManager.addItemNum]);
         gameObject.SetActive(false); // 会話終了時に非表示に設定
-       
+
     }
     public void EndDialogue2()
     {
@@ -102,7 +118,7 @@ public class SimpleDialogueManager : MonoBehaviour
         // 会話終了時の処理
         dialogueText.text = "";    
         gameObject.SetActive(false); // 会話終了時に非表示に設定
-
+        objectManager.Ontext = false;
     }
     
 }

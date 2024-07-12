@@ -7,6 +7,8 @@ public class Interactable : MonoBehaviour
     public GameObject textBox;
     ObjectManager objectManager;
     GameManager gameManager;
+
+    private bool getedItem = false;
     public enum TouchAction
     {
        
@@ -24,13 +26,21 @@ public class Interactable : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if (dialogueManager != null && dialogue != null  && touchAction == TouchAction.itemGet)
+        if (dialogueManager != null && dialogue != null  && touchAction == TouchAction.itemGet && !objectManager.Ontext && !getedItem)
         {
             gameManager.itemGet = true;
             textBox.SetActive(true);
             dialogueManager.StartDialogue(dialogue); // 触れた際に会話を開始
+            getedItem = true;
         }
-        if (dialogueManager != null && dialogue != null  && touchAction == TouchAction.noItem)
+        if (dialogueManager != null && dialogue != null && touchAction == TouchAction.itemGet && !objectManager.Ontext && getedItem)
+        {
+            gameManager.itemGet = true;
+            textBox.SetActive(true);
+            dialogueManager.StartDialogueItemGeted(dialogue); // 触れた際に会話を開始
+          
+        }
+        if (dialogueManager != null && dialogue != null  && touchAction == TouchAction.noItem && !objectManager.Ontext)
         {
             gameManager.itemGet = false;
             textBox.SetActive(true);

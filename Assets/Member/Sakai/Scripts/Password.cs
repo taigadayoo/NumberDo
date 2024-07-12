@@ -38,11 +38,19 @@ public class Password : MonoBehaviour
     }
     private void Update()
     {
-    
+        if (this.gameObject.activeSelf)
+        {
+            objectManager.Ontext = true;
+        }
+        else
+        {
+            objectManager.Ontext = false;
+        }
+
         if (IsPasswordCorrect())
-        {         
-                OkPass();
-          
+        {
+            objectManager.unrocking = true;
+            this.gameObject.SetActive(false);
         }
         CheckDigitClick(digit1, 0);
         CheckDigitClick(digit2, 1);
@@ -55,12 +63,13 @@ public class Password : MonoBehaviour
 
       
     }
+ 
     private void OkPass()
     {
         itemBer.AddItem(objectManager.items[3]);
         objectManager.imageNum = 3;
         getSet.ImageChange(objectManager.imageNum);
-        this.gameObject.SetActive(false);
+        
         objectManager.OnePassWord = true;
 
         if (sampleSoundManager != null)
@@ -92,6 +101,7 @@ public class Password : MonoBehaviour
              !IsMouseOverUIElement(digit3) &&
              !IsMouseOverUIElement(digit4))
             {
+                objectManager.Ontext = false;
                 this.gameObject.SetActive(false);
                 objectManager.OnPass = false;
             }

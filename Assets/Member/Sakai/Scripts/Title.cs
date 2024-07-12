@@ -31,6 +31,7 @@ public class Title : MonoBehaviour
     private GameObject previousHoverExit = null;
     [SerializeField]
     TitleAnim anim;
+    SampleSoundManager soundManager;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,7 @@ public class Title : MonoBehaviour
         startImage = start.GetComponent<Image>();
         scenarioImage = scenario.GetComponent<Image>();
         exitImage = exit.GetComponent<Image>();
-
+      soundManager =   FindObjectOfType<SampleSoundManager>();
         // èâä˙âÊëúÇê›íËÇ∑ÇÈ
         DefaultStart();
         DefaultScenario();
@@ -52,6 +53,7 @@ public class Title : MonoBehaviour
 
   async  public void OnStart()
     {
+        soundManager.PlaySe(SeType.SE6);
         await anim.TitleAnimation();
         SampleSoundManager.Instance.StopBgm();
         sceneManagement.OnStart();
@@ -109,7 +111,7 @@ public class Title : MonoBehaviour
                     {
                         ChangeStart();
                         previousHoverStart = hitObject;
-                       
+                        soundManager.PlaySe(SeType.SE7);
                     }
                 }
                 else if (hitObject == scenario)
@@ -117,6 +119,7 @@ public class Title : MonoBehaviour
                     isHoveringScenario = true;
                     if (hitObject != previousHoverScenario)
                     {
+                        soundManager.PlaySe(SeType.SE7);
                         ChangeScenario();
                         previousHoverScenario = hitObject;
                        
@@ -129,7 +132,7 @@ public class Title : MonoBehaviour
                     {
                         ChangeExit();
                         previousHoverExit = hitObject;
-                       
+                        soundManager.PlaySe(SeType.SE7);
                     }
                 }
             }

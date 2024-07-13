@@ -70,7 +70,7 @@ $f-forced   | delay seconds async                                               
             |                                                                                                                   | 
 $sync       | hide dialogue box                                                                                                 | 
             | Hide the dialogue box.                                                                                            | 
-//$f-forced   | enter scene transition async                                                                                      | 
+$f-forced   | enter scene transition async                                                                                      | 
             | Close the curtain in {2} seconds.                                                                                 | 
 $f-forced   | delay seconds async                                                                                               | 
             | Wait for {3} seconds.                                                                                             | 

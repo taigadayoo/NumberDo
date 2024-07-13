@@ -11,6 +11,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject targetObjectPass;
     public GameObject targetObjectBox4;
     public GameObject targetObjectKey;
+    public GameObject passKey;
     public GameObject key;
     public List<GameObject> items = new List<GameObject>();
     public GameObject password;
@@ -54,6 +55,7 @@ public class ObjectManager : MonoBehaviour
     }
     void Update()
     {
+
         ObjectTouch();
         if (passwordScripts != null)
         {
@@ -72,7 +74,7 @@ public class ObjectManager : MonoBehaviour
         //    getSet.ImageChange(imageNum);
         //    itemBer.AddItem(items[addItemNum]);
         //}
-
+    
     }
     public void DeactivateAllObjects()
     {
@@ -92,6 +94,17 @@ public class ObjectManager : MonoBehaviour
             {
                 obj.SetActive(true);
             }
+        }
+    }
+    private void PassOff()
+    {
+        if(passKey.activeSelf)
+        {
+            password.SetActive(true);
+        }
+        else
+        {
+            password.SetActive(false);
         }
     }
     private void ObjectTouch()
@@ -115,6 +128,7 @@ public class ObjectManager : MonoBehaviour
             {
                 if (hit.collider.gameObject == targetObjectPass && !OnePassWord )
                 {
+                   
                     if (OnPass == false)
                     {
                         if (sampleSoundManager != null)
@@ -151,6 +165,7 @@ public class ObjectManager : MonoBehaviour
                     password.SetActive(false);
                     Ontext = false;
                     OnBox4 = false;
+                    OnPass = false;
                 }
                  if (hit.collider.gameObject == targetObjectKey && !OneKey)
                 {
@@ -189,6 +204,7 @@ public class ObjectManager : MonoBehaviour
 
                 if (hit.collider.gameObject == targetObjectBox2 && !OnBox2)
                 {
+                    
                     addItemNum = 0;
                     if (getSet != null)
                     {
@@ -200,6 +216,7 @@ public class ObjectManager : MonoBehaviour
                 }
                 if (hit.collider.gameObject == targetObjectBox3 && !OnBox3)
                 {
+            
                     addItemNum = 1;
                     if (getSet != null)
                     {

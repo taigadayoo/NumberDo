@@ -1118,6 +1118,7 @@ MonoBehaviour:
   sceneNameClear: Clear
   sceneNameGameOver: GameOver
   sceneNameTitle: Title
+  sceneNameAttention: Attention
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   fadeSpeed: 1
 --- !u!4 &1677333356
@@ -1195,6 +1196,9 @@ MonoBehaviour:
     Volume: 1
   - Type: 8
     Clip: {fileID: 8300000, guid: 87afb05e56a9bc04ebf51a5d3bb88c09, type: 3}
+    Volume: 1
+  - Type: 9
+    Clip: {fileID: 8300000, guid: 0140ac7e4f6dc0e4a84fa28576221a34, type: 3}
     Volume: 1
   fadeDuration: 1
 --- !u!4 &1973339976

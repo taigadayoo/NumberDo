@@ -46,8 +46,9 @@ public class Password : MonoBehaviour
 
         if (IsPasswordCorrect())
         {
+            sampleSoundManager.PlaySe(SeType.SE9);
             objectManager.unrocking = true;
-            this.gameObject.SetActive(false);
+            objectManager.password.SetActive(false);
         }
         CheckDigitClick(digit1, 0);
         CheckDigitClick(digit2, 1);
@@ -99,7 +100,7 @@ public class Password : MonoBehaviour
              !IsMouseOverUIElement(digit4))
             {
                 objectManager.Ontext = false;
-                this.gameObject.SetActive(false);
+                objectManager.password.SetActive(false);
                 objectManager.OnPass = false;
                 objectManager.OnBox4 = false;
                 objectManager.Ontext = false;

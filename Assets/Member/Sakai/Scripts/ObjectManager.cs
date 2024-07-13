@@ -25,7 +25,7 @@ public class ObjectManager : MonoBehaviour
     public bool OnPass = false;
     private bool OnBox2 = false;
     private bool OnBox3 = false;
-    private bool OnBox4 = false;
+    public bool OnBox4 = false;
     private bool OneKey = false;
     public bool OnePassWord = false;
     public bool ItemGet = false;
@@ -58,6 +58,14 @@ public class ObjectManager : MonoBehaviour
         if (passwordScripts != null)
         {
             passwordScripts = FindObjectOfType<Password>();
+        }
+        if(zoomShelf.activeSelf)
+        {
+            Ontext = true;
+        }
+        else
+        {
+            Ontext = false;
         }
         //if(dialogueManager.chatEnd)
         //{
@@ -103,7 +111,7 @@ public class ObjectManager : MonoBehaviour
                 }
             }
             // RayÇ™Collider2DÇ…ìñÇΩÇ¡ÇΩÇ©ÇåüèoÇ∑ÇÈ
-            if (hit.collider != null && !ItemGet && !Ontext)
+            if (hit.collider != null && !ItemGet )
             {
                 if (hit.collider.gameObject == targetObjectPass && !OnePassWord )
                 {
@@ -135,11 +143,13 @@ public class ObjectManager : MonoBehaviour
                 {
                     zoomShelf.SetActive(true);
                     OnBox4 = true;
+                    Ontext = true;
                 }
                 else if (hit.collider.gameObject == targetObjectBox4 && OnBox4)
                 {
                     zoomShelf.SetActive(false);
                     password.SetActive(false);
+                    Ontext = false;
                     OnBox4 = false;
                 }
                  if (hit.collider.gameObject == targetObjectKey && !OneKey)

@@ -34,6 +34,7 @@ public class Password : MonoBehaviour
         itemBer = FindObjectOfType<ItemBer>();
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
        objectManager.OnePassWord = false;
+        objectManager.Ontext = true;
 
     }
     private void Update()
@@ -41,10 +42,6 @@ public class Password : MonoBehaviour
         if (this.gameObject.activeSelf)
         {
             objectManager.Ontext = true;
-        }
-        else
-        {
-            objectManager.Ontext = false;
         }
 
         if (IsPasswordCorrect())
@@ -104,6 +101,8 @@ public class Password : MonoBehaviour
                 objectManager.Ontext = false;
                 this.gameObject.SetActive(false);
                 objectManager.OnPass = false;
+                objectManager.OnBox4 = false;
+                objectManager.Ontext = false;
             }
         }
     }

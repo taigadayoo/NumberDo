@@ -1188,10 +1188,13 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 4735a72a2a1d2c04c933676dfe267eb0, type: 3}
     Volume: 1
   - Type: 6
-    Clip: {fileID: 8300000, guid: 02aabadbfe0b27345bb4aa3471207daf, type: 3}
+    Clip: {fileID: 8300000, guid: 9da01b2e4a4f3764f80730dac5eed8ef, type: 3}
     Volume: 1
   - Type: 7
     Clip: {fileID: 8300000, guid: 5a3e8d6d95a011a42a1c72dd42f49581, type: 3}
+    Volume: 1
+  - Type: 8
+    Clip: {fileID: 8300000, guid: 87afb05e56a9bc04ebf51a5d3bb88c09, type: 3}
     Volume: 1
   fadeDuration: 1
 --- !u!4 &1973339976

@@ -46,7 +46,10 @@ public class SimpleDialogueManager : MonoBehaviour
     }
     public void StartDialogueItemGeted(Dialogue dialogue)
     {
-
+        currentDialogue = dialogue;
+        currentLineIndex = 0;
+        gameObject.SetActive(true); // 会話開始時に表示
+        DisplayLine3();
     }
     void Update()
     {
@@ -67,14 +70,19 @@ public class SimpleDialogueManager : MonoBehaviour
 
     public void NextLine()
     {
-        if (gameManager.itemGet)
+        if (gameManager.itemGet == true)
         {
             DisplayLine();
             currentLineIndex++;
         }
-        if (!gameManager.itemGet)
+        if (gameManager.itemGet == false)
         {
             DisplayLine2();
+            currentLineIndex++;
+        }
+        if(gameManager.itemGet == null)
+        {
+            DisplayLine3();
             currentLineIndex++;
         }
     }
@@ -102,7 +110,18 @@ public class SimpleDialogueManager : MonoBehaviour
             EndDialogue2();
         }
     }
-
+    public void DisplayLine3()
+    {
+        if (currentLineIndex <1)
+        {
+            var line = currentDialogue.lines[currentLineIndex];
+            dialogueText.text = line.dialogueText; // 会話内容のみ表示
+        }
+        else
+        {
+            EndDialogue2();
+        }
+    }
     public void EndDialogue()
     {
         // 会話終了時の処理

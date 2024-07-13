@@ -8,12 +8,12 @@ public class Interactable : MonoBehaviour
     ObjectManager objectManager;
     GameManager gameManager;
 
-    private bool getedItem = false;
     public enum TouchAction
     {
        
         noItem,
         itemGet,
+        itemGeted
     }
     [SerializeField]
     TouchAction touchAction;
@@ -26,18 +26,18 @@ public class Interactable : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if (dialogueManager != null && dialogue != null  && touchAction == TouchAction.itemGet && !objectManager.Ontext && !getedItem)
+        if (dialogueManager != null && dialogue != null  && touchAction == TouchAction.itemGet && !objectManager.Ontext)
         {
             gameManager.itemGet = true;
             textBox.SetActive(true);
             dialogueManager.StartDialogue(dialogue); // 触れた際に会話を開始
-            getedItem = true;
+            touchAction = TouchAction.itemGeted;
         }
-        if (dialogueManager != null && dialogue != null && touchAction == TouchAction.itemGet && !objectManager.Ontext && getedItem)
+        if (dialogueManager != null && dialogue != null && touchAction == TouchAction.itemGeted && !objectManager.Ontext)
         {
-            gameManager.itemGet = true;
             textBox.SetActive(true);
             dialogueManager.StartDialogueItemGeted(dialogue); // 触れた際に会話を開始
+            gameManager.itemGet = null;
           
         }
         if (dialogueManager != null && dialogue != null  && touchAction == TouchAction.noItem && !objectManager.Ontext)

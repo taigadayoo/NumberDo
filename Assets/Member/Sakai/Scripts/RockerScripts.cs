@@ -9,10 +9,12 @@ public class RockerScripts : MonoBehaviour
     SceneManagement sceneManagement;
     public GameObject bikkuri;
     public GameObject textBox;
+    public GameObject blackBack;
     GameManager gameManager;
     [SerializeField]
     SimpleDialogueManager dialogueManager;
 
+    SampleSoundManager soundManager;
     public Dialogue dialogue;
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,7 @@ public class RockerScripts : MonoBehaviour
         sceneManagement = FindObjectOfType<SceneManagement>();
         objectManager = FindObjectOfType<ObjectManager>();
         gameManager = FindObjectOfType<GameManager>();
+       soundManager =  FindObjectOfType<SampleSoundManager>();
     }
 
     // Update is called once per frame
@@ -37,7 +40,16 @@ public class RockerScripts : MonoBehaviour
 
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
 
+        soundManager.StopBgm();
+
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+       
+        blackBack.SetActive(true);
+        soundManager.PlaySe(SeType.SE8);
+        
+
+        yield return new WaitForSeconds(1f);
 
         anim.SetActive(true);
 

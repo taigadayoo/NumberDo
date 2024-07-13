@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
   
     SceneManagement sceneManagement;
 
-    public bool itemGet = false;
+    public bool? itemGet = false;
     SampleSoundManager sampleSoundManager;
     // Start is called before the first frame update
     void Start()

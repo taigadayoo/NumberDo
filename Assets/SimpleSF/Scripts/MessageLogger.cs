@@ -22,5 +22,12 @@ public class MessageLogger : IReflectable
     {
         Debug.Log(isEnd ? true : false);
         SceneManager.LoadScene(isEnd ? "Scenario 2" : "");
+        ChangeScene("Scenario 2");
+    }
+
+    [CommandMethod("change scene")]
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

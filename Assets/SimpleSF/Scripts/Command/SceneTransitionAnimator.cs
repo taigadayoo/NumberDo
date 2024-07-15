@@ -1,8 +1,11 @@
 using Cysharp.Threading.Tasks;
 using ScenarioFlow;
 using ScenarioFlow.Scripts.SFText;
+using SimpleSFSample;
 using System;
 using System.Threading;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace SimpleSFSample
@@ -13,6 +16,8 @@ namespace SimpleSFSample
     public class SceneTransitionAnimator : IReflectable
     {
         private readonly Image curtainImage;
+
+        public string nextSceneName;
 
         public SceneTransitionAnimator(Settings settings)
         {
@@ -30,6 +35,14 @@ namespace SimpleSFSample
             try
             {
                 await curtainImage.TransAlphaAsync(1.0f, duration, TransSelector.Linear, cancellationToken);
+                //if (string.IsNullOrEmpty(nextSceneName))
+                //{
+                //    Debug.LogError("Next scene name is not set.");
+                //    return;
+                //}
+
+                //await LoadNextSceneAsync(nextSceneName, cancellationToken);
+
             }
             finally
             {
@@ -46,6 +59,7 @@ namespace SimpleSFSample
             try
             {
                 await curtainImage.TransAlphaAsync(0.0f, duration, TransSelector.Linear, cancellationToken);
+
             }
             finally
             {
@@ -53,10 +67,62 @@ namespace SimpleSFSample
             }
         }
 
+
+        //private async UniTask LoadNextSceneAsync(string sceneName, CancellationToken cancellationToken)
+        //{
+        //    var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+        //    asyncOperation.allowSceneActivation = false;
+
+        //    while (!asyncOperation.isDone)
+        //    {
+        //        if (asyncOperation.progress >= 0.9f && !cancellationToken.IsCancellationRequested)
+        //        {
+        //            asyncOperation.allowSceneActivation = true;
+        //        }
+
+        //        await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+        //    }
+        //}
+
         [Serializable]
         public class Settings
         {
             public Image CurtainImage;
+            public string nextSceneName;
         }
     }
+
+
+    
 }
+
+//public class ExampleUsage : MonoBehaviour
+//{
+//    public Image curtainImage; // インスペクタで設定
+//    public string nextSceneName; // インスペクタで設定
+
+//    private SceneTransitionAnimator sceneTransitionAnimator;
+
+//    private void Start()
+//    {
+//        var settings = new SceneTransitionAnimator.Settings
+//        {
+//            CurtainImage = curtainImage
+//        };
+
+//        sceneTransitionAnimator = new SceneTransitionAnimator(settings)
+//        {
+//            nextSceneName = nextSceneName
+//        };
+//    }
+
+//    private void Update()
+//    {
+//        if (Input.GetKeyDown(KeyCode.Space))
+//        {
+//            // スペースキーが押されたらシーン遷移を開始
+//            var cancellationTokenSource = new CancellationTokenSource();
+//            sceneTransitionAnimator.EnterSceneTransitionAsync(3.0f, cancellationTokenSource.Token).Forget();
+//        }
+//    }
+//}

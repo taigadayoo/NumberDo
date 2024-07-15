@@ -94,6 +94,7 @@ namespace SimpleSFSample
 				new SceneTransitionAnimator(sceneTransitionAnimatorSettings),
 				new SpriteProvider(assetStorage, assetStorage),
 				new VectorDecoder(),
+                new MessageLogger(),
             });
 
 			var cancellationInitializables = new ICancellationInitializable[]

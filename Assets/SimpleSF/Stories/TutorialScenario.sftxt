@@ -72,7 +72,13 @@ $sync       | hide dialogue box                                                 
             | Hide the dialogue box.                                                                                            | 
 $f-forced   | enter scene transition async                                                                                      | 
             | Close the curtain in {2} seconds.                                                                                 | 
+$sync       | log message     | 
+            | {end} |
+$sync       | log end | 
+            | {true}       |
+//$f-forced | exit scene transition async |
+            | Open the curtain in {2} seconds. |
 $f-forced   | delay seconds async                                                                                               | 
-            | Wait for {3} seconds.                                                                                             | 
-$f-promised | unload all sprites async                                                                                          | 
+            | Wait for {} seconds.                                                                                             | 
+//$f-promised | unload all sprites async                                                                                          | 
             | Unload all sprites.                                                                                               | 

@@ -800,12 +800,11 @@ MonoBehaviour:
     BranchSelectionButtonPrefab: {fileID: 5266765734214054593, guid: 66bdf90d1499962429b732b8da1a1256, type: 3}
   sceneTransitionAnimatorSettings:
     CurtainImage: {fileID: 691897333}
-    nextSceneName: Scenario 2
   skipButtonSupervisorSettings:
     SkipButton: {fileID: 1809448944}
     SpriteOnEnable: {fileID: -2413806693520163455, guid: a1241d8c60c0c474cb8ae1fe703d8ecc, type: 3}
     SpriteOnDisable: {fileID: -2413806693520163455, guid: a1241d8c60c0c474cb8ae1fe703d8ecc, type: 3}
-  scenarioScript: {fileID: 5022602860645237092, guid: ff1b29c7730b11b4487671d087840c87, type: 3}
+  scenarioScript: {fileID: 5022602860645237092, guid: dd84706f66eb18f40a7958766cde78cc, type: 3}
   autoDuration: 2
   skipDuration: 0.01
 --- !u!4 &928495169

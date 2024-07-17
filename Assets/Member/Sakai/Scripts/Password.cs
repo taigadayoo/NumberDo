@@ -46,6 +46,7 @@ public class Password : MonoBehaviour
 
         if (IsPasswordCorrect())
         {
+            sampleSoundManager.PlaySe(SeType.SE4);
             sampleSoundManager.PlaySe(SeType.SE9);
             objectManager.unrocking = true;
             objectManager.password.SetActive(false);

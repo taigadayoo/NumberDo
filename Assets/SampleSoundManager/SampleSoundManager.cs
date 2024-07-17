@@ -45,7 +45,8 @@ public enum SeType
     SE6,
     SE7,
     SE8,
-    SE9
+    SE9,
+    SE10
 }
 
 #endregion

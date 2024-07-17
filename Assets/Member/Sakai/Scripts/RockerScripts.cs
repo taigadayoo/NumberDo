@@ -53,11 +53,11 @@ public class RockerScripts : MonoBehaviour
 
         anim.SetActive(true);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4.5f);
 
         bikkuri.SetActive(true);
 
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        yield return new WaitForSeconds(3f);
 
         sceneManagement.OnClear();
     }

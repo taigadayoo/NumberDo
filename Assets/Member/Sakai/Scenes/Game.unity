@@ -466,7 +466,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76518980}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: ee713f8f78b1aba48b41938753c92009, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: f24066c476f52e24f85986a638cd3ef9, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -480,18 +480,16 @@ VideoPlayer:
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 0
-  m_WaitForFirstFrame: 1
+  m_WaitForFirstFrame: 0
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
 --- !u!114 &76518984
@@ -7151,7 +7149,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4edea6ae21c9dab458c18e78aa62a615, type: 3}
-    m_FontSize: 40
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -7187,8 +7185,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13, y: 18}
-  m_SizeDelta: {x: 1225.6094, y: 187}
+  m_AnchoredPosition: {x: -13.0002, y: 18}
+  m_SizeDelta: {x: 824.6199, y: 187}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1584612892
 GameObject:
@@ -7999,6 +7997,7 @@ MonoBehaviour:
   sceneNameGameOver: GameOver
   sceneNameTitle: 
   sceneNameAttention: 
+  sceneNameScenario: 
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   fadeSpeed: 1
 --- !u!4 &1803941574

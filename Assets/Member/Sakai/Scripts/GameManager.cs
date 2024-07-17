@@ -15,12 +15,12 @@ public class GameManager : MonoBehaviour
     {
         sampleSoundManager = FindFirstObjectByType<SampleSoundManager>();
 
-        if(sampleSoundManager != null)
-        {
-            sampleSoundManager.StopBgm();
+        //if(sampleSoundManager != null)
+        //{
+        //    sampleSoundManager.StopBgm();
 
-            sampleSoundManager.PlayBgm(BgmType.BGM2);
-        }
+        //    sampleSoundManager.PlayBgm(BgmType.BGM2);
+        //}
     }
 
     // Update is called once per frame

@@ -949,7 +949,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b8e0f7428a1b0364aa4d7b6fbfa01c67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 340a2da4343eeff49bc7dc6972d1a725, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1119,6 +1119,7 @@ MonoBehaviour:
   sceneNameGameOver: GameOver
   sceneNameTitle: Title
   sceneNameAttention: Attention
+  sceneNameScenario: TemporaryScenario
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   fadeSpeed: 1
 --- !u!4 &1677333356

@@ -14,12 +14,15 @@ public class TitleAnim : MonoBehaviour
 
     Image fadealpha;              
 
-    private float alpha;           
+    private float alpha;
+
+    SampleSoundManager soundManager;
 
     private bool fadeout;
     // Start is called before the first frame update
     void Start()
     {
+        soundManager = FindObjectOfType<SampleSoundManager>();
         anim = gameObject.GetComponent<Animator>();
         fadealpha = Panelfade.GetComponent<Image>();
         alpha = fadealpha.color.a;
@@ -30,6 +33,8 @@ public class TitleAnim : MonoBehaviour
         panel.SetActive(true);
         await UniTask.Delay(TimeSpan.FromSeconds(0.05));
         anim.SetBool("isTitle", true);
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+        soundManager.PlaySe(SeType.SE6);
         await UniTask.Delay(TimeSpan.FromSeconds(1));
         FadeOut();
         await UniTask.Delay(TimeSpan.FromSeconds(0.5));

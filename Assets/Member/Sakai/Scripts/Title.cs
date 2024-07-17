@@ -53,7 +53,7 @@ public class Title : MonoBehaviour
 
   async  public void OnStart()
     {
-        soundManager.PlaySe(SeType.SE6);
+        
         await anim.TitleAnimation();
         SampleSoundManager.Instance.StopBgm();
         sceneManagement.OnStart();

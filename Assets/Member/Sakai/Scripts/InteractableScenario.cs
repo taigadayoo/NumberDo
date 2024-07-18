@@ -12,15 +12,17 @@ public class InteractableScenario : MonoBehaviour
     void Start()
     {
         scenarioDialogue = FindObjectOfType<ScenarioDialogue>();
-     
-    }
-    void OnMouseDown()
-    {
-        if (!OneScenario)
+
+        if (!OneScenario&& scenarioDialogue != null)
         {
             textBox.SetActive(true);
             scenarioDialogue.StartDialogue(dialogue); // êGÇÍÇΩç€Ç…âÔòbÇäJén
             OneScenario = true;                               // 
         }
+
+    }
+    void OnMouseDown()
+    {
+       
     }
 }

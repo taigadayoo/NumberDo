@@ -26,6 +26,7 @@ public class ItemBer : MonoBehaviour
     public GameObject exitItember;
     SampleSoundManager sampleSoundManager;
     public RectTransform[] spawnPositions; // スポーン位置の配列
+    ObjectManager objectManager;
 
     public int spawnedItemCount = 0;
 
@@ -34,6 +35,7 @@ public class ItemBer : MonoBehaviour
     {
         exitItember.SetActive(false);
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
+        objectManager = FindObjectOfType<ObjectManager>();
     }
 
     // Update is called once per frame
@@ -82,6 +84,8 @@ public class ItemBer : MonoBehaviour
     {
         getItemList.Add(item);
         itemGetPanel.SetActive(true);
+       
+        
         //if(spawnedItemCount == 0)
         //{
         //    item.SetActive(false);

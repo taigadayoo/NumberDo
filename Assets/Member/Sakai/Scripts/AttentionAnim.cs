@@ -13,11 +13,6 @@ public class AttentionAnim : MonoBehaviour
         StartCoroutine(AttentionAnimation());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     IEnumerator AttentionAnimation()
     {
 

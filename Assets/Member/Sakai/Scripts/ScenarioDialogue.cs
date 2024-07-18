@@ -15,7 +15,7 @@ public class ScenarioDialogue : MonoBehaviour
     void Start()
     {
         soundManager = FindObjectOfType<SampleSoundManager>();
-        gameObject.SetActive(false); // ‰Šúó‘Ô‚Å”ñ•\¦‚Éİ’è
+        gameObject.SetActive(true); // ‰Šúó‘Ô‚Å”ñ•\¦‚Éİ’è
       sceneManagement =   FindObjectOfType<SceneManagement>();
         if(soundManager != null)
         {

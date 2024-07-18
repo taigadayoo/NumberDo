@@ -16,6 +16,12 @@ public class Password : MonoBehaviour
     SceneManagement sceneManagement;
     private bool okPass = false;
     SampleSoundManager sampleSoundManager;
+    public GameObject noOpenShelf;
+    private Image shelfSprite;
+    public Sprite opendSprite;
+    public GameObject zoomKey;
+    public GameObject medicineShelf;
+    Interactable interactable;
 
     public Text digit1;
     public Text digit2;
@@ -35,7 +41,8 @@ public class Password : MonoBehaviour
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
        objectManager.OnePassWord = false;
         objectManager.Ontext = true;
-
+        interactable = medicineShelf.GetComponent<Interactable>();
+        shelfSprite = noOpenShelf.GetComponent<Image>();
     }
     private void Update()
     {
@@ -46,10 +53,12 @@ public class Password : MonoBehaviour
 
         if (IsPasswordCorrect())
         {
-            sampleSoundManager.PlaySe(SeType.SE4);
             sampleSoundManager.PlaySe(SeType.SE9);
             objectManager.unrocking = true;
             objectManager.password.SetActive(false);
+            interactable.touchAction = Interactable.TouchAction.itemGeted;
+            shelfSprite.sprite = opendSprite;
+            zoomKey.SetActive(false);
         }
         CheckDigitClick(digit1, 0);
         CheckDigitClick(digit2, 1);
@@ -104,7 +113,6 @@ public class Password : MonoBehaviour
                 objectManager.password.SetActive(false);
                 objectManager.OnPass = false;
                 objectManager.OnBox4 = false;
-                objectManager.Ontext = false;
             }
         }
     }

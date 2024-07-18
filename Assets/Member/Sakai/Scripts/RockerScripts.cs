@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class RockerScripts : MonoBehaviour
 {
     public GameObject anim;
+    [SerializeField]
+    private VideoPlayer videoPlayer;
     ObjectManager objectManager;
     SceneManagement sceneManagement;
     public GameObject bikkuri;
@@ -52,6 +55,7 @@ public class RockerScripts : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         anim.SetActive(true);
+        videoPlayer.Play();
 
         yield return new WaitForSeconds(4.5f);
 

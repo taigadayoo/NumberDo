@@ -63,11 +63,10 @@ public class SceneManagement : MonoBehaviour
     }
     public void OnAttention()
     {
-        if (!oneAttention)
-        {
+
             Initiate.Fade(sceneNameScenario, fadeColor, fadeSpeed);
             oneAttention = true;
-        }
+
     }
     public void OnTitle()
     {

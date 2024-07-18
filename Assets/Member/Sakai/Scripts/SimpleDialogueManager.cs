@@ -129,7 +129,7 @@ public class SimpleDialogueManager : MonoBehaviour
         getSet.ImageChange(objectManager.imageNum);
         itemBer.AddItem(objectManager.items[objectManager.addItemNum]);
         gameObject.SetActive(false); // 会話終了時に非表示に設定
-
+        objectManager.textEnd = true;
     }
     public void EndDialogue2()
     {
@@ -138,6 +138,7 @@ public class SimpleDialogueManager : MonoBehaviour
         dialogueText.text = "";    
         gameObject.SetActive(false); // 会話終了時に非表示に設定
         objectManager.Ontext = false;
+        objectManager.textEnd = true;
     }
     
 }

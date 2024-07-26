@@ -7468,7 +7468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1584612893
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7527,11 +7527,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584612892}
   m_CullTransparentMesh: 1
---- !u!1 &1602334640 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6549397042659520152, guid: 1ad2006b8a6af574da74beeff8328600, type: 3}
-  m_PrefabInstance: {fileID: 4377014171710605553}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1602334645 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3674833854226139525, guid: 1ad2006b8a6af574da74beeff8328600, type: 3}
@@ -10023,11 +10018,18 @@ MonoBehaviour:
   zoomShelf: {fileID: 1709927839}
   unrockingRock: {fileID: 1710652389}
   touchObject:
-  - {fileID: 289620642}
-  - {fileID: 1602334640}
-  - {fileID: 23603438}
   - {fileID: 141495095}
   - {fileID: 177886493}
+  - {fileID: 1877046601}
+  - {fileID: 1792268846}
+  - {fileID: 614256471}
+  - {fileID: 245743353}
+  - {fileID: 955510911}
+  - {fileID: 1939785016}
+  - {fileID: 237852660}
+  - {fileID: 1533911473}
+  - {fileID: 831477033}
+  - {fileID: 2048978372}
   OnPass: 0
   OnBox4: 0
   OnePassWord: 0
@@ -10179,7 +10181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6549397042659520152, guid: 1ad2006b8a6af574da74beeff8328600, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

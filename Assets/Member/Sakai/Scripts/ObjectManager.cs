@@ -35,6 +35,7 @@ public class ObjectManager : MonoBehaviour
     public bool textEnd = false;
     public int imageNum = 0;
     public int addItemNum = 0;
+   
     ItemBer itemBer;
     SampleSoundManager sampleSoundManager;
     ButtonCotroller buttonCotroller;
@@ -44,6 +45,7 @@ public class ObjectManager : MonoBehaviour
     ItemGetSet getSet;
     [SerializeField]
     SimpleDialogueManager dialogueManager;
+   private List<Collider2D> allColliders = new List<Collider2D>();
     private void Start()
     {
         password.SetActive(false);
@@ -53,9 +55,20 @@ public class ObjectManager : MonoBehaviour
         buttonCotroller = FindObjectOfType<ButtonCotroller>();
         timer = FindFirstObjectByType<Timer>();
         zoomShelf.SetActive(false);
+
+     
+
+        // 各オブジェクトからコライダーを取得してリストに追加
+        foreach (GameObject obj in touchObject)
+        {
+            Collider2D[] colliders = obj.GetComponents<Collider2D>();
+            allColliders.AddRange(colliders);
+        }
+     
     }
     void Update()
     {
+    
 
         ObjectTouch();
         if (passwordScripts != null)
@@ -79,7 +92,7 @@ public class ObjectManager : MonoBehaviour
         {
             Ontext = false;
         }
-
+    
     }
     public void DeactivateAllObjects()
     {
@@ -101,17 +114,14 @@ public class ObjectManager : MonoBehaviour
             }
         }
     }
-    private void PassOff()
+   public void allColliderSwicth(bool isEnabled)
     {
-        if(passKey.activeSelf)
+        foreach (Collider2D collider in allColliders)
         {
-            password.SetActive(true);
-        }
-        else
-        {
-            password.SetActive(false);
+            collider.enabled = isEnabled;
         }
     }
+ 
     private void ObjectTouch()
     {
 
@@ -144,7 +154,7 @@ public class ObjectManager : MonoBehaviour
                         zoomShelf.SetActive(false);
                         Ontext = false;
                         OnPass = true;
-
+                        allColliderSwicth(true);
                     }
                    
                 }
@@ -154,6 +164,7 @@ public class ObjectManager : MonoBehaviour
                     Ontext = false;
                     OnBox4 = false;
                     OnPass = false;
+                    allColliderSwicth(true);
                 }
                 //if (hit.collider.gameObject == targetObjectPass && OnePassWord && !ItemGet)
                 //{
@@ -166,6 +177,7 @@ public class ObjectManager : MonoBehaviour
                 //}
                 if (hit.collider.gameObject == targetObjectBox4 && !OnBox4 && !Ontext)
                 {
+                    allColliderSwicth(false);
                     zoomShelf.SetActive(true);
                     OnBox4 = true;
                     Ontext = true;

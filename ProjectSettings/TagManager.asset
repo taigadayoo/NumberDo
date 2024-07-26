@@ -10,6 +10,10 @@ TagManager:
   - LeftMemo
   - RightMemo
   - Rocker
+  - Nabe
+  - Clock
+  - Conpas
+  - Fruit
   layers:
   - Default
   - TransparentFX

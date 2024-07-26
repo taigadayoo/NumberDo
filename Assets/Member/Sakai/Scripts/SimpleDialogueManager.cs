@@ -9,6 +9,7 @@ public class SimpleDialogueManager : MonoBehaviour
     public Dialogue currentDialogue; // 現在表示中の会話データ
     private int currentLineIndex; // 現在の会話行のインデックス
     public bool chatEnd = false;
+    [SerializeField]
     ObjectManager objectManager;
     [SerializeField]
     ItemGetSet getSet;
@@ -16,11 +17,10 @@ public class SimpleDialogueManager : MonoBehaviour
 
     
     GameManager gameManager;
-    public event Action OnChatEnd;
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        objectManager = FindFirstObjectByType<ObjectManager>();
+    
         itemBer = FindObjectOfType<ItemBer>();
         gameObject.SetActive(false); // 初期状態で非表示に設定
         chatEnd = false;

@@ -37,10 +37,43 @@ public class MixButton : MonoBehaviour
         {
             itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
             itemBer.RemoveItem(canvasTouchMouse.previousClickedObject.gameObject);
-            sampleSoundManager.PlaySe(SeType.SE1);
+            if (sampleSoundManager != null)
+            {
+                sampleSoundManager.PlaySe(SeType.SE1);
+            }
             objectManager.imageNum = 2;
             getSet.ImageChange(objectManager.imageNum);
             itemBer.AddItem(objectManager.items[2]);
+            mixImageScripts.mixImage.enabled = false;
+            canvasTouchMouse.lastClickedObject = null;
+            canvasTouchMouse.previousClickedObject = null;
+        }
+       else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "Clock" && canvasTouchMouse.previousClickedObject.gameObject.tag == "Nabe" || canvasTouchMouse.previousClickedObject.gameObject.tag == "Clock" && canvasTouchMouse.lastClickedObject.gameObject.tag == "Nabe")
+        {
+            itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
+            itemBer.RemoveItem(canvasTouchMouse.previousClickedObject.gameObject);
+            if (sampleSoundManager != null)
+            {
+                sampleSoundManager.PlaySe(SeType.SE1);
+            }
+            objectManager.imageNum = 2;
+            getSet.ImageChange(objectManager.imageNum);
+            itemBer.AddItem(objectManager.items[4]);
+            mixImageScripts.mixImage.enabled = false;
+            canvasTouchMouse.lastClickedObject = null;
+            canvasTouchMouse.previousClickedObject = null;
+        }
+        else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "Fruit" && canvasTouchMouse.previousClickedObject.gameObject.tag == "Conpas" || canvasTouchMouse.previousClickedObject.gameObject.tag == "Fruit" && canvasTouchMouse.lastClickedObject.gameObject.tag == "Conpas")
+        {
+            itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
+            itemBer.RemoveItem(canvasTouchMouse.previousClickedObject.gameObject);
+            if (sampleSoundManager != null)
+            {
+                sampleSoundManager.PlaySe(SeType.SE1);
+            }
+            objectManager.imageNum = 2;
+            getSet.ImageChange(objectManager.imageNum);
+            itemBer.AddItem(objectManager.items[5]);
             mixImageScripts.mixImage.enabled = false;
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;

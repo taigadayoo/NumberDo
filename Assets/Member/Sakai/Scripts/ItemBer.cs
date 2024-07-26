@@ -84,13 +84,16 @@ public class ItemBer : MonoBehaviour
     {
         getItemList.Add(item);
         itemGetPanel.SetActive(true);
-       
-        
+
+
         //if(spawnedItemCount == 0)
         //{
         //    item.SetActive(false);
         //}
-        sampleSoundManager.PlaySe(SeType.SE1);
+        if (sampleSoundManager != null)
+        {
+            sampleSoundManager.PlaySe(SeType.SE1);
+        }
         if (spawnedItemCount < getItemList.Count && spawnedItemCount < spawnPositions.Length)
         {
 

@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
+    public enum GameName
+    {
+        tutorial,
+        mainGame
+    }
+    [SerializeField]
+    GameName gameName;
     // 特定のオブジェクトを参照するための変数
     public GameObject targetObjectBox;
     public GameObject targetObjectBox2;
@@ -21,6 +28,10 @@ public class ObjectManager : MonoBehaviour
     public GameObject zoomShelf;
     public GameObject unrockingRock;
 
+    public GameObject medicine;
+    public GameObject clock;
+    public GameObject fruit;
+
     public List<GameObject> touchObject = new List<GameObject>();
     private bool OnBox = false;
     public bool OnPass = false;
@@ -33,6 +44,10 @@ public class ObjectManager : MonoBehaviour
     public bool Ontext = false;
     public bool unrocking = false;
     public bool textEnd = false;
+
+    public bool OnMedicine = false;
+    public bool Onclock = false;
+    public bool OnFruit = false;
     public int imageNum = 0;
     public int addItemNum = 0;
    
@@ -48,15 +63,16 @@ public class ObjectManager : MonoBehaviour
    private List<Collider2D> allColliders = new List<Collider2D>();
     private void Start()
     {
-        password.SetActive(false);
+        if (gameName == GameName.tutorial)
+        {
+            password.SetActive(false);
+            zoomShelf.SetActive(false);
+        }
 
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
         itemBer = FindObjectOfType<ItemBer>();
         buttonCotroller = FindObjectOfType<ButtonCotroller>();
         timer = FindFirstObjectByType<Timer>();
-        zoomShelf.SetActive(false);
-
-     
 
         // 各オブジェクトからコライダーを取得してリストに追加
         foreach (GameObject obj in touchObject)
@@ -68,31 +84,39 @@ public class ObjectManager : MonoBehaviour
     }
     void Update()
     {
-    
 
-        ObjectTouch();
-        if (passwordScripts != null)
+        if (gameName == GameName.tutorial)
         {
-            passwordScripts = FindObjectOfType<Password>();
-        }
-        if(zoomShelf.activeSelf)
-        {
-            Ontext = true;
-        }
-        else
-        {
-            Ontext = false;
+            ObjectTouch();
+            if (passwordScripts != null)
+            {
+                passwordScripts = FindObjectOfType<Password>();
+            }
+            if (zoomShelf.activeSelf)
+            {
+                Ontext = true;
+            }
+            else
+            {
+                Ontext = false;
+            }
+
+            if (unrockingRock.activeSelf)
+            {
+                Ontext = true;
+            }
+            else
+            {
+                Ontext = false;
+            }
         }
 
-       if (unrockingRock.activeSelf)
+        if (gameName == GameName.mainGame)
         {
-            Ontext = true;
+            MainObjectTouch();
         }
-        else
-        {
-            Ontext = false;
-        }
-    
+
+
     }
     public void DeactivateAllObjects()
     {
@@ -166,15 +190,7 @@ public class ObjectManager : MonoBehaviour
                     OnPass = false;
                     allColliderSwicth(true);
                 }
-                //if (hit.collider.gameObject == targetObjectPass && OnePassWord && !ItemGet)
-                //{
-                //    itemBer.AddItem(key);
-                //    if (getSet != null)
-                //    {
-                //        imageNum = 3;
-                //        ItemGet = true;
-                //    }
-                //}
+            
                 if (hit.collider.gameObject == targetObjectBox4 && !OnBox4 && !Ontext)
                 {
                     allColliderSwicth(false);
@@ -252,6 +268,81 @@ public class ObjectManager : MonoBehaviour
 
             }
            
+        }
+
+    }
+    private void MainObjectTouch()
+    {
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            // マウスの位置からRayを飛ばす
+            Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector2.zero);
+            if (hit.collider != null)
+            {
+                if (hit.collider.gameObject == itemGetPanel)
+                {
+                    itemGetPanel.SetActive(false);
+                    ItemGet = false;
+                }
+            }
+
+            if (hit.collider != null && !OnBox4 && !OnPass && !ItemGet)
+            {
+                // 当たったCollider2DのGameObjectが特定のオブジェクトであるかを確認する
+                if (hit.collider.gameObject == targetObjectBox)
+                {
+                    if (OnBox == false)
+                    {
+                        buttonCotroller.OnButtonClick();
+                        OnBox = true;
+                        timer.Stop();
+                        if (sampleSoundManager != null)
+                        {
+                            SampleSoundManager.Instance.PlaySe(SeType.SE2);
+                        }
+                    }
+
+                }
+
+                if (hit.collider.gameObject == medicine && !OnMedicine)
+                {
+
+                    addItemNum = 0;
+                    if (getSet != null)
+                    {
+                        imageNum = 0;
+                        ItemGet = true;
+                    }
+
+                    OnMedicine = true;
+                }
+                if (hit.collider.gameObject == clock && !Onclock)
+                {
+
+                    addItemNum = 1;
+                    if (getSet != null)
+                    {
+                        imageNum = 1;
+                        ItemGet = true;
+                    }
+                    Onclock = true;
+                }
+                if (hit.collider.gameObject == fruit && !OnFruit)
+                {
+
+                    addItemNum = 3;
+                    if (getSet != null)
+                    {
+                        imageNum = 1;
+                        ItemGet = true;
+                    }
+                    OnFruit = true;
+                }
+
+            }
+
         }
 
     }

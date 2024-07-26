@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b99acc3ae65bd3743b15fbd47067e2bb, type: 3}
-  m_Name: fruit
+  m_Name: Clock1
   m_EditorClassIdentifier: 
   lines:
-  - dialogueText: "\u679C\u7269\u307E\u3067\u3042\u308B\u3093\u3067\u3059\u3051\u3069"
-  - dialogueText: "\u3046\u3081\u30FC"
+  - dialogueText: "\u306A\u3093\u304B\u304A\u304B\u3057\u304F\u306D"
+  - dialogueText: "\u3042\u3001\u6642\u8A08\u3068\u308C\u305F\u308F"

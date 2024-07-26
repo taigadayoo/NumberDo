@@ -16,7 +16,13 @@ public class ItemLight : MonoBehaviour
         LeftMemo,
         RightMemo,
         MixMemo,
-        Key
+        Key,
+        Nabe,
+        Fruit,
+        Clock,
+        Light,
+        Conpas,
+        Fruited
     }
     [SerializeField]
     ItemName itemName;
@@ -41,22 +47,82 @@ public class ItemLight : MonoBehaviour
         if (itemName == ItemName.LeftMemo)
         {
             spriteRenderer.sprite = rightSprite[0];
-            soundManager.PlaySe(SeType.SE3);
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
         }
         if (itemName == ItemName.RightMemo)
         {
             spriteRenderer.sprite = rightSprite[1];
-            soundManager.PlaySe(SeType.SE3);
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
         }
         if (itemName == ItemName.MixMemo)
         {
             spriteRenderer.sprite = rightSprite[2];
-            soundManager.PlaySe(SeType.SE3);
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
         }
         if (itemName == ItemName.Key)
         {
             spriteRenderer.sprite = rightSprite[3];
-            soundManager.PlaySe(SeType.SE3);
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Nabe)
+        {
+            spriteRenderer.sprite = rightSprite[4];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Fruit)
+        {
+            spriteRenderer.sprite = rightSprite[5];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Clock)
+        {
+            spriteRenderer.sprite = rightSprite[6];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Light)
+        {
+            spriteRenderer.sprite = rightSprite[7];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Conpas)
+        {
+            spriteRenderer.sprite = rightSprite[8];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Fruited)
+        {
+            spriteRenderer.sprite = rightSprite[9];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
         }
     }
     public void ChangeNomal()
@@ -64,22 +130,82 @@ public class ItemLight : MonoBehaviour
         if (itemName == ItemName.LeftMemo)
         {
             spriteRenderer.sprite = nomalSprite;
-            soundManager.PlaySe(SeType.SE3);
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
         }
         if (itemName == ItemName.RightMemo)
         {
             spriteRenderer.sprite = nomalSprite;
-            soundManager.PlaySe(SeType.SE3);
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
         }
         if (itemName == ItemName.MixMemo)
         {
             spriteRenderer.sprite = nomalSprite;
-            soundManager.PlaySe(SeType.SE3);
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
         }
         if (itemName == ItemName.Key)
         {
             spriteRenderer.sprite = nomalSprite;
-            soundManager.PlaySe(SeType.SE3);
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Nabe)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Fruit)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Clock)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Light)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Conpas)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Fruited)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
         }
     }
 }

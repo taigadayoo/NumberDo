@@ -28,10 +28,20 @@ public class MixImageScripts : MonoBehaviour
                 mixImage.enabled = true;
                 mixImage.sprite = mixItemImage[0];
             }
-            else
+            if (touchMouse.lastClickedObject.gameObject.tag == "Clock" && touchMouse.previousClickedObject.gameObject.tag == "Nabe" || touchMouse.previousClickedObject.gameObject.tag == "Clock" && touchMouse.lastClickedObject.gameObject.tag == "Nabe")
             {
-                mixImage.enabled = false;
+                mixImage.enabled = true;
+                mixImage.sprite = mixItemImage[1];
             }
+            if (touchMouse.lastClickedObject.gameObject.tag == "Fruit" && touchMouse.previousClickedObject.gameObject.tag == "Conpas" || touchMouse.previousClickedObject.gameObject.tag == "Fruit" && touchMouse.lastClickedObject.gameObject.tag == "Conpas")
+            {
+                mixImage.enabled = true;
+                mixImage.sprite = mixItemImage[2];
+            }
+            //else
+            //{
+            //    mixImage.enabled = false;
+            //}
         }
     }
 }

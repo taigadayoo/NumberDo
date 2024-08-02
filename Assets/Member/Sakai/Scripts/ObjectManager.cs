@@ -12,6 +12,7 @@ public class ObjectManager : MonoBehaviour
     [SerializeField]
     GameName gameName;
     // 特定のオブジェクトを参照するための変数
+    [Header("チュートリアルで触るもの")]
     public GameObject targetObjectBox;
     public GameObject targetObjectBox2;
     public GameObject targetObjectBox3;
@@ -21,16 +22,27 @@ public class ObjectManager : MonoBehaviour
     public GameObject passKey;
     public GameObject key;
     public List<GameObject> items = new List<GameObject>();
+    [Header("ズームしたときのやつ")]
     public GameObject password;
     public GameObject zoomoffCol;
     public GameObject gameCanvas;
     public GameObject itemGetPanel;
     public GameObject zoomShelf;
     public GameObject unrockingRock;
+    [Header("メインゲームで触るもの")]
+    public GameObject bookZoom;
+    public GameObject pictureZoom;
+    public GameObject monitorZoom;
+    public GameObject zoomOffColMain;
+
 
     public GameObject medicine;
     public GameObject clock;
     public GameObject fruit;
+    public GameObject bookShelf;
+    public GameObject picture;
+    public GameObject monitor;
+    public GameObject lightobj;
 
     public List<GameObject> touchObject = new List<GameObject>();
     private bool OnBox = false;
@@ -44,6 +56,7 @@ public class ObjectManager : MonoBehaviour
     public bool Ontext = false;
     public bool unrocking = false;
     public bool textEnd = false;
+    public bool oneLight = false;
 
     public bool OnMedicine = false;
     public bool Onclock = false;
@@ -114,6 +127,7 @@ public class ObjectManager : MonoBehaviour
         if (gameName == GameName.mainGame)
         {
             MainObjectTouch();
+         
         }
 
 
@@ -340,7 +354,40 @@ public class ObjectManager : MonoBehaviour
                     }
                     OnFruit = true;
                 }
+                if (hit.collider.gameObject == lightobj)
+                {
 
+                    addItemNum =2;
+                    if (getSet != null)
+                    {
+                        imageNum = 1;
+                        ItemGet = true;
+                    }
+                    oneLight = true;
+                        
+                }
+                if (hit.collider.gameObject == bookShelf)
+                {
+                    bookZoom.SetActive(true);
+                    zoomOffColMain.SetActive(true);
+                    allColliderSwicth(false);
+                    if(!oneLight && lightobj != null)
+                    {
+                        lightobj.SetActive(true);
+                    }
+                }
+                if (hit.collider.gameObject == picture)
+                {
+                    pictureZoom.SetActive(true);
+                    zoomOffColMain.SetActive(true);
+                    allColliderSwicth(false);
+                }
+                if (hit.collider.gameObject == monitor)
+                {
+                    monitorZoom.SetActive(true);
+                    zoomOffColMain.SetActive(true);
+                    allColliderSwicth(false);
+                }
             }
 
         }

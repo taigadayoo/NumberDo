@@ -38,6 +38,11 @@ public class MixImageScripts : MonoBehaviour
                 mixImage.enabled = true;
                 mixImage.sprite = mixItemImage[2];
             }
+            if (touchMouse.lastClickedObject.gameObject.tag == "Fruited" && touchMouse.previousClickedObject.gameObject.tag == "Light" || touchMouse.previousClickedObject.gameObject.tag == "Fruited" && touchMouse.lastClickedObject.gameObject.tag == "Light")
+            {
+                mixImage.enabled = true;
+                mixImage.sprite = mixItemImage[3];
+            }
             //else
             //{
             //    mixImage.enabled = false;

@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99acc3ae65bd3743b15fbd47067e2bb, type: 3}
   m_Name: pictureGimick
   m_EditorClassIdentifier: 
-  lines: []
+  lines:
+  - dialogueText: "\u5916\u306E\u666F\u8272\u304C\u6620\u3063\u3066\u3044\u308B"
+  - dialogueText: "\u3042\u308C\uFF1F\u9375\u304C\u3042\u308B\u305E"

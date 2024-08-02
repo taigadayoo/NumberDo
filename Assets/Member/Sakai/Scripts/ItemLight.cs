@@ -22,7 +22,8 @@ public class ItemLight : MonoBehaviour
         Clock,
         Light,
         Conpas,
-        Fruited
+        Fruited,
+        BrabkLight
     }
     [SerializeField]
     ItemName itemName;
@@ -124,6 +125,14 @@ public class ItemLight : MonoBehaviour
                 soundManager.PlaySe(SeType.SE3);
             }
         }
+        if (itemName == ItemName.BrabkLight)
+        {
+            spriteRenderer.sprite = rightSprite[10];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
     }
     public void ChangeNomal()
     {
@@ -200,6 +209,14 @@ public class ItemLight : MonoBehaviour
             }
         }
         if (itemName == ItemName.Fruited)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.BrabkLight)
         {
             spriteRenderer.sprite = nomalSprite;
             if (soundManager != null)

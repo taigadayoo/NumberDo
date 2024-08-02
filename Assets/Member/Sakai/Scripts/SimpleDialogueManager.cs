@@ -130,6 +130,13 @@ public class SimpleDialogueManager : MonoBehaviour
         itemBer.AddItem(objectManager.items[objectManager.addItemNum]);
         gameObject.SetActive(false); // ‰ï˜bI—¹‚É”ñ•\¦‚Éİ’è
         objectManager.textEnd = true;
+        if (objectManager.lightobj != null)
+        {
+            if (objectManager.lightobj.activeSelf)
+            {
+                Destroy(objectManager.lightobj);
+            }
+        }
        
     }
     public void EndDialogue2()

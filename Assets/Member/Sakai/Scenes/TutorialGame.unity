@@ -6919,6 +6919,8 @@ MonoBehaviour:
   keyTag: Key
   bombTag: Bomb
   rockerTag: Rocker
+  LightTag: BlackLight
+  PictureTag: Picture
   lastClickedObject: {fileID: 0}
   previousClickedObject: {fileID: 0}
   rockerScripts: {fileID: 955510917}
@@ -8585,7 +8587,7 @@ GameObject:
   - component: {fileID: 1877046606}
   m_Layer: 5
   m_Name: pucture
-  m_TagString: Untagged
+  m_TagString: Picture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10004,9 +10006,17 @@ MonoBehaviour:
   itemGetPanel: {fileID: 976260236}
   zoomShelf: {fileID: 1709927839}
   unrockingRock: {fileID: 1710652389}
+  bookZoom: {fileID: 0}
+  pictureZoom: {fileID: 0}
+  monitorZoom: {fileID: 0}
+  zoomOffColMain: {fileID: 0}
   medicine: {fileID: 0}
   clock: {fileID: 0}
   fruit: {fileID: 0}
+  bookShelf: {fileID: 0}
+  picture: {fileID: 0}
+  monitor: {fileID: 0}
+  lightobj: {fileID: 0}
   touchObject:
   - {fileID: 141495095}
   - {fileID: 177886493}
@@ -10027,6 +10037,7 @@ MonoBehaviour:
   Ontext: 0
   unrocking: 0
   textEnd: 0
+  oneLight: 0
   OnMedicine: 0
   Onclock: 0
   OnFruit: 0

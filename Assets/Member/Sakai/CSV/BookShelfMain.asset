@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b99acc3ae65bd3743b15fbd47067e2bb, type: 3}
-  m_Name: picture
+  m_Name: BookShelfMain
   m_EditorClassIdentifier: 
   lines:
-  - dialogueText: "\u7F8A\u304C\u66F8\u3044\u3066\u3042\u308B\u3093\u3067\u3059\u3051\u3069\u30FC"
-  - dialogueText: "\u307E\u3058\u304B\u308F\u3044\u3044\u30FC"
+  - dialogueText: "\u69D8\u3005\u306A\u672C\u304C\u4E26\u3093\u3067\u3044\u3066\u3001\u4E0A\u306B\u306F\u85AC\u3063\u307D\u3044\u7269\u304C\u3042\u308B\u3002 "
+  - dialogueText: "\u306A\u306B\u304B\u4F7F\u3048\u305D\u3046\u306A\u3082\u306E\u306F\u306A\u3044\u304B\u306A"

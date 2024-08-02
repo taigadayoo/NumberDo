@@ -13,11 +13,14 @@ public class CanvasTouchMouse : MonoBehaviour
 
     private GameObject clickBomb;
     private bool isKeySelected = false;
+    private bool isLightSelected = false;
 
     // 特定のオブジェクトを識別するためのタグ
     public string keyTag = "Key";
     public string bombTag = "Bomb";
     public string rockerTag = "Rocker";
+    public string LightTag = "BlackLight";
+    public string PictureTag = "Picture";
 
     public CheckBool lastClickedObject;
     public CheckBool previousClickedObject; // ひとつ前にクリックされたオブジェクト
@@ -120,10 +123,27 @@ public class CanvasTouchMouse : MonoBehaviour
                         }
                     }
 
-                    if (hitObject.CompareTag(keyTag))
+                    // isKeySelectedの設定
+                    isKeySelected = clickedObjects.Exists(obj => obj.CompareTag(keyTag));
+
+                    if (isKeySelected)
                     {
-                        isKeySelected = true;
+                        Debug.Log("Key selected: " + isKeySelected);
                     }
+                    else
+                    {
+                        Debug.Log("Key not selected: " + isKeySelected);
+                    }
+
+                    //// isLightSelectedの設定
+                    //if (lastClickedObject.CompareTag(LightTag))
+                    //{
+                    //    isLightSelected = true;
+                    //}
+                    //else
+                    //{
+                    //    isLightSelected = false;
+                    //}
                 }
 
                 break; // 最初のヒットしたUI要素のみ処理
@@ -140,27 +160,15 @@ public class CanvasTouchMouse : MonoBehaviour
                 }
                 isKeySelected = false;
             }
-        }
-    }
-
-    private void SetAlpha(GameObject obj, float alpha)
-    {
-        Image image = obj.GetComponent<Image>();
-        if (image != null)
-        {
-            Color color = image.color;
-            color.a = alpha;
-            image.color = color;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // ドアがクリックされ、カギが選択されていて、ドアに触れた場合
-        if (clickBomb != null && lastClickedObject != null && lastClickedObject.gameObject.CompareTag(keyTag) && other.gameObject == clickBomb)
-        {
-            // ドアに触れた際にシーンを変更する処理
-            Debug.Log("Door unlocked with key! Changing scene...");
+            if (hit.collider != null && hit.collider.CompareTag(PictureTag))
+            {
+                // ボムがマウスでクリックされた場合の処理
+                if (isLightSelected)
+                {
+                    Debug.Log("これはライトです。");
+                }
+                isLightSelected = false;
+            }
         }
     }
 }

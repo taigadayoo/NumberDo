@@ -78,6 +78,21 @@ public class MixButton : MonoBehaviour
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;
         }
+        else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "Fruited" && canvasTouchMouse.previousClickedObject.gameObject.tag == "Light" || canvasTouchMouse.previousClickedObject.gameObject.tag == "Fruited" && canvasTouchMouse.lastClickedObject.gameObject.tag == "Light")
+        {
+            itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
+            itemBer.RemoveItem(canvasTouchMouse.previousClickedObject.gameObject);
+            if (sampleSoundManager != null)
+            {
+                sampleSoundManager.PlaySe(SeType.SE1);
+            }
+            objectManager.imageNum = 2;
+            getSet.ImageChange(objectManager.imageNum);
+            itemBer.AddItem(objectManager.items[6]);
+            mixImageScripts.mixImage.enabled = false;
+            canvasTouchMouse.lastClickedObject = null;
+            canvasTouchMouse.previousClickedObject = null;
+        }
         else
         {
             Debug.Log("âΩÇ‡ãNÇ´Ç»Ç¢ÇÊÇ§ÇæÅB");

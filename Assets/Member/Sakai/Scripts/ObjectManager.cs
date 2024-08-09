@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectManager : MonoBehaviour
 {
@@ -34,6 +35,9 @@ public class ObjectManager : MonoBehaviour
     public GameObject pictureZoom;
     public GameObject monitorZoom;
     public GameObject zoomOffColMain;
+    public GameObject shelfZoom;
+    public GameObject miniGameZoom;
+    public GameObject monitorPass;
 
 
     public GameObject medicine;
@@ -43,12 +47,16 @@ public class ObjectManager : MonoBehaviour
     public GameObject picture;
     public GameObject monitor;
     public GameObject lightobj;
+    public GameObject nabeobj;
+    public GameObject touchPicture;
+    public GameObject monitorRock;
 
     public List<GameObject> touchObject = new List<GameObject>();
     private bool OnBox = false;
     public bool OnPass = false;
     private bool OnBox2 = false;
     private bool OnBox3 = false;
+    private Image pictureImage;
     public bool OnBox4 = false;
     private bool OneKey = false;
     public bool OnePassWord = false;
@@ -63,7 +71,7 @@ public class ObjectManager : MonoBehaviour
     public bool OnFruit = false;
     public int imageNum = 0;
     public int addItemNum = 0;
-   
+    public Sprite lightImage;
     ItemBer itemBer;
     SampleSoundManager sampleSoundManager;
     ButtonCotroller buttonCotroller;
@@ -73,6 +81,8 @@ public class ObjectManager : MonoBehaviour
     ItemGetSet getSet;
     [SerializeField]
     SimpleDialogueManager dialogueManager;
+    CanvasTouchMouse canvasTouchMouse;
+  
    private List<Collider2D> allColliders = new List<Collider2D>();
     private void Start()
     {
@@ -81,12 +91,12 @@ public class ObjectManager : MonoBehaviour
             password.SetActive(false);
             zoomShelf.SetActive(false);
         }
-
+        canvasTouchMouse = FindObjectOfType<CanvasTouchMouse>();
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
         itemBer = FindObjectOfType<ItemBer>();
         buttonCotroller = FindObjectOfType<ButtonCotroller>();
         timer = FindFirstObjectByType<Timer>();
-
+        pictureImage = touchPicture.GetComponent<Image>();
         // 各オブジェクトからコライダーを取得してリストに追加
         foreach (GameObject obj in touchObject)
         {
@@ -320,7 +330,7 @@ public class ObjectManager : MonoBehaviour
 
                 }
 
-                if (hit.collider.gameObject == medicine && !OnMedicine)
+                if (hit.collider.gameObject == nabeobj && !OnMedicine)
                 {
 
                     addItemNum = 0;
@@ -366,6 +376,17 @@ public class ObjectManager : MonoBehaviour
                     oneLight = true;
                         
                 }
+                if (hit.collider.gameObject == touchPicture)
+                {
+                    if(canvasTouchMouse.isLightSelected)
+                    {
+                        pictureImage.sprite = lightImage;
+                        itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
+                        canvasTouchMouse.lastClickedObject = null;
+                    }
+                   
+
+                }
                 if (hit.collider.gameObject == bookShelf)
                 {
                     bookZoom.SetActive(true);
@@ -374,6 +395,16 @@ public class ObjectManager : MonoBehaviour
                     if(!oneLight && lightobj != null)
                     {
                         lightobj.SetActive(true);
+                    }
+                }
+                if (hit.collider.gameObject == medicine)
+                {
+                    shelfZoom.SetActive(true);
+                    zoomOffColMain.SetActive(true);
+                    allColliderSwicth(false);
+                    if (!OnMedicine && nabeobj != null)
+                    {
+                        nabeobj.SetActive(true);
                     }
                 }
                 if (hit.collider.gameObject == picture)
@@ -385,6 +416,13 @@ public class ObjectManager : MonoBehaviour
                 if (hit.collider.gameObject == monitor)
                 {
                     monitorZoom.SetActive(true);
+                    zoomOffColMain.SetActive(true);
+                    allColliderSwicth(false);
+                }
+                if (hit.collider.gameObject == monitorRock)
+                {
+                    monitorPass.SetActive(true);
+                    monitorZoom.SetActive(false);
                     zoomOffColMain.SetActive(true);
                     allColliderSwicth(false);
                 }

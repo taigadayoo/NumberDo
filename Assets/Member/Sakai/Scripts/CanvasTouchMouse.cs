@@ -13,7 +13,7 @@ public class CanvasTouchMouse : MonoBehaviour
 
     private GameObject clickBomb;
     private bool isKeySelected = false;
-    private bool isLightSelected = false;
+    public bool isLightSelected = false;
 
     // 特定のオブジェクトを識別するためのタグ
     public string keyTag = "Key";
@@ -122,9 +122,8 @@ public class CanvasTouchMouse : MonoBehaviour
                             clickedObjects.RemoveAt(0);
                         }
                     }
-
-                    // isKeySelectedの設定
-                    isKeySelected = clickedObjects.Exists(obj => obj.CompareTag(keyTag));
+                    isKeySelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(keyTag));
+                    isLightSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(LightTag));
 
                     if (isKeySelected)
                     {
@@ -160,15 +159,15 @@ public class CanvasTouchMouse : MonoBehaviour
                 }
                 isKeySelected = false;
             }
-            if (hit.collider != null && hit.collider.CompareTag(PictureTag))
-            {
-                // ボムがマウスでクリックされた場合の処理
-                if (isLightSelected)
-                {
-                    Debug.Log("これはライトです。");
-                }
-                isLightSelected = false;
-            }
+            //if (hit.collider != null && hit.collider.CompareTag(PictureTag))
+            //{
+            //    // ボムがマウスでクリックされた場合の処理
+            //    if (isLightSelected)
+            //    {
+            //        Debug.Log("これはライトです。");
+            //    }
+            //    isLightSelected = false;
+            //}
         }
     }
 }

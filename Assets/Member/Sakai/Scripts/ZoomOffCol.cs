@@ -7,6 +7,9 @@ public class ZoomOffCol : MonoBehaviour
     public GameObject book;
     public GameObject picture;
     public GameObject monitor;
+    public GameObject medicine;
+    public GameObject monitorPass;
+    public GameObject miniGameZoom;
     ObjectManager objectManager;
     // Start is called before the first frame update
     void Start()
@@ -26,6 +29,8 @@ public class ZoomOffCol : MonoBehaviour
             book.SetActive(false);
             picture.SetActive(false);
             monitor.SetActive(false);
+            medicine.SetActive(false);
+            monitorPass.SetActive(false);
             this.gameObject.SetActive(false);
             objectManager.allColliderSwicth(true);
         }

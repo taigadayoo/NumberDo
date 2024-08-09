@@ -6916,6 +6916,7 @@ MonoBehaviour:
   raycaster: {fileID: 0}
   eventSystem: {fileID: 0}
   isCheck: 0
+  isLightSelected: 0
   keyTag: Key
   bombTag: Bomb
   rockerTag: Rocker
@@ -10010,6 +10011,9 @@ MonoBehaviour:
   pictureZoom: {fileID: 0}
   monitorZoom: {fileID: 0}
   zoomOffColMain: {fileID: 0}
+  shelfZoom: {fileID: 0}
+  miniGameZoom: {fileID: 0}
+  monitorPass: {fileID: 0}
   medicine: {fileID: 0}
   clock: {fileID: 0}
   fruit: {fileID: 0}
@@ -10017,6 +10021,9 @@ MonoBehaviour:
   picture: {fileID: 0}
   monitor: {fileID: 0}
   lightobj: {fileID: 0}
+  nabeobj: {fileID: 0}
+  touchPicture: {fileID: 1877046601}
+  monitorRock: {fileID: 0}
   touchObject:
   - {fileID: 141495095}
   - {fileID: 177886493}
@@ -10043,8 +10050,10 @@ MonoBehaviour:
   OnFruit: 0
   imageNum: 0
   addItemNum: 0
+  lightImage: {fileID: 0}
   getSet: {fileID: 227419227}
   dialogueManager: {fileID: 2001652941}
+  miniGameCol: {fileID: 0}
 --- !u!4 &2094690676
 Transform:
   m_ObjectHideFlags: 0

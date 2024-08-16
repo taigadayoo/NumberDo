@@ -2,41 +2,84 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CharaController : MonoBehaviour
 {
     //Xの上限
-    float xLimit = 4f;
+    float xLimit = 320f;
     public bool isDead = false;
 
- 
+    SampleSoundManager soundManager;
+    [SerializeField]
+    SceneManagement sceneManagement;
+    // RectTransformの参照
+    private RectTransform rectTransform;
+    public Image rightImage;
+    public Image leftImage;
+    public Sprite pushRight;
+    public Sprite pushLeft;
+    public Sprite nomalRight;
+    public Sprite nomalLeft;
+    void Start()
+    {
+        // RectTransformコンポーネントを取得
+        rectTransform = GetComponent<RectTransform>();
+        soundManager = FindObjectOfType<SampleSoundManager>();
+    }
+
     public void RbuttonClick()
     {
-        transform.Translate(2, 0, 0);
-        SampleSoundManager.Instance.PlaySe(SeType.SE3);
+        // 位置を変更
+        rectTransform.anchoredPosition += new Vector2(160, 0);
+        if (soundManager != null)
+        {
+            SampleSoundManager.Instance.PlaySe(SeType.SE3);
+        }
+        rightImage.sprite = pushRight;
+
+        StartCoroutine(RevertSpriteRight());
     }
 
     public void LButtonClick()
     {
-        transform.Translate(-2, 0, 0);
-        SampleSoundManager.Instance.PlaySe(SeType.SE3);
+        // 位置を変更
+        rectTransform.anchoredPosition += new Vector2(-160, 0);
+        if (soundManager != null)
+        {
+            SampleSoundManager.Instance.PlaySe(SeType.SE3);
+        }
+        leftImage.sprite = pushLeft;
+
+        StartCoroutine(RevertSpriteLeft());
+    }
+    private IEnumerator RevertSpriteRight()
+    {
+        // 指定した秒数だけ待つ
+        yield return new WaitForSeconds(0.2f);
+
+        // スプライトをnomalImageに戻す
+        rightImage.sprite = nomalRight;
+    }
+    private IEnumerator RevertSpriteLeft()
+    {
+        // 指定した秒数だけ待つ
+        yield return new WaitForSeconds(0.2f);
+
+        // スプライトをnomalImageに戻す
+        leftImage.sprite = nomalLeft;
     }
 
     void Update()
     {
-        //if (sceneManagement == null)
-        //{
-        //    sceneManagement = FindObjectOfType<SceneManagement>();
-        //}
-        //現在のポジションを保持する
-        Vector3 currentPos = this.transform.position;
+        // 現在の位置を取得
+        Vector2 currentPos = rectTransform.anchoredPosition;
 
-        //Mathf.ClampでX,Yの値それぞれが最小～最大の範囲内に収める。
-        //範囲を超えていたら範囲内の値を代入する
+        // Mathf.ClampでXの値を範囲内に収める
         currentPos.x = Mathf.Clamp(currentPos.x, -xLimit, xLimit);
 
-        //positionをcurrentPosにする
-        transform.position = currentPos;
+        // 位置を更新
+        rectTransform.anchoredPosition = currentPos;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -45,7 +88,7 @@ public class CharaController : MonoBehaviour
         {
             //GameOverSceneを呼び出す
             isDead = true;
-            SceneManagement.Instance.OnGameOver();
+            sceneManagement.OnGameOver();
             gameObject.SetActive(false);
 
             ////ゲーム内の時間を止める

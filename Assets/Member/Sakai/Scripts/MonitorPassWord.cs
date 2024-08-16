@@ -35,10 +35,10 @@ public class MonitorPassWord : MonoBehaviour
 
     private void Update()
     {
-        if (this.gameObject.activeSelf)
-        {
-            objectManager.Ontext = true;
-        }
+        //if (this.gameObject.activeSelf)
+        //{
+        //    objectManager.Ontext = true;
+        //}
 
         if (IsPasswordCorrect())
         {

@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    
     public Dialogue dialogue; // このオブジェクトに関連する会話データ
-    private SimpleDialogueManager dialogueManager;
+ [SerializeField]
+     SimpleDialogueManager dialogueManager;
     public GameObject textBox;
     ObjectManager objectManager;
     GameManager gameManager;
@@ -20,12 +22,21 @@ public class Interactable : MonoBehaviour
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
-        dialogueManager = FindObjectOfType<SimpleDialogueManager>();
-        objectManager = FindObjectOfType<ObjectManager>();
+            gameManager = FindObjectOfType<GameManager>();
+        if (dialogueManager == null)
+        {
+            dialogueManager = FindObjectOfType<SimpleDialogueManager>();
+        }
+        
+            objectManager = FindObjectOfType<ObjectManager>();
+    }
+    private void Update()
+    {
+        
     }
     void OnMouseDown()
     {
+       
         if (!objectManager.ItemGet)
         {
             objectManager.textEnd = false;
@@ -49,6 +60,10 @@ public class Interactable : MonoBehaviour
                 gameManager.itemGet = false;
                 textBox.SetActive(true);
                 dialogueManager.StartDialogue2(dialogue); // 触れた際に会話を開始
+               if(gameObject.tag == "MiniGame")
+                {
+                    objectManager.OnMiniGame = true;
+                }
             }
         }
     }

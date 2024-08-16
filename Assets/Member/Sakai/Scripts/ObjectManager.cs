@@ -38,6 +38,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject shelfZoom;
     public GameObject miniGameZoom;
     public GameObject monitorPass;
+    public GameObject miniGame;
 
 
     public GameObject medicine;
@@ -69,6 +70,7 @@ public class ObjectManager : MonoBehaviour
     public bool OnMedicine = false;
     public bool Onclock = false;
     public bool OnFruit = false;
+    public bool OnMiniGame = false;
     public int imageNum = 0;
     public int addItemNum = 0;
     public Sprite lightImage;
@@ -82,7 +84,7 @@ public class ObjectManager : MonoBehaviour
     [SerializeField]
     SimpleDialogueManager dialogueManager;
     CanvasTouchMouse canvasTouchMouse;
-  
+   
    private List<Collider2D> allColliders = new List<Collider2D>();
     private void Start()
     {
@@ -139,7 +141,13 @@ public class ObjectManager : MonoBehaviour
             MainObjectTouch();
          
         }
-
+        if(OnMiniGame && textEnd)
+        {
+            miniGame.SetActive(true);
+            miniGameZoom.SetActive(false);
+            allColliderSwicth(false);
+            timer.Stop();
+        }
 
     }
     public void DeactivateAllObjects()

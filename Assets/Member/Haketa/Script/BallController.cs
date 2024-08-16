@@ -4,33 +4,37 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    bool isTouch = false;
-
     TimeCounter timeCounter;
-    // Start is called before the first frame update
+    RectTransform rectTransform;
+
+    public bool isTouch;
     void Start()
     {
-       timeCounter =  FindObjectOfType<TimeCounter>();
+        // RectTransformコンポーネントを取得
+        rectTransform = GetComponent<RectTransform>();
+
+        // TimeCounterを探して取得
+        timeCounter = FindObjectOfType<TimeCounter>();
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, -0.05f, 0);
-
-        //yが-3.0fになったとき削除する
-        if(transform.position.y < -3.0f)
+        // UIオブジェクトの位置を移動
+        rectTransform.anchoredPosition += new Vector2(0, -1f);
+        transform.SetAsLastSibling();
+        // yが-187.0fになったとき削除する
+        if (rectTransform.anchoredPosition.y < -200f)
         {
             Destroy(gameObject);
         }
-        if(timeCounter.isclier == true)
+
+        // クリア条件が満たされたら削除する
+        if (timeCounter.isclier == true)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
-
     }
-
-
     void OnCollisionEnter2D(Collision2D collision)
 　　{
         //ballがplayerに当たったらゲームオーバーにする

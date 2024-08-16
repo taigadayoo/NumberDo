@@ -1,39 +1,76 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ballgenerator : MonoBehaviour
 {
-    public GameObject BallPrefab;
-    public GameObject popup;
-    public TimeCounter timeCounter;
-    [SerializeField] private Transform[] positions;
-
-    float time = 0.5f;
-    float delta = 0;
-
-
-    // Start is called before the first frame update
-
-
-    // Update is called once per frame
+    public RectTransform[] positions; // ランダムに選択される位置の配列
+    public GameObject BallPrefab; // 生成するボールのプレハブ
+    private float delta = 0;
+    public GameObject Balls;
+    public float time = 1.3f; // インターバル時間
+    public TimeCounter timeCounter; // カウントダウンを管理するスクリプト
+    public Text countdownText; // UI上でカウントダウンを表示するText
+    public int countdownTime = 3; // カウントダウンの開始値
+    
+    private void Start()
+    {
+        StartCoroutine(StartCountdown());
+    }
     void Update()
     {
-        //ランダム生成
-        this.delta += Time.deltaTime;
-        if (this.delta > this.time)
-        {
-            //1.3秒になったとき
-            if (1 <= timeCounter.countdown)
-            {
-                this.delta = 0;
-                int randomIndex = Random.Range(0, positions.Length);
-                Vector2 randomPosition = positions[randomIndex].position;
+        StartCoroutine(MiniGameStart());
+       
+    }
+    private IEnumerator StartCountdown()
+    {
+        int currentTime = countdownTime;
 
-                Instantiate(BallPrefab, randomPosition, Quaternion.identity);
-             
-            }
+        while (currentTime > 0)
+        {
+            // 現在のカウントを表示
+            countdownText.text = currentTime.ToString();
+
+            // 1秒待つ
+            yield return new WaitForSeconds(1f);
+
+            // カウントを減らす
+            currentTime--;
         }
 
+
+        countdownText.text = "";
     }
+    private IEnumerator MiniGameStart()
+    {
+      
+        yield return new WaitForSeconds(3);
+
+        this.delta += Time.deltaTime;
+
+        // インターバル時間を超えた場合
+        if (this.delta > this.time)
+        {
+            // カウントダウンが1以上の場合
+            if (1 <= timeCounter.countdown)
+            {
+                // 時間をリセット
+                this.delta = 0;
+
+                // ランダムに位置を選択
+                int randomIndex = Random.Range(0, positions.Length);
+                Vector2 randomPosition = positions[randomIndex].anchoredPosition;
+
+                // ボールのインスタンスを生成
+                GameObject ball = Instantiate(BallPrefab, Balls.transform);
+                RectTransform ballRectTransform = ball.GetComponent<RectTransform>();
+
+                // 生成したボールの位置を設定
+                ballRectTransform.anchoredPosition = randomPosition;
+            }
+        }
+    }
+
 }
+

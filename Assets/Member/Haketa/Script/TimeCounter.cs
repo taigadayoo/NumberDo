@@ -9,18 +9,24 @@ using UnityEngine.UI;
 public class TimeCounter : MonoBehaviour
 {
     //カウントダウン
-    public float countdown = 5.0f;
+    public float countdown = 13f;
     public bool isclier = false;
     public GameObject popup;
     public GameObject prefab;
-    public GameObject passWord;
     public GameObject buttons;
+    public GameObject player;
     ObjectManager objectManager;
     Timer timer;
+    SampleSoundManager soundManager;
+
+   public Sprite clierImage;
+    [SerializeField]
+    Image spriteRenderer;
     private void Start()
     {
         timer = FindFirstObjectByType<Timer>();
         objectManager = FindObjectOfType<ObjectManager>();
+        soundManager = FindObjectOfType<SampleSoundManager>();
     }
     // Update is called once per frame
     void Update()
@@ -32,12 +38,15 @@ public class TimeCounter : MonoBehaviour
         if (countdown <= 0)
         {
             timer.Restart();
-            popup.SetActive(false);
-            passWord.SetActive(true);
+            //popup.SetActive(false);
             buttons.SetActive(false) ;
-            objectManager.ActivateAllObjects();
             isclier = true;
-            SampleSoundManager.Instance.PlaySe(SeType.SE5);
+            player.SetActive(false);
+            spriteRenderer.sprite = clierImage;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE5);
+            }
         }
 
     }

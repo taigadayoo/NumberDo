@@ -18,6 +18,7 @@ TagManager:
   - Fruited
   - BlackLight
   - Picture
+  - MiniGame
   layers:
   - Default
   - TransparentFX

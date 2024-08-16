@@ -42,6 +42,13 @@ namespace NovelGame
             return false;
         }
 
+        //文字列が数値なら数値に、そうでないならデフォルト値に設定するメソッド
+        private int ConvertToInt(string str, int defaultNum = 0)
+        {
+            return int.TryParse(str, out int result) ? result : defaultNum;
+        }
+
+
         // 命令を実行するメソッド
         public void ExecuteStatement(string sentence)
         {
@@ -51,8 +58,10 @@ namespace NovelGame
             switch (words[1])
             {
                 case "putImage": // putImageステートメントの場合
-
-                    GameManager.Instance.imageManager.PutImage(words[2], words[3]); // 画像を表示する
+                    int img_x = ConvertToInt(words[5]);
+                    int img_y = ConvertToInt(words[6]);
+                    int scale_percent = ConvertToInt(words[7], 100);
+                    GameManager.Instance.imageManager.PutImage(words[2], words[3], img_x, img_y, scale_percent); // 画像を表示する
                     GameManager.Instance.mainTextController.GoToTheNextLine(); //次の行に進む
                     break;
                 default: //そうでない場合

@@ -13,6 +13,7 @@ namespace NovelGame
         public UserScriptManager userScriptManager;
         public MainTextController mainTextController;
         public ImageManager imageManager;
+        public GameUpdateManager gameUpdateManager;
 
 
 

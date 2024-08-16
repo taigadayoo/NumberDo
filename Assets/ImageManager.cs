@@ -35,7 +35,7 @@ namespace NovelGame
 
 
         // 画像を配置する
-        public void PutImage(string imageName, string parentObjectName)
+        public void PutImage(string imageName, string parentObjectName, int img_x = 0, int img_y = 0, int scale_percent = 100)
         {
             //画像を取得
             Sprite image = _textToSprite[imageName];
@@ -52,8 +52,11 @@ namespace NovelGame
             RectTransform rectTransform = item.GetComponent<RectTransform>();
 
             // RectTransformを設定
-            rectTransform.anchoredPosition = new Vector2(0, 0); //アンカーポイントからの相対位置を設定
+            rectTransform.anchoredPosition = new Vector2(img_x, img_y); //アンカーポイントからの相対位置を設定
             rectTransform.localRotation = rotation; // 回転を設定
+
+            float scale = (float)scale_percent / 100; // 拡大率を決定
+            rectTransform.localScale = new Vector3(scale, scale, 1.0f);
 
             //画像の追加(第3引数は後に使用)
             _textToSpriteObject.Add((imageName, item, 0));

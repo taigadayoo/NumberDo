@@ -21,18 +21,24 @@ namespace NovelGame
             _feedTime = 0.05f;
 
             // 最初の行のテキストを表示、または命令を実行
-            string statement = GameManager.Instance.userScriptManager.GetCurrentSentence();
-            if (GameManager.Instance.userScriptManager.IsStatement(statement))
+            string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
+            bool isStatement = GameManager.Instance.userScriptManager.IsStatement(sentence);
+            DisplayText(sentence, isStatement);
+            if (isStatement)
             {
-                GameManager.Instance.userScriptManager.ExecuteStatement(statement);
+                GameManager.Instance.userScriptManager.ExecuteStatement(sentence);
             }
-            // 最初の行のテキストを表示
-            DisplayText();
+            //現在の文章が文章なのにノベルモードじゃなければ
+            else if (GameManager.Instance.gameUpdateManager.getStateMode() != "novel")
+            {
+                GameManager.Instance.gameUpdateManager.ToggleToNovelMode();
+            }
         }
 
-        // Update is called once per frame
-        void Update()
+        // ノベルモード時のupdate
+        public void novelUpdate()
         {
+
             // 文章を１文字ずつ表示する
             _time += Time.deltaTime;
             if (_time >= _feedTime)
@@ -44,15 +50,18 @@ namespace NovelGame
                     _mainTextObject.maxVisibleCharacters = _displayedSentenceLength;
                 }
             }
+
+            // クリックされたとき、次の行へ移動
             if (Input.GetMouseButtonUp(0))
             {
-                GoToTheNextLine();
-                DisplayText();
-
-            }
-            else
-            {
-                _displayedSentenceLength = _sentenceLength;
+                if (CanGoToTheNextLine())
+                {
+                    GoToTheNextLine();
+                }
+                else
+                {
+                    _displayedSentenceLength = _sentenceLength;
+                }
             }
         }
 
@@ -69,33 +78,47 @@ namespace NovelGame
         // 次の行へ移動
         public void GoToTheNextLine()
         {
+
             _displayedSentenceLength = 0;
             _time = 0f;
             _mainTextObject.maxVisibleCharacters = 0;
             GameManager.Instance.lineNumber++;
-            //現在の文を定義し、それが命令文であればそれを実行する
             string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
-            if (GameManager.Instance.userScriptManager.IsStatement(sentence))
+            bool isStatement = GameManager.Instance.userScriptManager.IsStatement(sentence);
+
+            DisplayText(sentence, isStatement);
+            if (isStatement)
             {
                 GameManager.Instance.userScriptManager.ExecuteStatement(sentence);
+            }
+            //現在の文章が文章なのにノベルモードじゃなければ
+            else if (GameManager.Instance.gameUpdateManager.getStateMode() != "novel")
+            {
+                GameManager.Instance.gameUpdateManager.ToggleToNovelMode();
             }
         }
 
 
         // テキストを表示
-        public void DisplayText()
+        public void DisplayText(string sentence, bool isStatement)
         {
-            //現在の文章をuserScriptManagerのGetCurrentSentenceで引っ張ってくる
-            string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
-            //カンマ区切りで名前と本文をわける
+
             string[] words = sentence.Split(',');
 
-            //1番が名前、2番が本文
             string namesentence = words[1];
             string textsentence = words[2];
-            //それぞれテキストオブジェクトに代入する
-            _mainTextObject.text = textsentence;
-            _nameTextObject.text = namesentence;
+            if (isStatement)
+            {
+                _mainTextObject.text = null;
+                _nameTextObject.text = null;
+
+            }
+            else
+            {
+                _mainTextObject.text = textsentence;
+                _nameTextObject.text = namesentence;
+            }
+
         }
     }
 }

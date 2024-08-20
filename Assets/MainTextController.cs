@@ -104,9 +104,12 @@ namespace NovelGame
         {
 
             string[] words = sentence.Split(',');
-
             string namesentence = words[1];
             string textsentence = words[2];
+
+            textsentence = textsentence.Replace("/", "\n");
+
+           
             if (isStatement)
             {
                 _mainTextObject.text = null;

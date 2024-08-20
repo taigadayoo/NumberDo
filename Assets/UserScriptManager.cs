@@ -33,7 +33,7 @@ namespace NovelGame
         // 命令文であるかどうかを判定するメソッド
         public bool IsStatement(string sentence)
         {
-            string[] words = sentence.Split(','); // 文章を単語に分割する
+            string[] words = sentence.Split(',');// 文章を単語に分割する
 
             if (words[0] == "com") // A列目がcomの場合、命令とみなす
             {

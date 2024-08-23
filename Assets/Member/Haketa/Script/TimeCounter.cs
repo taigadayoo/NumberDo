@@ -19,6 +19,7 @@ public class TimeCounter : MonoBehaviour
     Timer timer;
     SampleSoundManager soundManager;
 
+    private bool OneClear = false;
    public Sprite clierImage;
     [SerializeField]
     Image spriteRenderer;
@@ -51,9 +52,14 @@ public class TimeCounter : MonoBehaviour
             spriteRenderer.sprite = clierImage;
             objectManager.OnMiniGame = false;
             transform.parent.gameObject.SetActive(false);
-            objectManager.miniGameClear.SetActive(true);
+            if (!OneClear)
+            {
+                objectManager.miniGameClear.SetActive(true);
+                OneClear = true;
+            }
             objectManager.allColliderSwicth(true);
             objectManager.OnKeyCode = false;
+     
             if (soundManager != null)
             {
                 soundManager.PlaySe(SeType.SE5);

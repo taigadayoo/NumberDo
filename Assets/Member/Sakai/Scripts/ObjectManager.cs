@@ -350,7 +350,7 @@ public class ObjectManager : MonoBehaviour
                     addItemNum = 0;
                     if (getSet != null)
                     {
-                        imageNum = 0;
+                        imageNum = 5;
                         ItemGet = true;
                     }
 
@@ -362,7 +362,7 @@ public class ObjectManager : MonoBehaviour
                     addItemNum = 1;
                     if (getSet != null)
                     {
-                        imageNum = 1;
+                        imageNum = 4;
                         ItemGet = true;
                     }
                     Onclock = true;
@@ -394,8 +394,12 @@ public class ObjectManager : MonoBehaviour
                 {
                     if(canvasTouchMouse.isLightSelected)
                     {
+                        itemBer.OffBer();
                         pictureImage.sprite = lightImage;
-                        itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
+                        if (canvasTouchMouse.lastClickedObject != null)
+                        {
+                            itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
+                        }
                         canvasTouchMouse.lastClickedObject = null;
                     }
                    
@@ -441,24 +445,14 @@ public class ObjectManager : MonoBehaviour
                         allColliderSwicth(false);
                     }
                 }
-                if (hit.collider.gameObject == monitorRock)
+                if (hit.collider.gameObject == monitorRock && !timeCounter.isclier)
                 {
                     monitorPass.SetActive(true);
                     monitorZoom.SetActive(false);
                     zoomOffColMain.SetActive(true);
                     allColliderSwicth(false);
                 }
-                if (hit.collider.gameObject == miniGameClear && timeCounter.isclier)
-                {
-
-                    addItemNum = 7;
-                    itemBer.AddItem(items[addItemNum]);
-                    imageNum = 3;
-                    getSet.ImageChange(imageNum);
-                    timeCounter.isclier = false;
-                    miniGameClear.SetActive(false);
-                    allColliderSwicth(false);
-                }
+            
             }
 
         }

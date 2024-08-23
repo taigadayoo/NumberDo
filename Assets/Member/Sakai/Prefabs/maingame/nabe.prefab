@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1878168196658551113
 RectTransform:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e50ee69710af2064fae066aa88d8901b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9336a88fd1a64fa41aaa2314b0aa3c75, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -181,7 +181,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e50ee69710af2064fae066aa88d8901b, type: 3}
   - {fileID: 21300000, guid: e50ee69710af2064fae066aa88d8901b, type: 3}
   - {fileID: 21300000, guid: e50ee69710af2064fae066aa88d8901b, type: 3}
-  - {fileID: 21300000, guid: e60e07031c4e75b4f80b0e6f9e2e8aab, type: 3}
+  - {fileID: 21300000, guid: 38cb3245d9f76f84db3393f56b95b36b, type: 3}
   - {fileID: 21300000, guid: e50ee69710af2064fae066aa88d8901b, type: 3}
   - {fileID: 21300000, guid: e50ee69710af2064fae066aa88d8901b, type: 3}
   itemName: 4

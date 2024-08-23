@@ -69,16 +69,20 @@ public class ItemBer : MonoBehaviour
         }
        else if(OnBar)
         {
-            image.sprite = OffBerImage;
-            slider.value = 0;
-            exitItember.SetActive(false);
-            OnBar = false;
+            OffBer();
 
         }
         if (getItemList.Count == 0)
         {
             Debug.Log("アイテムが何もありません");//アイテムがない場合は何もしない
         }
+    }
+    public void OffBer()
+    {
+        image.sprite = OffBerImage;
+        slider.value = 0;
+        exitItember.SetActive(false);
+        OnBar = false;
     }
     public void AddItem(GameObject item)
     {

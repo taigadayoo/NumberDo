@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     ObjectManager objectManager;
     public bool? itemGet = false;
+    public bool? itemGet2 = false;
     SampleSoundManager sampleSoundManager;
     // Start is called before the first frame update
     void Start()

@@ -56,6 +56,9 @@ public class ObjectManager : MonoBehaviour
     public GameObject candle;
     public GameObject candleNomal;
     public GameObject redBook;
+    public GameObject poizon;
+    public GameObject poizonCandle;
+    public GameObject poizonKnife;
 
     public List<GameObject> touchObject = new List<GameObject>();
     private bool OnBox = false;
@@ -160,7 +163,24 @@ public class ObjectManager : MonoBehaviour
            
            
         }
-
+        if(!canvasTouchMouse.isCandleSelected && !canvasTouchMouse.isKnifeSelected)
+        {
+            poizon.SetActive(true);
+            poizonCandle.SetActive(false);
+            poizonKnife.SetActive(false);
+        }
+        else if(canvasTouchMouse.isCandleSelected )
+        {
+            poizon.SetActive(false);
+            poizonCandle.SetActive(true);
+            poizonKnife.SetActive(false);
+        }
+        else if(canvasTouchMouse.isKnifeSelected)
+        {
+            poizon.SetActive(false);
+            poizonCandle.SetActive(false);
+            poizonKnife.SetActive(true);
+        }
     }
     public void DeactivateAllObjects()
     {
@@ -411,8 +431,7 @@ public class ObjectManager : MonoBehaviour
                 }
                 if (hit.collider.gameObject == redBook)
                 {
-                    candleNomal.SetActive(false);
-                    candle.SetActive(false);
+
                     addItemNum = 10;
                     if (getSet != null)
                     {
@@ -435,6 +454,42 @@ public class ObjectManager : MonoBehaviour
                         canvasTouchMouse.lastClickedObject = null;
                     }
                    
+
+                }
+                if (hit.collider.gameObject == poizonKnife)
+                {
+                    if (canvasTouchMouse.isKnifeSelected)
+                    {
+                        addItemNum = 15;
+                        if (getSet != null)
+                        {
+                            imageNum = 15;
+                            ItemGet = true;
+                        }
+                        if (canvasTouchMouse.lastClickedObject != null)
+                        {
+                            itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
+                        }
+                        canvasTouchMouse.lastClickedObject = null;
+                    }
+                }
+                    if (hit.collider.gameObject == poizonCandle)
+                {
+                    if (canvasTouchMouse.isCandleSelected)
+                    {
+                        addItemNum = 12;
+                        if (getSet != null)
+                        {
+                            imageNum = 12;
+                            ItemGet = true;
+                        }
+                        if (canvasTouchMouse.lastClickedObject != null)
+                        {
+                            itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
+                        }
+                        canvasTouchMouse.lastClickedObject = null;
+                    }
+                  
 
                 }
                 if (hit.collider.gameObject == bookShelf)

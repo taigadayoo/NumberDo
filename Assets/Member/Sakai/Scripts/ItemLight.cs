@@ -28,7 +28,11 @@ public class ItemLight : MonoBehaviour
         Candle,
         CandleFire,
         Koge,
-        Recipe
+        Recipe,
+        CandleStick,
+        Knife,
+        CandleKnife,
+        Bin
     }
     [SerializeField]
     ItemName itemName;
@@ -178,6 +182,38 @@ public class ItemLight : MonoBehaviour
                 soundManager.PlaySe(SeType.SE3);
             }
         }
+        if (itemName == ItemName.CandleStick)
+        {
+            spriteRenderer.sprite = rightSprite[15];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Knife)
+        {
+            spriteRenderer.sprite = rightSprite[16];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.CandleKnife)
+        {
+            spriteRenderer.sprite = rightSprite[17];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Bin)
+        {
+            spriteRenderer.sprite = rightSprite[18];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
     }
     public void ChangeNomal()
     {
@@ -302,6 +338,38 @@ public class ItemLight : MonoBehaviour
             }
         }
         if (itemName == ItemName.Recipe)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.CandleStick)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Knife)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.CandleKnife)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Bin)
         {
             spriteRenderer.sprite = nomalSprite;
             if (soundManager != null)

@@ -14,16 +14,21 @@ public class CanvasTouchMouse : MonoBehaviour
     private GameObject clickBomb;
     private bool isKeySelected = false;
     public bool isLightSelected = false;
+    public bool isCandleSelected = false;
+    public bool isKnifeSelected = false;
 
     // 特定のオブジェクトを識別するためのタグ
     public string keyTag = "Key";
     public string bombTag = "Bomb";
     public string rockerTag = "Rocker";
     public string LightTag = "BlackLight";
+    public string CandleFireTag = "candleFire";
+    public string KnifeTag = "candleKnife";
     public string PictureTag = "Picture";
 
     public CheckBool lastClickedObject;
     public CheckBool previousClickedObject; // ひとつ前にクリックされたオブジェクト
+
 
     SceneManagement sceneManagement;
     ItemLight itemLight;
@@ -124,14 +129,16 @@ public class CanvasTouchMouse : MonoBehaviour
                     }
                     isKeySelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(keyTag));
                     isLightSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(LightTag));
+                    isCandleSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(CandleFireTag));
+                    isKnifeSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(KnifeTag));
 
-                    if (isKeySelected)
+                    if (isKnifeSelected)
                     {
-                        Debug.Log("Key selected: " + isKeySelected);
+                        Debug.Log("Key selected: " + isKnifeSelected);
                     }
                     else
                     {
-                        Debug.Log("Key not selected: " + isKeySelected);
+                        Debug.Log("Key not selected: " + isKnifeSelected);
                     }
 
                     //// isLightSelectedの設定

@@ -15,7 +15,6 @@ public class SimpleDialogueManager : MonoBehaviour
     ItemGetSet getSet;
     ItemBer itemBer;
 
-    
     GameManager gameManager;
     void Start()
     {
@@ -51,6 +50,14 @@ public class SimpleDialogueManager : MonoBehaviour
         gameObject.SetActive(true); // 会話開始時に表示
         DisplayLine3();
     }
+    public void StartDialogueFruit(Dialogue dialogue)
+    {
+        currentDialogue = dialogue;
+        currentLineIndex = 0;
+        gameObject.SetActive(true); // 会話開始時に表示
+        DisplayLineFruit();
+        objectManager.Ontext = true;
+    }
     void Update()
     {
         // タップを検知し、次の会話行に進む
@@ -70,19 +77,24 @@ public class SimpleDialogueManager : MonoBehaviour
 
     public void NextLine()
     {
-        if (gameManager.itemGet == true)
+        if (gameManager.itemGet == true && gameManager.itemGet2 == true)
         {
             DisplayLine();
             currentLineIndex++;
         }
-        if (gameManager.itemGet == false)
+        if (gameManager.itemGet == false && gameManager.itemGet2 == false )
         {
             DisplayLine2();
             currentLineIndex++;
         }
-        if(gameManager.itemGet == null)
+        if (gameManager.itemGet == true && gameManager.itemGet2 == false)
         {
             DisplayLine3();
+            currentLineIndex++;
+        }
+        if(gameManager.itemGet == false && gameManager.itemGet2 == true)
+        {
+            DisplayLineFruit();
             currentLineIndex++;
         }
     }
@@ -122,28 +134,41 @@ public class SimpleDialogueManager : MonoBehaviour
             EndDialogue2();
         }
     }
+    public void DisplayLineFruit()
+    {
+        if (currentLineIndex < currentDialogue.lines.Count)
+        {
+            var line = currentDialogue.lines[currentLineIndex];
+            dialogueText.text = line.dialogueText; // 会話内容のみ表示
+        }
+        else
+        {
+            EndDialogueFruit();
+        }
+    }
     public void EndDialogue()
     {
-        // 会話終了時の処理
-        dialogueText.text = "";
-        getSet.ImageChange(objectManager.imageNum);
-        itemBer.AddItem(objectManager.items[objectManager.addItemNum]);
-        gameObject.SetActive(false); // 会話終了時に非表示に設定
-        objectManager.textEnd = true;
-        if (objectManager.lightobj != null && objectManager.oneLight)
-        {
-            if (objectManager.lightobj.activeSelf)
+            // 会話終了時の処理
+            dialogueText.text = "";
+            getSet.ImageChange(objectManager.imageNum);
+            itemBer.AddItem(objectManager.items[objectManager.addItemNum]);
+            gameObject.SetActive(false); // 会話終了時に非表示に設定
+            objectManager.textEnd = true;
+            if (objectManager.lightobj != null && objectManager.oneLight)
             {
-                Destroy(objectManager.lightobj);
+                if (objectManager.lightobj.activeSelf)
+                {
+                    Destroy(objectManager.lightobj);
+                }
             }
-        }
-        if (objectManager.nabeobj != null && objectManager.OnMedicine)
-        {
-            if (objectManager.nabeobj.activeSelf)
+            if (objectManager.nabeobj != null && objectManager.OnMedicine)
             {
-                Destroy(objectManager.nabeobj);
+                if (objectManager.nabeobj.activeSelf)
+                {
+                    Destroy(objectManager.nabeobj);
+                }
             }
-        }
+        objectManager.Ontext = false;
     }
     public void EndDialogue2()
     {
@@ -154,5 +179,27 @@ public class SimpleDialogueManager : MonoBehaviour
         objectManager.Ontext = false;
         objectManager.textEnd = true;
     }
-    
+    public void EndDialogueFruit()
+    {
+        dialogueText.text = "";
+
+        StartCoroutine(FruitTouch());
+
+
+    }
+    IEnumerator FruitTouch()
+    {
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+        getSet.ImageChange(3);
+        itemBer.AddItem(objectManager.items[3]);
+
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+        getSet.ImageChange(13);
+        itemBer.AddItem(objectManager.items[13]);
+        gameObject.SetActive(false); // 会話終了時に非表示に設定
+        objectManager.textEnd = true;
+        objectManager.Ontext = false;
+    }
 }

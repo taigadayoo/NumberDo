@@ -56,7 +56,7 @@ public class MixButton : MonoBehaviour
             {
                 sampleSoundManager.PlaySe(SeType.SE1);
             }
-            objectManager.imageNum = 2;
+            objectManager.imageNum = 16;
             getSet.ImageChange(objectManager.imageNum);
             itemBer.AddItem(objectManager.items[4]);
             mixImageScripts.mixImage.enabled = false;
@@ -119,6 +119,23 @@ public class MixButton : MonoBehaviour
             objectManager.imageNum = 11;
             getSet.ImageChange(objectManager.imageNum);
             itemBer.AddItem(objectManager.items[11]);
+            itemBer.AddItem(objectManager.items[9]);
+            mixImageScripts.mixImage.enabled = false;
+            canvasTouchMouse.lastClickedObject = null;
+            canvasTouchMouse.previousClickedObject = null;
+        }
+        else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "candlestick" && canvasTouchMouse.previousClickedObject.gameObject.tag == "knife" || canvasTouchMouse.previousClickedObject.gameObject.tag == "candlestick" && canvasTouchMouse.lastClickedObject.gameObject.tag == "knife")
+        {
+            itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
+            itemBer.RemoveItem(canvasTouchMouse.previousClickedObject.gameObject);
+            if (sampleSoundManager != null)
+            {
+                sampleSoundManager.PlaySe(SeType.SE1);
+            }
+            objectManager.imageNum = 14;
+            getSet.ImageChange(objectManager.imageNum);
+
+            itemBer.AddItem(objectManager.items[14]);
             mixImageScripts.mixImage.enabled = false;
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;

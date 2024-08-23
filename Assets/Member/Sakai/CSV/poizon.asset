@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99acc3ae65bd3743b15fbd47067e2bb, type: 3}
   m_Name: poizon
   m_EditorClassIdentifier: 
-  lines: []
+  lines:
+  - dialogueText: "\u6BD2\u3042\u308B\u308F\u3002\u5371\u306A\u3044\u306A"

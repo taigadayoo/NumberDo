@@ -15,7 +15,8 @@ public class Interactable : MonoBehaviour
        
         noItem,
         itemGet,
-        itemGeted
+        itemGeted,
+        fruit
     }
     [SerializeField]
    public TouchAction touchAction;
@@ -41,9 +42,10 @@ public class Interactable : MonoBehaviour
         {
             objectManager.textEnd = false;
 
-            if (dialogueManager != null && dialogue != null && touchAction == TouchAction.itemGet && !objectManager.Ontext)
+            if (dialogueManager != null && dialogue != null && touchAction == TouchAction.itemGet && !objectManager.Ontext )
             {
                 gameManager.itemGet = true;
+                gameManager.itemGet2 = true;
                 textBox.SetActive(true);
                 dialogueManager.StartDialogue(dialogue); // 触れた際に会話を開始
                 touchAction = TouchAction.itemGeted;
@@ -52,9 +54,19 @@ public class Interactable : MonoBehaviour
             {
                 textBox.SetActive(true);
                 dialogueManager.StartDialogueItemGeted(dialogue); // 触れた際に会話を開始
-                gameManager.itemGet = null;
+                gameManager.itemGet = true;
+                gameManager.itemGet2 = false;
 
             }
+            if (dialogueManager != null && dialogue != null && touchAction == TouchAction.fruit && !objectManager.Ontext)
+            {
+                textBox.SetActive(true);
+                dialogueManager.StartDialogueFruit(dialogue); // 触れた際に会話を開始
+                gameManager.itemGet = false;
+                gameManager.itemGet2 = true;
+                touchAction = TouchAction.itemGeted;
+            }
+
             if (dialogueManager != null && dialogue != null && touchAction == TouchAction.noItem && !objectManager.Ontext)
             {
                 if ( gameObject.tag == "Monitor" && objectManager.OnKeyCode)
@@ -64,6 +76,7 @@ public class Interactable : MonoBehaviour
                 else
                 {
                     gameManager.itemGet = false;
+                    gameManager.itemGet2 = false;
                     textBox.SetActive(true);
                     dialogueManager.StartDialogue2(dialogue); // 触れた際に会話を開始
                     if (gameObject.tag == "MiniGame")

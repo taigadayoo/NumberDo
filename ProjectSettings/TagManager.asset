@@ -26,6 +26,11 @@ TagManager:
   - candleFire
   - Koge
   - Recipe
+  - candlestick
+  - poizon
+  - knife
+  - candleKnife
+  - Bin
   layers:
   - Default
   - TransparentFX

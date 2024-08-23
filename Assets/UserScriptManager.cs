@@ -10,6 +10,7 @@ namespace NovelGame
     public class UserScriptManager : MonoBehaviour
     {
         [SerializeField] TextAsset _textFile; // テキストファイルを格納するための変数
+        [SerializeField] Animator animator; // アニメーターコンポーネントを格納する変数
 
         List<string> _sentences = new List<string>(); // 読み込んだ文章を格納するリスト
         public bool isWaiting = false; // ウェイト中かどうかのフラグ
@@ -73,9 +74,37 @@ namespace NovelGame
                     ScenarioGameManager.Instance.imageManager.PutImage(words[2], words[3], img_x, img_y, scale_percent); // 画像を表示する
                     ScenarioGameManager.Instance.mainTextController.GoToTheNextLine(); //次の行に進む
                     break;
+
+                case "playAnimation": //playAnimationステートメントの場合
+                    PlayAnimation(words[2]); // 指定されたアニメーションを再生
+                    break;
+
                 default: //そうでない場合
                     break;
             }
+        }
+
+        //
+        void PlayAnimation(string animationName)
+        {
+            if (animator != null) 
+            {
+                animator.Play(animationName);
+                StartCoroutine(WaitForAnimation(animator.GetCurrentAnimatorStateInfo(0).length));
+            }
+            else
+            {
+                Debug.LogError("Animator not assigned.");
+            }
+        }
+
+        // アニメーションが完了するのを待機してから次の行に進むメソッド
+        IEnumerator WaitForAnimation(float duration)
+        {
+            isWaiting = true;
+            yield return new WaitForSeconds(duration);
+            isWaiting = false;
+            ScenarioGameManager.Instance.mainTextController.GoToTheNextLine();
         }
 
         //シーンを変更するメソッド

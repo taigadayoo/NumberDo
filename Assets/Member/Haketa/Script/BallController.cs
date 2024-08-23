@@ -6,7 +6,7 @@ public class BallController : MonoBehaviour
 {
     TimeCounter timeCounter;
     RectTransform rectTransform;
-
+    
     public bool isTouch;
     void Start()
     {
@@ -15,7 +15,7 @@ public class BallController : MonoBehaviour
 
         // TimeCounter‚ð’T‚µ‚ÄŽæ“¾
         timeCounter = FindObjectOfType<TimeCounter>();
-        
+      
     }
 
     void Update()

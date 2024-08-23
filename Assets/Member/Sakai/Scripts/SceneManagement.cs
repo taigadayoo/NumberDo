@@ -72,4 +72,5 @@ public class SceneManagement : MonoBehaviour
     {
         Initiate.Fade(sceneNameTitle, fadeColor, fadeSpeed);
     }
+  
 }

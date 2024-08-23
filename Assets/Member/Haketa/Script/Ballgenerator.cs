@@ -13,8 +13,14 @@ public class Ballgenerator : MonoBehaviour
     public TimeCounter timeCounter; // カウントダウンを管理するスクリプト
     public Text countdownText; // UI上でカウントダウンを表示するText
     public int countdownTime = 3; // カウントダウンの開始値
-    
+
+    private List<GameObject> ballList = new List<GameObject>();
     private void Start()
+    {
+        StartCoroutine(StartCountdown());
+      
+    }
+    private void OnEnable()
     {
         StartCoroutine(StartCountdown());
     }
@@ -68,9 +74,19 @@ public class Ballgenerator : MonoBehaviour
 
                 // 生成したボールの位置を設定
                 ballRectTransform.anchoredPosition = randomPosition;
+                ballList.Add(ball);
             }
         }
     }
+    public void ClearAllBalls()
+    {
+        foreach (GameObject ball in ballList)
+        {
+            Destroy(ball);
+        }
 
+        // リストをクリア
+        ballList.Clear();
+    }
 }
 

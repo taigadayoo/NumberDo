@@ -27,7 +27,13 @@ public class TimeCounter : MonoBehaviour
         timer = FindFirstObjectByType<Timer>();
         objectManager = FindObjectOfType<ObjectManager>();
         soundManager = FindObjectOfType<SampleSoundManager>();
+      
     }
+    void OnEnable()
+    {
+        countdown = 13f;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -37,12 +43,17 @@ public class TimeCounter : MonoBehaviour
         //countdown‚ª0ˆÈ‰º‚É‚È‚Á‚½‚Æ‚«
         if (countdown <= 0)
         {
-            timer.Restart();
+            //timer.Restart();
             //popup.SetActive(false);
             buttons.SetActive(false) ;
             isclier = true;
             player.SetActive(false);
             spriteRenderer.sprite = clierImage;
+            objectManager.OnMiniGame = false;
+            transform.parent.gameObject.SetActive(false);
+            objectManager.miniGameClear.SetActive(true);
+            objectManager.allColliderSwicth(true);
+            objectManager.OnKeyCode = false;
             if (soundManager != null)
             {
                 soundManager.PlaySe(SeType.SE5);

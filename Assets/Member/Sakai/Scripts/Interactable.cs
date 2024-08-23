@@ -57,12 +57,20 @@ public class Interactable : MonoBehaviour
             }
             if (dialogueManager != null && dialogue != null && touchAction == TouchAction.noItem && !objectManager.Ontext)
             {
-                gameManager.itemGet = false;
-                textBox.SetActive(true);
-                dialogueManager.StartDialogue2(dialogue); // 触れた際に会話を開始
-               if(gameObject.tag == "MiniGame")
+                if ( gameObject.tag == "Monitor" && objectManager.OnKeyCode)
                 {
-                    objectManager.OnMiniGame = true;
+                   
+                }
+                else
+                {
+                    gameManager.itemGet = false;
+                    textBox.SetActive(true);
+                    dialogueManager.StartDialogue2(dialogue); // 触れた際に会話を開始
+                    if (gameObject.tag == "MiniGame")
+                    {
+                        objectManager.OnMiniGame = true;
+                        objectManager.OnKeyCode = true;
+                    }
                 }
             }
         }

@@ -13,6 +13,9 @@ public class CharaController : MonoBehaviour
     SampleSoundManager soundManager;
     [SerializeField]
     SceneManagement sceneManagement;
+
+    [SerializeField]
+    Ballgenerator ballgenerator;
     // RectTransformの参照
     private RectTransform rectTransform;
     public Image rightImage;
@@ -21,13 +24,19 @@ public class CharaController : MonoBehaviour
     public Sprite pushLeft;
     public Sprite nomalRight;
     public Sprite nomalLeft;
+    ObjectManager objectManager;
     void Start()
     {
         // RectTransformコンポーネントを取得
         rectTransform = GetComponent<RectTransform>();
         soundManager = FindObjectOfType<SampleSoundManager>();
+        objectManager = FindObjectOfType<ObjectManager>();
     }
-
+    private void OnEnable()
+    {
+        leftImage.sprite = nomalLeft;
+        rightImage.sprite = nomalRight;
+    }
     public void RbuttonClick()
     {
         // 位置を変更
@@ -88,9 +97,12 @@ public class CharaController : MonoBehaviour
         {
             //GameOverSceneを呼び出す
             isDead = true;
-            sceneManagement.OnGameOver();
-            gameObject.SetActive(false);
+            ballgenerator.ClearAllBalls();
+            objectManager.OnMiniGame = false;
+            objectManager.miniGameDead.SetActive(true);
+            objectManager.miniGame.SetActive(false);
 
+         
             ////ゲーム内の時間を止める
             //Time.timeScale = 0f;          
         }

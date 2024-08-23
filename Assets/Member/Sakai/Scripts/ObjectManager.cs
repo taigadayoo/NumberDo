@@ -51,6 +51,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject nabeobj;
     public GameObject touchPicture;
     public GameObject monitorRock;
+    public GameObject miniGameClear;
+    public GameObject miniGameDead;
 
     public List<GameObject> touchObject = new List<GameObject>();
     private bool OnBox = false;
@@ -71,6 +73,7 @@ public class ObjectManager : MonoBehaviour
     public bool Onclock = false;
     public bool OnFruit = false;
     public bool OnMiniGame = false;
+    public bool OnKeyCode = false;
     public int imageNum = 0;
     public int addItemNum = 0;
     public Sprite lightImage;
@@ -84,6 +87,8 @@ public class ObjectManager : MonoBehaviour
     [SerializeField]
     SimpleDialogueManager dialogueManager;
     CanvasTouchMouse canvasTouchMouse;
+    [SerializeField]
+    TimeCounter timeCounter;
    
    private List<Collider2D> allColliders = new List<Collider2D>();
     private void Start()
@@ -146,7 +151,8 @@ public class ObjectManager : MonoBehaviour
             miniGame.SetActive(true);
             miniGameZoom.SetActive(false);
             allColliderSwicth(false);
-            timer.Stop();
+           
+           
         }
 
     }
@@ -264,7 +270,7 @@ public class ObjectManager : MonoBehaviour
                     {
                         buttonCotroller.OnButtonClick();
                         OnBox = true;
-                        timer.Stop();
+                        //timer.Stop();
                         if (sampleSoundManager != null)
                         {
                             SampleSoundManager.Instance.PlaySe(SeType.SE2);
@@ -423,15 +429,34 @@ public class ObjectManager : MonoBehaviour
                 }
                 if (hit.collider.gameObject == monitor)
                 {
-                    monitorZoom.SetActive(true);
-                    zoomOffColMain.SetActive(true);
-                    allColliderSwicth(false);
+                    if (!OnKeyCode)
+                    {
+                        monitorZoom.SetActive(true);
+                        zoomOffColMain.SetActive(true);
+                        allColliderSwicth(false);
+                    }
+                    else
+                    {
+                        miniGame.SetActive(true);
+                        allColliderSwicth(false);
+                    }
                 }
                 if (hit.collider.gameObject == monitorRock)
                 {
                     monitorPass.SetActive(true);
                     monitorZoom.SetActive(false);
                     zoomOffColMain.SetActive(true);
+                    allColliderSwicth(false);
+                }
+                if (hit.collider.gameObject == miniGameClear && timeCounter.isclier)
+                {
+
+                    addItemNum = 7;
+                    itemBer.AddItem(items[addItemNum]);
+                    imageNum = 3;
+                    getSet.ImageChange(imageNum);
+                    timeCounter.isclier = false;
+                    miniGameClear.SetActive(false);
                     allColliderSwicth(false);
                 }
             }

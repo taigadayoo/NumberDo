@@ -19,6 +19,9 @@ TagManager:
   - BlackLight
   - Picture
   - MiniGame
+  - Matti
+  - MiniGameClear
+  - Monitor
   layers:
   - Default
   - TransparentFX

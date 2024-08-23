@@ -24,7 +24,11 @@ public class ItemLight : MonoBehaviour
         Conpas,
         Fruited,
         BrabkLight,
-        Matti
+        Matti,
+        Candle,
+        CandleFire,
+        Koge,
+        Recipe
     }
     [SerializeField]
     ItemName itemName;
@@ -142,6 +146,38 @@ public class ItemLight : MonoBehaviour
                 soundManager.PlaySe(SeType.SE3);
             }
         }
+        if (itemName == ItemName.Candle)
+        {
+            spriteRenderer.sprite = rightSprite[11];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.CandleFire)
+        {
+            spriteRenderer.sprite = rightSprite[12];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Koge)
+        {
+            spriteRenderer.sprite = rightSprite[13];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Recipe)
+        {
+            spriteRenderer.sprite = rightSprite[14];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
     }
     public void ChangeNomal()
     {
@@ -234,6 +270,38 @@ public class ItemLight : MonoBehaviour
             }
         }
         if (itemName == ItemName.Matti)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Candle)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.CandleFire)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Koge)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.Recipe)
         {
             spriteRenderer.sprite = nomalSprite;
             if (soundManager != null)

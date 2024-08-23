@@ -1696,6 +1696,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c2080bf7f3d88174c8990e983e51cdf4, type: 3}
   - {fileID: 21300000, guid: aca8f04241ab93c42a1fbacf9700ddbd, type: 3}
   - {fileID: 21300000, guid: 8672584c28166e24eb11ea8536e031ac, type: 3}
+  - {fileID: 21300000, guid: 8672584c28166e24eb11ea8536e031ac, type: 3}
+  - {fileID: 21300000, guid: 2bb244c1a134b6246ac8a947e0dceed5, type: 3}
+  - {fileID: 21300000, guid: 2bb244c1a134b6246ac8a947e0dceed5, type: 3}
+  - {fileID: 21300000, guid: 6010960f41660024f8866e098fe2fa56, type: 3}
+  - {fileID: 21300000, guid: 4b0ee998ef7b30b42b9d65a8d3661da5, type: 3}
+  - {fileID: 21300000, guid: e811fc2ada6e40b4f8262c01545e5dc1, type: 3}
   image: {fileID: 227419228}
   dialogueManager: {fileID: 0}
 --- !u!114 &227419228
@@ -5485,6 +5491,10 @@ MonoBehaviour:
   - {fileID: 9169443778130632048, guid: fdc14b038a8c1c84c96c17ccaba967ec, type: 3}
   - {fileID: 9169443778130632048, guid: eca09b305d9411442b83424ff349fae7, type: 3}
   - {fileID: 9169443778130632048, guid: ce23b4f6d6ec4b84da4b0c07220fa404, type: 3}
+  - {fileID: 9169443778130632048, guid: 3cc556f3bf045674daedbb42a594bbdb, type: 3}
+  - {fileID: 9169443778130632048, guid: 4fab7c801f7343448a9718be0538c351, type: 3}
+  - {fileID: 9169443778130632048, guid: 0bb9c275e65dc354895b68f513e02bcb, type: 3}
+  - {fileID: 9169443778130632048, guid: e58e49c4006a46445a1a6dd32ef12e94, type: 3}
   password: {fileID: 0}
   zoomoffCol: {fileID: 0}
   gameCanvas: {fileID: 0}
@@ -5511,6 +5521,9 @@ MonoBehaviour:
   monitorRock: {fileID: 579941400}
   miniGameClear: {fileID: 1114561098}
   miniGameDead: {fileID: 1215455665}
+  candle: {fileID: 2008346457}
+  candleNomal: {fileID: 245743353}
+  redBook: {fileID: 1865518976}
   touchObject:
   - {fileID: 289620642}
   - {fileID: 1203707317}
@@ -7097,6 +7110,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1493b77a962f95448b1bce4d48f7e917, type: 3}
   - {fileID: 21300000, guid: 2d39d506f2789814184ae4c0608213d4, type: 3}
   - {fileID: 21300000, guid: b754f8e8c9cbb3748a0d7c7e5d65d6d9, type: 3}
+  - {fileID: 21300000, guid: f87edb8e4483a1447a9e63a295a2e0d2, type: 3}
+  - {fileID: 21300000, guid: 690b06f86d85bc8489514803e095a4e6, type: 3}
   touchMouse: {fileID: 1514678055}
 --- !u!114 &1239975838
 MonoBehaviour:
@@ -10364,6 +10379,8 @@ GameObject:
   - component: {fileID: 1865518977}
   - component: {fileID: 1865518979}
   - component: {fileID: 1865518978}
+  - component: {fileID: 1865518981}
+  - component: {fileID: 1865518980}
   m_Layer: 0
   m_Name: BookRed
   m_TagString: Untagged
@@ -10428,6 +10445,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865518976}
   m_CullTransparentMesh: 1
+--- !u!114 &1865518980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865518976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d3e4c5f43ee3b4c884d6b7d490d9d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: 9e1b036414a616c49acb38384f062f62, type: 2}
+  dialogueManager: {fileID: 1579360333}
+  textBox: {fileID: 1309861281}
+  touchAction: 1
+--- !u!61 &1865518981
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865518976}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.62210846, y: -0.05099222}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.223277, y: 1.8770726}
+  m_EdgeRadius: 0
 --- !u!1 &1871854204
 GameObject:
   m_ObjectHideFlags: 0
@@ -11079,6 +11157,7 @@ GameObject:
   - component: {fileID: 2008346461}
   - component: {fileID: 2008346460}
   - component: {fileID: 2008346459}
+  - component: {fileID: 2008346463}
   m_Layer: 0
   m_Name: Candle
   m_TagString: Untagged
@@ -11233,6 +11312,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 49.328163, y: 249.95673}
   m_EdgeRadius: 0
+--- !u!114 &2008346463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008346457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d3e4c5f43ee3b4c884d6b7d490d9d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: 2f658a6c867143a4788c1e5899b5a91d, type: 2}
+  dialogueManager: {fileID: 1579360333}
+  textBox: {fileID: 1309861281}
+  touchAction: 1
 --- !u!1 &2012911108
 GameObject:
   m_ObjectHideFlags: 0

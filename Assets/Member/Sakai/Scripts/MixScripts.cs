@@ -93,6 +93,36 @@ public class MixButton : MonoBehaviour
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;
         }
+        else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "candle" && canvasTouchMouse.previousClickedObject.gameObject.tag == "Matti" || canvasTouchMouse.previousClickedObject.gameObject.tag == "candle" && canvasTouchMouse.lastClickedObject.gameObject.tag == "Matti")
+        {
+            itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
+            itemBer.RemoveItem(canvasTouchMouse.previousClickedObject.gameObject);
+            if (sampleSoundManager != null)
+            {
+                sampleSoundManager.PlaySe(SeType.SE1);
+            }
+            objectManager.imageNum = 9;
+            getSet.ImageChange(objectManager.imageNum);
+            itemBer.AddItem(objectManager.items[9]);
+            mixImageScripts.mixImage.enabled = false;
+            canvasTouchMouse.lastClickedObject = null;
+            canvasTouchMouse.previousClickedObject = null;
+        }
+        else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "candleFire" && canvasTouchMouse.previousClickedObject.gameObject.tag == "Koge" || canvasTouchMouse.previousClickedObject.gameObject.tag == "candleFire" && canvasTouchMouse.lastClickedObject.gameObject.tag == "Koge")
+        {
+            itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
+            itemBer.RemoveItem(canvasTouchMouse.previousClickedObject.gameObject);
+            if (sampleSoundManager != null)
+            {
+                sampleSoundManager.PlaySe(SeType.SE1);
+            }
+            objectManager.imageNum = 11;
+            getSet.ImageChange(objectManager.imageNum);
+            itemBer.AddItem(objectManager.items[11]);
+            mixImageScripts.mixImage.enabled = false;
+            canvasTouchMouse.lastClickedObject = null;
+            canvasTouchMouse.previousClickedObject = null;
+        }
         else
         {
             Debug.Log("âΩÇ‡ãNÇ´Ç»Ç¢ÇÊÇ§ÇæÅB");

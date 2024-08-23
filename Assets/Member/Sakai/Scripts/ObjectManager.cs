@@ -53,6 +53,9 @@ public class ObjectManager : MonoBehaviour
     public GameObject monitorRock;
     public GameObject miniGameClear;
     public GameObject miniGameDead;
+    public GameObject candle;
+    public GameObject candleNomal;
+    public GameObject redBook;
 
     public List<GameObject> touchObject = new List<GameObject>();
     private bool OnBox = false;
@@ -89,8 +92,11 @@ public class ObjectManager : MonoBehaviour
     CanvasTouchMouse canvasTouchMouse;
     [SerializeField]
     TimeCounter timeCounter;
-   
-   private List<Collider2D> allColliders = new List<Collider2D>();
+
+
+
+
+    private List<Collider2D> allColliders = new List<Collider2D>();
     private void Start()
     {
         if (gameName == GameName.tutorial)
@@ -389,6 +395,32 @@ public class ObjectManager : MonoBehaviour
                     }
                     oneLight = true;
                         
+                }
+                if (hit.collider.gameObject == candle)
+                {
+                    candleNomal.SetActive(false);
+                    candle.SetActive(false);
+                    addItemNum = 8;
+                    if (getSet != null)
+                    {
+                        imageNum = 7;
+                        ItemGet = true;
+                    }
+                    oneLight = true;
+
+                }
+                if (hit.collider.gameObject == redBook)
+                {
+                    candleNomal.SetActive(false);
+                    candle.SetActive(false);
+                    addItemNum = 10;
+                    if (getSet != null)
+                    {
+                        imageNum = 10;
+                        ItemGet = true;
+                    }
+                    oneLight = true;
+
                 }
                 if (hit.collider.gameObject == touchPicture)
                 {

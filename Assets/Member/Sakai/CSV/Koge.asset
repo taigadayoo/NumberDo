@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b99acc3ae65bd3743b15fbd47067e2bb, type: 3}
+  m_Name: Koge
+  m_EditorClassIdentifier: 
+  lines:
+  - dialogueText: "\u306A\u3093\u3060\u3053\u306E\u8D64\u3044\u672C\u306F"
+  - dialogueText: "\u306A\u3093\u304B\u631F\u307E\u3063\u3066\u308B"

@@ -22,6 +22,10 @@ TagManager:
   - Matti
   - MiniGameClear
   - Monitor
+  - candle
+  - candleFire
+  - Koge
+  - Recipe
   layers:
   - Default
   - TransparentFX

@@ -43,6 +43,16 @@ public class MixImageScripts : MonoBehaviour
                 mixImage.enabled = true;
                 mixImage.sprite = mixItemImage[3];
             }
+            if (touchMouse.lastClickedObject.gameObject.tag == "candle" && touchMouse.previousClickedObject.gameObject.tag == "Matti" || touchMouse.previousClickedObject.gameObject.tag == "candle" && touchMouse.lastClickedObject.gameObject.tag == "Matti")
+            {
+                mixImage.enabled = true;
+                mixImage.sprite = mixItemImage[4];
+            }
+            if (touchMouse.lastClickedObject.gameObject.tag == "candleFire" && touchMouse.previousClickedObject.gameObject.tag == "Koge" || touchMouse.previousClickedObject.gameObject.tag == "candleFire" && touchMouse.lastClickedObject.gameObject.tag == "Koge")
+            {
+                mixImage.enabled = true;
+                mixImage.sprite = mixItemImage[5];
+            }
             //else
             //{
             //    mixImage.enabled = false;

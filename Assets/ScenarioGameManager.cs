@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace NovelGame
 {
-    public class GameManager : MonoBehaviour
+    public class ScenarioGameManager : MonoBehaviour
     {
         // 別のクラスからGameManagerの変数などを使えるようにするためのもの。（変更はできない）
-        public static GameManager Instance { get; private set; }
+        public static ScenarioGameManager Instance { get; private set; }
 
         //下部組織のスクリプト
         public UserScriptManager userScriptManager;

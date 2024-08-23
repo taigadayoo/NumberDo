@@ -26,7 +26,7 @@ namespace NovelGame
             if (stateMode == "novel")
             {
                 //novelモードのとき、mainTextControllerのnovelUpdateを呼び出す
-                GameManager.Instance.mainTextController.novelUpdate();
+                ScenarioGameManager.Instance.mainTextController.novelUpdate();
             }
             else
             { //waitモードなど他のモードのときは何もしない

@@ -21,17 +21,17 @@ namespace NovelGame
             _feedTime = 0.05f;
 
             // 最初の行のテキストを表示、または命令を実行
-            string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
-            bool isStatement = GameManager.Instance.userScriptManager.IsStatement(sentence);
+            string sentence = ScenarioGameManager.Instance.userScriptManager.GetCurrentSentence();
+            bool isStatement = ScenarioGameManager.Instance.userScriptManager.IsStatement(sentence);
             DisplayText(sentence, isStatement);
             if (isStatement)
             {
-                GameManager.Instance.userScriptManager.ExecuteStatement(sentence);
+                ScenarioGameManager.Instance.userScriptManager.ExecuteStatement(sentence);
             }
             //現在の文章が文章なのにノベルモードじゃなければ
-            else if (GameManager.Instance.gameUpdateManager.getStateMode() != "novel")
+            else if (ScenarioGameManager.Instance.gameUpdateManager.getStateMode() != "novel")
             {
-                GameManager.Instance.gameUpdateManager.ToggleToNovelMode();
+                ScenarioGameManager.Instance.gameUpdateManager.ToggleToNovelMode();
             }
         }
 
@@ -68,7 +68,7 @@ namespace NovelGame
         // その行の、すべての文字が表示されていなければ、まだ次の行へ進むことはできない
         public bool CanGoToTheNextLine()
         {
-            string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
+            string sentence = ScenarioGameManager.Instance.userScriptManager.GetCurrentSentence();
             string[] words = sentence.Split(',');
             string textsentence = words[2];
             _sentenceLength = textsentence.Length;
@@ -82,19 +82,19 @@ namespace NovelGame
             _displayedSentenceLength = 0;
             _time = 0f;
             _mainTextObject.maxVisibleCharacters = 0;
-            GameManager.Instance.lineNumber++;
-            string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
-            bool isStatement = GameManager.Instance.userScriptManager.IsStatement(sentence);
+            ScenarioGameManager.Instance.lineNumber++;
+            string sentence = ScenarioGameManager.Instance.userScriptManager.GetCurrentSentence();
+            bool isStatement = ScenarioGameManager.Instance.userScriptManager.IsStatement(sentence);
 
             DisplayText(sentence, isStatement);
             if (isStatement)
             {
-                GameManager.Instance.userScriptManager.ExecuteStatement(sentence);
+                ScenarioGameManager.Instance.userScriptManager.ExecuteStatement(sentence);
             }
             //現在の文章が文章なのにノベルモードじゃなければ
-            else if (GameManager.Instance.gameUpdateManager.getStateMode() != "novel")
+            else if (ScenarioGameManager.Instance.gameUpdateManager.getStateMode() != "novel")
             {
-                GameManager.Instance.gameUpdateManager.ToggleToNovelMode();
+                ScenarioGameManager.Instance.gameUpdateManager.ToggleToNovelMode();
             }
         }
 

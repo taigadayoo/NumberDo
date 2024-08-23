@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEditor;
 
 namespace NovelGame
 {
@@ -12,7 +13,8 @@ namespace NovelGame
 
         List<string> _sentences = new List<string>(); // 読み込んだ文章を格納するリスト
         public bool isWaiting = false; // ウェイト中かどうかのフラグ
-                                       // スクリプトの初期化時に実行されるメソッド
+
+        // スクリプトの初期化時に実行されるメソッド
         void Awake()
         {
             // テキストファイルから文章を一行ずつ読み込んでリストに格納する
@@ -27,7 +29,7 @@ namespace NovelGame
         // 現在の文章を取得するメソッド
         public string GetCurrentSentence()
         {
-            return _sentences[GameManager.Instance.lineNumber];
+            return _sentences[ScenarioGameManager.Instance.lineNumber];
         }
 
         // 命令文であるかどうかを判定するメソッド
@@ -54,6 +56,13 @@ namespace NovelGame
         {
             string[] words = sentence.Split(','); // 文章を単語に分割する
 
+            //ENDが出た場合、シーン遷移を行う
+            if (sentence == "END")
+            {
+                ChangeScene();
+                return;
+            }
+
             // 単語によって処理を分岐する
             switch (words[1])
             {
@@ -61,12 +70,19 @@ namespace NovelGame
                     int img_x = ConvertToInt(words[5]);
                     int img_y = ConvertToInt(words[6]);
                     int scale_percent = ConvertToInt(words[7], 100);
-                    GameManager.Instance.imageManager.PutImage(words[2], words[3], img_x, img_y, scale_percent); // 画像を表示する
-                    GameManager.Instance.mainTextController.GoToTheNextLine(); //次の行に進む
+                    ScenarioGameManager.Instance.imageManager.PutImage(words[2], words[3], img_x, img_y, scale_percent); // 画像を表示する
+                    ScenarioGameManager.Instance.mainTextController.GoToTheNextLine(); //次の行に進む
                     break;
                 default: //そうでない場合
                     break;
             }
+        }
+
+        //シーンを変更するメソッド
+        void ChangeScene()
+        {
+            //シーンを変更するコード
+            UnityEngine.SceneManagement.SceneManager.LoadScene("");
         }
     }
 }

@@ -10,5 +10,6 @@ public class Dialogue : ScriptableObject
 [System.Serializable]
 public class DialogueLine
 {
+    [TextArea(3, 10)] // インスペクターで複数行の入力をサポート
     public string dialogueText; // 会話内容
 }

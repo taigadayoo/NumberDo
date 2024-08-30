@@ -154,20 +154,10 @@ public class SimpleDialogueManager : MonoBehaviour
             itemBer.AddItem(objectManager.items[objectManager.addItemNum]);
             gameObject.SetActive(false); // ‰ï˜bI—¹Žž‚É”ñ•\Ž¦‚ÉÝ’è
             objectManager.textEnd = true;
-            if (objectManager.lightobj != null && objectManager.oneLight)
-            {
-                if (objectManager.lightobj.activeSelf)
-                {
-                    Destroy(objectManager.lightobj);
-                }
-            }
-            if (objectManager.nabeobj != null && objectManager.OnMedicine)
-            {
-                if (objectManager.nabeobj.activeSelf)
-                {
-                    Destroy(objectManager.nabeobj);
-                }
-            }
+          if(objectManager.OnClock)
+        {
+            objectManager.clock.SetActive(false);
+        }
         objectManager.Ontext = false;
     }
     public void EndDialogue2()
@@ -191,7 +181,7 @@ public class SimpleDialogueManager : MonoBehaviour
     {
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
 
-        getSet.ImageChange(3);
+        getSet.ImageChange(20);
         itemBer.AddItem(objectManager.items[3]);
 
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));

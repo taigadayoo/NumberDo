@@ -71,7 +71,8 @@ public class MixButton : MonoBehaviour
             {
                 sampleSoundManager.PlaySe(SeType.SE1);
             }
-            objectManager.imageNum = 2;
+           
+            objectManager.imageNum = 18;
             getSet.ImageChange(objectManager.imageNum);
             itemBer.AddItem(objectManager.items[5]);
             mixImageScripts.mixImage.enabled = false;
@@ -86,7 +87,7 @@ public class MixButton : MonoBehaviour
             {
                 sampleSoundManager.PlaySe(SeType.SE1);
             }
-            objectManager.imageNum = 2;
+            objectManager.imageNum = 21;
             getSet.ImageChange(objectManager.imageNum);
             itemBer.AddItem(objectManager.items[6]);
             mixImageScripts.mixImage.enabled = false;

@@ -82,6 +82,7 @@ public class ObjectManager : MonoBehaviour
     public bool OnKeyCode = false;
     public int imageNum = 0;
     public int addItemNum = 0;
+    public bool OnClock = false;
     public Sprite lightImage;
     ItemBer itemBer;
     SampleSoundManager sampleSoundManager;
@@ -372,60 +373,59 @@ public class ObjectManager : MonoBehaviour
 
                 if (hit.collider.gameObject == nabeobj && !OnMedicine)
                 {
-
-                    addItemNum = 0;
+                    getSet.ImageChange(5);
+                    itemBer.AddItem(items[0]);
                     if (getSet != null)
                     {
                         imageNum = 5;
                         ItemGet = true;
                     }
-
+                    nabeobj.SetActive(false);
                     OnMedicine = true;
                 }
                 if (hit.collider.gameObject == clock && !Onclock)
                 {
-
+                    OnClock = true;
                     addItemNum = 1;
                     if (getSet != null)
                     {
                         imageNum = 4;
                         ItemGet = true;
                     }
+                   
                     Onclock = true;
                 }
                 if (hit.collider.gameObject == fruit && !OnFruit)
                 {
 
-                    addItemNum = 3;
+                    StartCoroutine(FruitTouch());
                     if (getSet != null)
                     {
-                        imageNum = 1;
+                        imageNum = 20;
                         ItemGet = true;
                     }
+                    fruit.SetActive(false);
                     OnFruit = true;
                 }
                 if (hit.collider.gameObject == lightobj)
                 {
 
-                    addItemNum =2;
+                    getSet.ImageChange(17);
+                    itemBer.AddItem(items[2]);
                     if (getSet != null)
                     {
-                        imageNum = 1;
+                        imageNum = 17;
                         ItemGet = true;
                     }
                     oneLight = true;
-                        
+                    lightobj.SetActive(false);
                 }
                 if (hit.collider.gameObject == candle)
                 {
                     candleNomal.SetActive(false);
                     candle.SetActive(false);
-                    addItemNum = 8;
-                    if (getSet != null)
-                    {
-                        imageNum = 7;
-                        ItemGet = true;
-                    }
+                    getSet.ImageChange(7);
+                    itemBer.AddItem(items[8]);
                     oneLight = true;
 
                 }
@@ -460,12 +460,8 @@ public class ObjectManager : MonoBehaviour
                 {
                     if (canvasTouchMouse.isKnifeSelected)
                     {
-                        addItemNum = 15;
-                        if (getSet != null)
-                        {
-                            imageNum = 15;
-                            ItemGet = true;
-                        }
+                        getSet.ImageChange(15);
+                        itemBer.AddItem(items[15]);
                         if (canvasTouchMouse.lastClickedObject != null)
                         {
                             itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
@@ -477,12 +473,8 @@ public class ObjectManager : MonoBehaviour
                 {
                     if (canvasTouchMouse.isCandleSelected)
                     {
-                        addItemNum = 12;
-                        if (getSet != null)
-                        {
-                            imageNum = 12;
-                            ItemGet = true;
-                        }
+                        getSet.ImageChange(12);
+                        itemBer.AddItem(items[12]);
                         if (canvasTouchMouse.lastClickedObject != null)
                         {
                             itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
@@ -544,5 +536,20 @@ public class ObjectManager : MonoBehaviour
 
         }
 
+    }
+    IEnumerator FruitTouch()
+    {
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+        getSet.ImageChange(20);
+        itemBer.AddItem(items[3]);
+
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+        getSet.ImageChange(13);
+        itemBer.AddItem(items[13]);
+
+        textEnd = true;
+        Ontext = false;
     }
 }

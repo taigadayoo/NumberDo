@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99acc3ae65bd3743b15fbd47067e2bb, type: 3}
   m_Name: Light
   m_EditorClassIdentifier: 
-  lines:
-  - dialogueText: "\u30E9\u30A4\u30C8\u3042\u308B\u308F\uFF01\u96FB\u6C60\u306A\u3044\u308F\uFF01"
+  lines: []

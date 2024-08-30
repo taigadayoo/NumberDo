@@ -26,7 +26,7 @@ public class ClearMonitor : MonoBehaviour
 
             objectManager.addItemNum = 7;
             itemBer.AddItem(objectManager.items[objectManager.addItemNum]);
-            objectManager.imageNum = 3;
+            objectManager.imageNum = 19;
             getSet.ImageChange(objectManager.imageNum);
           
             objectManager.miniGameClear.SetActive(false);

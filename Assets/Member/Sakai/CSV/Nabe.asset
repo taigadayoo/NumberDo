@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99acc3ae65bd3743b15fbd47067e2bb, type: 3}
   m_Name: Nabe
   m_EditorClassIdentifier: 
-  lines:
-  - dialogueText: "\u934B\u304C\u3042\u308B\u305E"
-  - dialogueText: "\u6599\u7406\u3067\u304D\u305D\u3046"
+  lines: []

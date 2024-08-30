@@ -5828,6 +5828,16 @@ MonoBehaviour:
   - {fileID: 1533911473}
   - {fileID: 831477033}
   - {fileID: 1151185475}
+  zoomObject:
+  - {fileID: 23306734}
+  - {fileID: 579941400}
+  - {fileID: 1792430474}
+  - {fileID: 2006850493}
+  - {fileID: 759251502}
+  - {fileID: 2062414469}
+  - {fileID: 2008346457}
+  - {fileID: 1865518976}
+  - {fileID: 1264341517}
   OnPass: 0
   OnBox4: 0
   OnePassWord: 0
@@ -8539,8 +8549,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1423468580}
-  - {fileID: 811213450}
   - {fileID: 473227583}
+  - {fileID: 811213450}
   - {fileID: 195049609}
   - {fileID: 528097043}
   - {fileID: 1584612893}
@@ -12195,11 +12205,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3674833854226139525, guid: 1ad2006b8a6af574da74beeff8328600, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -210
+      value: -185
       objectReference: {fileID: 0}
     - target: {fileID: 3674833854226139525, guid: 1ad2006b8a6af574da74beeff8328600, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -397
+      value: -343
       objectReference: {fileID: 0}
     - target: {fileID: 3674833854226139525, guid: 1ad2006b8a6af574da74beeff8328600, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

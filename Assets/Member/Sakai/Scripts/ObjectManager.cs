@@ -61,6 +61,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject poizonKnife;
 
     public List<GameObject> touchObject = new List<GameObject>();
+
+    public List<GameObject> zoomObject = new List<GameObject>();
     private bool OnBox = false;
     public bool OnPass = false;
     private bool OnBox2 = false;
@@ -101,6 +103,7 @@ public class ObjectManager : MonoBehaviour
 
 
     private List<Collider2D> allColliders = new List<Collider2D>();
+    private List<Collider2D> allZoomColliders = new List<Collider2D>();
     private void Start()
     {
         if (gameName == GameName.tutorial)
@@ -120,7 +123,12 @@ public class ObjectManager : MonoBehaviour
             Collider2D[] colliders = obj.GetComponents<Collider2D>();
             allColliders.AddRange(colliders);
         }
-     
+        foreach (GameObject obj in zoomObject)
+        {
+            Collider2D[] colliders = obj.GetComponents<Collider2D>();
+            allZoomColliders.AddRange(colliders);
+        }
+
     }
     void Update()
     {
@@ -154,7 +162,33 @@ public class ObjectManager : MonoBehaviour
         if (gameName == GameName.mainGame)
         {
             MainObjectTouch();
-         
+            if (!canvasTouchMouse.isCandleSelected && !canvasTouchMouse.isKnifeSelected)
+            {
+                poizon.SetActive(true);
+                poizonCandle.SetActive(false);
+                poizonKnife.SetActive(false);
+            }
+            else if (canvasTouchMouse.isCandleSelected)
+            {
+                poizon.SetActive(false);
+                poizonCandle.SetActive(true);
+                poizonKnife.SetActive(false);
+            }
+            else if (canvasTouchMouse.isKnifeSelected)
+            {
+                poizon.SetActive(false);
+                poizonCandle.SetActive(false);
+                poizonKnife.SetActive(true);
+            }
+            if(textEnd)
+            {
+                allColliderZoomSwicth(true);
+            }
+            else
+            {
+                allColliderZoomSwicth(false);
+            }
+
         }
         if(OnMiniGame && textEnd)
         {
@@ -164,24 +198,8 @@ public class ObjectManager : MonoBehaviour
            
            
         }
-        if(!canvasTouchMouse.isCandleSelected && !canvasTouchMouse.isKnifeSelected)
-        {
-            poizon.SetActive(true);
-            poizonCandle.SetActive(false);
-            poizonKnife.SetActive(false);
-        }
-        else if(canvasTouchMouse.isCandleSelected )
-        {
-            poizon.SetActive(false);
-            poizonCandle.SetActive(true);
-            poizonKnife.SetActive(false);
-        }
-        else if(canvasTouchMouse.isKnifeSelected)
-        {
-            poizon.SetActive(false);
-            poizonCandle.SetActive(false);
-            poizonKnife.SetActive(true);
-        }
+       
+      
     }
     public void DeactivateAllObjects()
     {
@@ -210,7 +228,24 @@ public class ObjectManager : MonoBehaviour
             collider.enabled = isEnabled;
         }
     }
- 
+    public void ActivateAllZoomObjects()
+    {
+        foreach (GameObject obj in zoomObject)
+        {
+            if (obj != null) // nullチェックを行う
+            {
+                obj.SetActive(true);
+            }
+        }
+    }
+    public void allColliderZoomSwicth(bool isEnabled)
+    {
+        foreach (Collider2D collider in allZoomColliders)
+        {
+            collider.enabled = isEnabled;
+        }
+    }
+
     private void ObjectTouch()
     {
 

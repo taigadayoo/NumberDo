@@ -60,7 +60,7 @@ public class MixImageScripts : MonoBehaviour
             }
             //else
             //{
-            //    mixImage.enabled = false;
+            //    mixImage.enabled = false ;
             //}
         }
     }

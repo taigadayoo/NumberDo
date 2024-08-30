@@ -17,6 +17,7 @@ public class MixButton : MonoBehaviour
     [SerializeField]
     MixImageScripts mixImageScripts;
 
+
     ItemGetSet getSet;
     private void Start()
     {
@@ -124,6 +125,7 @@ public class MixButton : MonoBehaviour
             mixImageScripts.mixImage.enabled = false;
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;
+            objectManager.recipeGet = true;
         }
         else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "candlestick" && canvasTouchMouse.previousClickedObject.gameObject.tag == "knife" || canvasTouchMouse.previousClickedObject.gameObject.tag == "candlestick" && canvasTouchMouse.lastClickedObject.gameObject.tag == "knife")
         {

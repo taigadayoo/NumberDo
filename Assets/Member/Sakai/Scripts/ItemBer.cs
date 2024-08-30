@@ -14,7 +14,7 @@ public class ItemBer : MonoBehaviour
     public bool OnBar = false;
     public bool ischak = false;
     [SerializeField]
-   public Image image;
+    public Image image;
     [SerializeField]
     GameObject itemGetPanel;
 
@@ -27,36 +27,40 @@ public class ItemBer : MonoBehaviour
     SampleSoundManager sampleSoundManager;
     public RectTransform[] spawnPositions; // スポーン位置の配列
     ObjectManager objectManager;
-
+    private GameObject newpageSpawn;
     public int spawnedItemCount = 0;
 
-   
     void Start()
     {
         exitItember.SetActive(false);
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
         objectManager = FindObjectOfType<ObjectManager>();
+
+        // 初期化: pageList を設定
+        foreach (GameObject pageObj in pageList)
+        {
+            pageObj.SetActive(false); // 初めはすべて非表示
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-      
         button.transform.position = handle.transform.position;
-        SetPagesActive();
         SetItemsActive();
+        UpdatePageVisibility();
+   
     }
+
     public int GetItemCount()
     {
-        return getItemList.Count;//list内のアイテムの個数を数える
+        return getItemList.Count; // list内のアイテムの個数を数える
     }
 
     public void OnItemBer()
     {
-       
         GetItemCount();
 
-        if(getItemList.Count> 0 && !OnBar )
+        if (getItemList.Count > 0 && !OnBar)
         {
             if (sampleSoundManager != null)
             {
@@ -64,19 +68,19 @@ public class ItemBer : MonoBehaviour
             }
             image.sprite = OnBerImage;
             exitItember.SetActive(true);
-            slider.value = getItemList.Count * 0.078f;　//アイテムの個数に応じてアイテムバーを伸ばす
+            slider.value = getItemList.Count * 0.078f; // アイテムの個数に応じてアイテムバーを伸ばす
             OnBar = true;
         }
-       else if(OnBar)
+        else if (OnBar)
         {
             OffBer();
-
         }
         if (getItemList.Count == 0)
         {
-            Debug.Log("アイテムが何もありません");//アイテムがない場合は何もしない
+            Debug.Log("アイテムが何もありません"); // アイテムがない場合は何もしない
         }
     }
+
     public void OffBer()
     {
         image.sprite = OffBerImage;
@@ -84,42 +88,25 @@ public class ItemBer : MonoBehaviour
         exitItember.SetActive(false);
         OnBar = false;
     }
+
     public void AddItem(GameObject item)
     {
         getItemList.Add(item);
         itemGetPanel.SetActive(true);
 
-
-        //if(spawnedItemCount == 0)
-        //{
-        //    item.SetActive(false);
-        //}
         if (sampleSoundManager != null)
         {
             sampleSoundManager.PlaySe(SeType.SE1);
         }
         if (spawnedItemCount < getItemList.Count && spawnedItemCount < spawnPositions.Length)
         {
-
             // スポーン位置の配列から対応する位置を取得
             RectTransform targetPosition = spawnPositions[spawnedItemCount];
 
-
             // アイテムを対応する位置にスポーン
-            GameObject spawnedObject =  Instantiate(getItemList[spawnedItemCount], targetPosition.position, targetPosition.rotation);
+            GameObject spawnedObject = Instantiate(getItemList[spawnedItemCount], targetPosition.position, targetPosition.rotation);
 
-            if (spawnedItemCount > 0)
-            {
 
-                Transform pageTargetPosition = spawnPositions[spawnedItemCount - 1];
-                GameObject newPages = Instantiate(page, pageTargetPosition.position, pageTargetPosition.rotation);
-                newPages.transform.SetParent(Pages.transform, false);
-                pageList.Add(newPages);
-                newPages.transform.SetParent(spawnPositions[spawnedItemCount -1 ], false);
-                newPages.transform.SetAsFirstSibling();
-                
-               
-            }
             getItemList.Remove(item);
             getItemList.Add(spawnedObject);
 
@@ -128,45 +115,52 @@ public class ItemBer : MonoBehaviour
             // スポーン済みアイテムの数をインクリメント
             spawnedItemCount++;
 
-            if(OnBar == true)
+            if (OnBar == true)
             {
-               slider.value = getItemList.Count * 0.075f;//一個目のオブジェクトは必ず非表示
-           }
+                slider.value = getItemList.Count * 0.075f; // 一個目のオブジェクトは必ず非表示
+            }
         }
 
     }
+
     void SetItemsActive()
     {
-      
         foreach (GameObject item in getItemList)
         {
             item.SetActive(OnBar);
         }
     }
-    void SetPagesActive()
-    {
 
-        foreach (GameObject page in pageList)
+    void UpdatePageVisibility()
+    {
+        // spawnedItemCount に基づいてページオブジェクトの表示を更新
+        for (int i = 0; i < pageList.Count; i++)
         {
-            page.SetActive(OnBar);
+            if (i < spawnedItemCount && i > 0)
+            {
+                pageList[i-1].SetActive(OnBar); // OnBar が true のときにのみ表示
+                if (OnBar)
+                {
+                    // ページオブジェクトを最背面に移動させる
+                    pageList[i].transform.SetAsLastSibling();
+                }
+            }
+            else if((i > spawnedItemCount && i > 0))
+            {
+                pageList[i-1].SetActive(false); // spawnedItemCount より多いページは非表示
+            }
         }
     }
+
     public void RemoveItem(GameObject itemToRemove)
     {
         if (getItemList.Contains(itemToRemove))
         {
             int indexToRemove = getItemList.IndexOf(itemToRemove);
-         
+
             getItemList.Remove(itemToRemove); // アイテムリストから削除
             Destroy(itemToRemove); // アイテムのGameObjectを破棄
 
-            // 背景リストの管理
-            if (indexToRemove < pageList.Count)
-            {
-              
-                Destroy(pageList[indexToRemove]);
-                pageList.RemoveAt(indexToRemove);
-            }
 
             // アイテムリストを再配置
             UpdateItemBar();
@@ -196,7 +190,7 @@ public class ItemBer : MonoBehaviour
             // 背景は2つ目のアイテムから表示するため、iは1から始める
             if (i < getItemList.Count - 1)
             {
-                RectTransform pageTargetPosition = spawnPositions[i + 1];
+                RectTransform pageTargetPosition = spawnPositions[i ];
                 pageList[i].transform.position = pageTargetPosition.position;
                 pageList[i].transform.rotation = pageTargetPosition.rotation;
                 pageList[i].SetActive(true);

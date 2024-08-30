@@ -31,6 +31,8 @@ TagManager:
   - knife
   - candleKnife
   - Bin
+  - DoorKey
+  - KeyDoor
   layers:
   - Default
   - TransparentFX

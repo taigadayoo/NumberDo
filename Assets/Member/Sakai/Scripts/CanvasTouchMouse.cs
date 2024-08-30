@@ -16,6 +16,7 @@ public class CanvasTouchMouse : MonoBehaviour
     public bool isLightSelected = false;
     public bool isCandleSelected = false;
     public bool isKnifeSelected = false;
+    public bool isKeyDoorSelected = false;
 
     // 特定のオブジェクトを識別するためのタグ
     public string keyTag = "Key";
@@ -25,7 +26,7 @@ public class CanvasTouchMouse : MonoBehaviour
     public string CandleFireTag = "candleFire";
     public string KnifeTag = "candleKnife";
     public string PictureTag = "Picture";
-
+    public string keyDoorTag = "KeyDoor";
     public CheckBool lastClickedObject;
     public CheckBool previousClickedObject; // ひとつ前にクリックされたオブジェクト
 
@@ -131,25 +132,10 @@ public class CanvasTouchMouse : MonoBehaviour
                     isLightSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(LightTag));
                     isCandleSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(CandleFireTag));
                     isKnifeSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(KnifeTag));
+                    isKeyDoorSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(keyDoorTag));
 
-                    if (isKnifeSelected)
-                    {
-                        Debug.Log("Key selected: " + isKnifeSelected);
-                    }
-                    else
-                    {
-                        Debug.Log("Key not selected: " + isKnifeSelected);
-                    }
 
-                    //// isLightSelectedの設定
-                    //if (lastClickedObject.CompareTag(LightTag))
-                    //{
-                    //    isLightSelected = true;
-                    //}
-                    //else
-                    //{
-                    //    isLightSelected = false;
-                    //}
+                
                 }
 
                 break; // 最初のヒットしたUI要素のみ処理

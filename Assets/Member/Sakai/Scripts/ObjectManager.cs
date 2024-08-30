@@ -59,6 +59,10 @@ public class ObjectManager : MonoBehaviour
     public GameObject poizon;
     public GameObject poizonCandle;
     public GameObject poizonKnife;
+    public GameObject bomb;
+    public GameObject bombPass;
+    public GameObject door;
+    public GameObject doorOpen;
 
     public List<GameObject> touchObject = new List<GameObject>();
 
@@ -85,6 +89,7 @@ public class ObjectManager : MonoBehaviour
     public int imageNum = 0;
     public int addItemNum = 0;
     public bool OnClock = false;
+    public bool recipeGet = false;
     public Sprite lightImage;
     ItemBer itemBer;
     SampleSoundManager sampleSoundManager;
@@ -461,7 +466,7 @@ public class ObjectManager : MonoBehaviour
                     candle.SetActive(false);
                     getSet.ImageChange(7);
                     itemBer.AddItem(items[8]);
-                    oneLight = true;
+                 
 
                 }
                 if (hit.collider.gameObject == redBook)
@@ -473,7 +478,7 @@ public class ObjectManager : MonoBehaviour
                         imageNum = 10;
                         ItemGet = true;
                     }
-                    oneLight = true;
+                 
 
                 }
                 if (hit.collider.gameObject == touchPicture)
@@ -497,6 +502,7 @@ public class ObjectManager : MonoBehaviour
                     {
                         getSet.ImageChange(15);
                         itemBer.AddItem(items[15]);
+                        itemBer.OffBer();
                         if (canvasTouchMouse.lastClickedObject != null)
                         {
                             itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
@@ -504,12 +510,13 @@ public class ObjectManager : MonoBehaviour
                         canvasTouchMouse.lastClickedObject = null;
                     }
                 }
-                    if (hit.collider.gameObject == poizonCandle)
+                    if (hit.collider.gameObject == poizonCandle && recipeGet)
                 {
                     if (canvasTouchMouse.isCandleSelected)
                     {
                         getSet.ImageChange(12);
                         itemBer.AddItem(items[12]);
+                        itemBer.OffBer();
                         if (canvasTouchMouse.lastClickedObject != null)
                         {
                             itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
@@ -517,6 +524,22 @@ public class ObjectManager : MonoBehaviour
                         canvasTouchMouse.lastClickedObject = null;
                     }
                   
+
+                }
+                if (hit.collider.gameObject == door)
+                {
+                    if (canvasTouchMouse.isKeyDoorSelected)
+                    {
+                        itemBer.OffBer();
+                        door.SetActive(false);
+                        doorOpen.SetActive(true);
+                        if (canvasTouchMouse.lastClickedObject != null)
+                        {
+                            itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
+                        }
+                        canvasTouchMouse.lastClickedObject = null;
+                    }
+
 
                 }
                 if (hit.collider.gameObject == bookShelf)
@@ -558,6 +581,14 @@ public class ObjectManager : MonoBehaviour
                         miniGame.SetActive(true);
                         allColliderSwicth(false);
                     }
+                }
+                if (hit.collider.gameObject == bomb)
+                {
+                   
+                        bombPass.SetActive(true);
+                        zoomOffColMain.SetActive(true);
+                        allColliderSwicth(false);
+                   
                 }
                 if (hit.collider.gameObject == monitorRock && !timeCounter.isclier)
                 {

@@ -32,7 +32,8 @@ public class ItemLight : MonoBehaviour
         CandleStick,
         Knife,
         CandleKnife,
-        Bin
+        Bin,
+        KeyDoor
     }
     [SerializeField]
     ItemName itemName;
@@ -214,6 +215,14 @@ public class ItemLight : MonoBehaviour
                 soundManager.PlaySe(SeType.SE3);
             }
         }
+        if (itemName == ItemName.KeyDoor)
+        {
+            spriteRenderer.sprite = rightSprite[19];
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
     }
     public void ChangeNomal()
     {
@@ -370,6 +379,14 @@ public class ItemLight : MonoBehaviour
             }
         }
         if (itemName == ItemName.Bin)
+        {
+            spriteRenderer.sprite = nomalSprite;
+            if (soundManager != null)
+            {
+                soundManager.PlaySe(SeType.SE3);
+            }
+        }
+        if (itemName == ItemName.KeyDoor)
         {
             spriteRenderer.sprite = nomalSprite;
             if (soundManager != null)

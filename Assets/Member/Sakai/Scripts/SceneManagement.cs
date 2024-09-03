@@ -7,10 +7,14 @@ public class SceneManagement : MonoBehaviour
 {
     [SerializeField] private string sceneNameGame;
     [SerializeField] private string sceneNameClear;
-    [SerializeField] private string sceneNameGameOver;
+  
     [SerializeField] private string sceneNameTitle;
     [SerializeField] private string sceneNameAttention;
     [SerializeField] private string sceneNameScenario;
+    [SerializeField] private string sceneNameScenario2;
+    [SerializeField] private string sceneNameMainGame;
+    [SerializeField] private string sceneNameGameOver;
+    [SerializeField] private string sceneNameGameOver2;
     [SerializeField] private Color fadeColor;
     [SerializeField] private float fadeSpeed;
 
@@ -48,6 +52,12 @@ public class SceneManagement : MonoBehaviour
     {
         Initiate.Fade(sceneNameGameOver, fadeColor, fadeSpeed);
     }
+    public void OnGameOver2()
+    {
+
+            Initiate.Fade(sceneNameGameOver2, fadeColor, fadeSpeed);
+
+    }
     public void OnStart()
     {
         if (!oneStart)
@@ -72,5 +82,12 @@ public class SceneManagement : MonoBehaviour
     {
         Initiate.Fade(sceneNameTitle, fadeColor, fadeSpeed);
     }
-  
+    public void OnMainGameMove()
+    {
+        Initiate.Fade(sceneNameScenario2, fadeColor, fadeSpeed);
+    }
+    public void OnMainGame()
+    {
+        Initiate.Fade(sceneNameMainGame, fadeColor, fadeSpeed);
+    }
 }

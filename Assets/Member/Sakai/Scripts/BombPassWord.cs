@@ -59,6 +59,8 @@ public class BombPassword : MonoBehaviour
             objectManager.bombPass.SetActive(false);
             objectManager.allColliderSwicth(true);
             timer.Stop();
+            objectManager.bombRock.SetActive(false);
+            objectManager.bombUnrock.SetActive(true);
         }
         CheckDigitClick(digit1, 0);
         CheckDigitClick(digit2, 1);

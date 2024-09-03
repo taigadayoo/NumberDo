@@ -12,8 +12,8 @@ public class GameSystem : MonoBehaviour
     {
         if(!isCalledOnce) 
         {
-            isCalledOnce = true;
-            sceneManagement.OnGameOver();
+            //isCalledOnce = true;
+            //sceneManagement.OnBadEnd1();
         }
     }
 }

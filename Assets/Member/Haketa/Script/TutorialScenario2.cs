@@ -21,6 +21,7 @@ public class TutorialScenario2 : MonoBehaviour
     {
         //anim = GetComponent<Animator>();
         ReadQuestion();
+        SampleSoundManager.Instance.PlayBgm(BgmType.BGM3);
     }
 
     // Update is called once per frame
@@ -52,7 +53,7 @@ public class TutorialScenario2 : MonoBehaviour
             }
             else if ("End" == question.move)
             {
-                //ÉVÅ[ÉìëJà⁄
+                SceneManagement.Instance.OnMainGame();
             }
         }
     }

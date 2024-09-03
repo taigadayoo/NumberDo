@@ -11,7 +11,11 @@ public class Timer : MonoBehaviour
     private bool OneGameOver = false;
     [SerializeField]
     SceneManagement sceneManagement;
-
+    ObjectManager objectManager;
+    private void Start()
+    {
+        objectManager = FindObjectOfType<ObjectManager>();
+    }
     void Update()
     {
         if (!isPaused && timeRemaining > 0)
@@ -41,6 +45,7 @@ public class Timer : MonoBehaviour
     public void Stop()
     {
         isPaused = true;
+        objectManager.Ontext = false;
     }
 
     // タイマーを再開する関数

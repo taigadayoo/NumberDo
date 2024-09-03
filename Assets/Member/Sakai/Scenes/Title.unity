@@ -1115,11 +1115,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNameGame: TutorialGame
-  sceneNameClear: Clear
-  sceneNameGameOver: GameOver
+  sceneNameClear: TrueEnd
   sceneNameTitle: Title
   sceneNameAttention: Attention
-  sceneNameScenario: TemporaryScenario
+  sceneNameScenario: TutorialScenarioScene
+  sceneNameScenario2: TutorialScenarioScene2
+  sceneNameMainGame: MainGame
+  sceneNameGameOver: BadEndScene
+  sceneNameGameOver2: BadEndScene2
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   fadeSpeed: 1
 --- !u!4 &1677333356
@@ -1172,6 +1175,9 @@ MonoBehaviour:
     Volume: 0.35
   - Type: 2
     Clip: {fileID: 8300000, guid: 47167f943de3f3b42b2fc05c7533c739, type: 3}
+    Volume: 0.77
+  - Type: 3
+    Clip: {fileID: 8300000, guid: a33fac1a6d890e14e9a358c3f37bb278, type: 3}
     Volume: 0.77
   seList:
   - Type: 1

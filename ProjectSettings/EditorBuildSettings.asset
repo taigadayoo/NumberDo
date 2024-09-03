@@ -15,14 +15,32 @@ EditorBuildSettings:
     path: Assets/Member/Sakai/Scenes/Attention.unity
     guid: 9140c4dd2b841bb4ea00a30efffa82cf
   - enabled: 1
+    path: Assets/Member/Haketa/Scenes/TutorialScenarioScene.unity
+    guid: d8ccb3e242e45b64b95f826949b87b1b
+  - enabled: 1
+    path: Assets/Member/Sakai/Scenes/TutorialGame.unity
+    guid: 08361fa1b43942e40a4c5257a8a00e40
+  - enabled: 1
+    path: Assets/Member/Haketa/Scenes/TutorialScenarioScene2.unity
+    guid: acdd30bb0bb487742850adc32a44d204
+  - enabled: 1
+    path: Assets/Member/Sakai/Scenes/MainGame.unity
+    guid: 208a4f98aa69d62418ee7f0086ae4c75
+  - enabled: 1
+    path: Assets/Member/Haketa/Scenes/BadEndScene.unity
+    guid: cebb61cd92ae64b40a34143339a66680
+  - enabled: 1
+    path: Assets/Member/Haketa/Scenes/BadEndScene2.unity
+    guid: d689201b679e23d45b42c1b97ca2d372
+  - enabled: 1
+    path: Assets/Member/Haketa/Scenes/TrueEnd.unity
+    guid: b1807c95dd0812643b0164468695009d
+  - enabled: 0
     path: Assets/Member/Sakai/Scenes/TemporaryScenario.unity
     guid: 6600beb3a6049bb4fa46b5a4927fb8ad
   - enabled: 0
     path: Assets/SimpleSF/Scenario.unity
     guid: a98b08122fa59df48b959d42e7b9d87b
-  - enabled: 1
-    path: Assets/Member/Sakai/Scenes/TutorialGame.unity
-    guid: 08361fa1b43942e40a4c5257a8a00e40
   - enabled: 0
     path: Assets/SimpleSF/Scenario 2.unity
     guid: abfd981d97501ff42bd8c2e8ae688226

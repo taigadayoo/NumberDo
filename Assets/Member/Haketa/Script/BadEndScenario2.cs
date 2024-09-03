@@ -74,7 +74,7 @@ public class BadEndScenario2 : MonoBehaviour
                 else if ("End" == question.move)
 
                 {
-                    //ƒV[ƒ“‘JˆÚ
+                    SceneManagement.Instance.OnMainGame();
                 }
             }
         }

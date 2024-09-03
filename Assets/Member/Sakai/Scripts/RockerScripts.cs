@@ -63,7 +63,7 @@ public class RockerScripts : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        sceneManagement.OnClear();
+        sceneManagement.OnMainGameMove();
     }
     private void OpenText()
     {

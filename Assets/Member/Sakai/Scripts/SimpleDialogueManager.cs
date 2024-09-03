@@ -158,6 +158,11 @@ public class SimpleDialogueManager : MonoBehaviour
         {
             objectManager.clock.SetActive(false);
         }
+        if (objectManager.OnBomb)
+        {
+            
+            objectManager.bombUnrock.SetActive(false);
+        }
         objectManager.Ontext = false;
     }
     public void EndDialogue2()
@@ -168,11 +173,24 @@ public class SimpleDialogueManager : MonoBehaviour
         gameObject.SetActive(false); // âÔòbèIóπéûÇ…îÒï\é¶Ç…ê›íË
         objectManager.Ontext = false;
         objectManager.textEnd = true;
+        if(objectManager.OnGoal)
+        {
+            if(objectManager.OnHaveBomb)
+            {
+                SceneManagement.Instance.OnClear();
+                SampleSoundManager.Instance.StopBgm();
+            }
+            if(!objectManager.OnHaveBomb)
+            {
+                SceneManagement.Instance.OnGameOver2();
+                SampleSoundManager.Instance.StopBgm();
+            }
+        }
     }
     public void EndDialogueFruit()
     {
         dialogueText.text = "";
-
+        
         StartCoroutine(FruitTouch());
 
 

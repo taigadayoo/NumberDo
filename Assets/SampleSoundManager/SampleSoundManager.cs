@@ -18,6 +18,10 @@ public enum BgmType
     None = 0,
     BGM1,
     BGM2,
+    BGM3,
+    BGM4,
+    BGM5,
+    BGM6
     // 他のBGMタイプをここに追加
 }
 

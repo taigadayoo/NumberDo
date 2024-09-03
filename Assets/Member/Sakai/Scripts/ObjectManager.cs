@@ -63,6 +63,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject bombPass;
     public GameObject door;
     public GameObject doorOpen;
+    public GameObject bombRock;
+    public GameObject bombUnrock;
 
     public List<GameObject> touchObject = new List<GameObject>();
 
@@ -83,6 +85,8 @@ public class ObjectManager : MonoBehaviour
 
     public bool OnMedicine = false;
     public bool Onclock = false;
+    public bool OnBomb = false;
+    public bool OnHaveBomb = false;
     public bool OnFruit = false;
     public bool OnMiniGame = false;
     public bool OnKeyCode = false;
@@ -90,6 +94,7 @@ public class ObjectManager : MonoBehaviour
     public int addItemNum = 0;
     public bool OnClock = false;
     public bool recipeGet = false;
+    public bool OnGoal = false;
     public Sprite lightImage;
     ItemBer itemBer;
     SampleSoundManager sampleSoundManager;
@@ -104,7 +109,8 @@ public class ObjectManager : MonoBehaviour
     [SerializeField]
     TimeCounter timeCounter;
 
-
+    Interactable interactable;
+   
 
 
     private List<Collider2D> allColliders = new List<Collider2D>();
@@ -167,6 +173,7 @@ public class ObjectManager : MonoBehaviour
         if (gameName == GameName.mainGame)
         {
             MainObjectTouch();
+            interactable = door.GetComponent<Interactable>();
             if (!canvasTouchMouse.isCandleSelected && !canvasTouchMouse.isKnifeSelected)
             {
                 poizon.SetActive(true);
@@ -460,6 +467,23 @@ public class ObjectManager : MonoBehaviour
                     oneLight = true;
                     lightobj.SetActive(false);
                 }
+                if (hit.collider.gameObject == bombUnrock && !OnBomb)
+                {
+                    OnBomb = true;
+                    addItemNum = 17;
+                    if (getSet != null)
+                    {
+                        imageNum = 23;
+                        ItemGet = true;
+                    }
+                    OnHaveBomb = true;
+                    OnBomb = true;
+                }
+                if (hit.collider.gameObject == doorOpen && !OnGoal)
+                {
+                  
+                    OnGoal = true;
+                }
                 if (hit.collider.gameObject == candle)
                 {
                     candleNomal.SetActive(false);
@@ -526,10 +550,16 @@ public class ObjectManager : MonoBehaviour
                   
 
                 }
+                    if(canvasTouchMouse.isKeyDoorSelected || !canvasTouchMouse.isKeyDoorSelected)
+                {
+                   Destroy(interactable);
+                }
                 if (hit.collider.gameObject == door)
                 {
+                   
                     if (canvasTouchMouse.isKeyDoorSelected)
                     {
+                       
                         itemBer.OffBer();
                         door.SetActive(false);
                         doorOpen.SetActive(true);

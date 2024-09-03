@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +14,16 @@ public class BadEndScenario : MonoBehaviour
     private Text _text;
     [SerializeField]
     private Text _name;
+    [SerializeField]
+    private GameObject _black;
+    [SerializeField]
+    private GameObject _red;
+    [SerializeField]
+    private GameObject _do;
+    [SerializeField]
+    private AudioSource audioSource;
 
+    bool _chack = true;
     public int math = 0;
     [SerializeField]
     public Animator anim;
@@ -24,30 +35,46 @@ public class BadEndScenario : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (_chack)
         {
-            ReadQuestion();
-            ++math;
-            //if ("understanding" == question.move)
-            //{
-            //    anim.SetBool("isunder", true);
-            //    anim.SetBool("isusua", false);
-            //}
-            //else if ("think" == question.move)
-            //{
-            //    anim.SetBool("isunder", false);
-            //    anim.SetBool("isthink", true);
-            //}
-            //else if ("usually" == question.move)
-            //{
-            //    anim.SetBool("isthink", false);
-            //    anim.SetBool("isusua", true);
-            //}
-            if ("End" == question.move)
+            if (Input.GetMouseButtonDown(0))
             {
-                //シーン遷移
+                ReadQuestion();
+                ++math;
+                //if ("understanding" == question.move)
+                //{
+                //    anim.SetBool("isunder", true);
+                //    anim.SetBool("isusua", false);
+                //}
+                //else if ("think" == question.move)
+                //{
+                //    anim.SetBool("isunder", false);
+                //    anim.SetBool("isthink", true);
+                //}
+                //else if ("usually" == question.move)
+                //{
+                //    anim.SetBool("isthink", false);
+                //    anim.SetBool("isusua", true);
+                //}
+                if ("End" == question.move)
+                {
+                    //シーン遷移
+                }
+                else if("Black" ==  question.move)
+                {
+                    _chack = false;
+                    //爆発SE
+                    audioSource.PlayOneShot(audioSource.clip);
+                    _black.SetActive(true);
+                    _do.SetActive(false);
+                    await UniTask.Delay(TimeSpan.FromSeconds(5.0f));
+                    _black.SetActive(false);
+                    _red.SetActive(true);
+                    _chack = true;
+
+                }
             }
         }
     }

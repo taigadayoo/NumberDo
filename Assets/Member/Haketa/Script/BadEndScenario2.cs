@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +14,17 @@ public class BadEndScenario2 : MonoBehaviour
     private Text _text;
     [SerializeField]
     private Text _name;
-
+    [SerializeField]
+    private GameObject _do;
+    [SerializeField]
+    private GameObject _black;
+    [SerializeField] 
+    private GameObject _white;
+    [SerializeField]
+    private AudioSource _batan;
+    [SerializeField]
+    private AudioSource _brain;
+    bool check = true;
     public int math = 0;
     [SerializeField]
     public Animator anim;
@@ -24,25 +36,46 @@ public class BadEndScenario2 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (check)
         {
-            ReadQuestion();
-            ++math;
-            if ("usually_blood" == question.move)
+            if (Input.GetMouseButtonDown(0))
             {
-                anim.SetBool("isusua_b", true);
-                anim.SetBool("isbadend", false);
-            }
-            else if ("BadEnd" == question.move)
-            {
-                anim.SetBool("isusua_b", false);
-                anim.SetBool("isbadend", true);
-            }
-            else if ("End" == question.move)
-            {
-                //ÉVÅ[ÉìëJà⁄
+                ReadQuestion();
+                ++math;
+                if ("usually_blood" == question.move)
+                {
+                    anim.SetBool("isusua_b", true);
+                    anim.SetBool("isbadend", false);
+                }
+                else if ("BadEnd" == question.move)
+                {
+                    anim.SetBool("isusua_b", false);
+                    anim.SetBool("isbadend", true);
+                }
+                else if("Black" == question.move)
+                {
+                    check = false;
+                    //ì|ÇÍÇÈSE
+                    _batan.PlayOneShot(_batan.clip);
+                    _black.SetActive(true);
+                    await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
+                    _black.SetActive(false);
+                    check = true;
+               
+                }
+                else if ("Off2" == question.move)
+                {
+                   _brain.PlayOneShot(_brain.clip);
+                    _white.SetActive(true);
+                    _do.SetActive(false);
+                }
+                else if ("End" == question.move)
+
+                {
+                    //ÉVÅ[ÉìëJà⁄
+                }
             }
         }
     }

@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +15,17 @@ public class TrueEndScenario : MonoBehaviour
     [SerializeField]
     private Text _name;
 
+    [SerializeField]
+    private GameObject _panel;
+    [SerializeField]
+    private GameObject _do;
+    [SerializeField]
+    private GameObject _textbox;
+    [SerializeField]
+    private AudioSource _audioSource;
+
     public int math = 0;
+    private bool _chack = true;
     [SerializeField]
     public Animator anim;
     // Start is called before the first frame update
@@ -24,25 +36,42 @@ public class TrueEndScenario : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (_chack == true)
         {
-            ReadQuestion();
-            ++math;
-            if ("usually_blood" == question.move)
+            if (Input.GetMouseButtonDown(0))
             {
-                anim.SetBool("isusua_b", true);
-                anim.SetBool("istrueend", false);
-            }
-            else if ("TrueEnd" == question.move)
-            {
-                anim.SetBool("isusua_b", false);
-                anim.SetBool("istrueend", true);
-            }
-            else if ("End" == question.move)
-            {
-                //ÉVÅ[ÉìëJà⁄
+                ReadQuestion();
+                ++math;
+                if ("usually_blood" == question.move)
+                {
+                    anim.SetBool("isusua_b", true);
+                    anim.SetBool("istrueend", false);
+                }
+                else if ("TrueEnd" == question.move)
+                {
+                    anim.SetBool("isusua_b", false);
+                    anim.SetBool("istrueend", true);
+                }
+                else if ("Black" == question.move)
+                {
+                    _chack = false;
+                    _panel.SetActive(true);
+                    //SEä‘Ç…çáÇ¡Çƒñ≥Ç©Ç¡ÇΩÇÁÇ±Ç±Ç…èeê∫
+                    _audioSource.PlayOneShot(_audioSource.clip);
+                    await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
+                    _panel.SetActive(false);
+                    _chack = true;
+                }
+                else if("Off" == question.move)
+                {
+                    _do.SetActive(false);
+                }
+                else if ("End" == question.move)
+                {
+                    //ÉVÅ[ÉìëJà⁄
+                }
             }
         }
     }

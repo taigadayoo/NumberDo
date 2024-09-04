@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
         noImage.sprite = pushNo;
         StartCoroutine(RevertSpriteNo());
         objectManager.allColliderSwicth(true);
+        SampleSoundManager.Instance.PlayBgm(BgmType.BGM3);
     }
     private IEnumerator RevertSpriteYes()
     {

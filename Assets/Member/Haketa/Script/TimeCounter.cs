@@ -55,6 +55,8 @@ public class TimeCounter : MonoBehaviour
             if (!OneClear)
             {
                 objectManager.miniGameClear.SetActive(true);
+                SampleSoundManager.Instance.StopBgm();
+                SampleSoundManager.Instance.PlaySe(SeType.SE13);
                 OneClear = true;
             }
             objectManager.allColliderSwicth(true);

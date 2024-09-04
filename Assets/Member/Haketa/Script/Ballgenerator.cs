@@ -17,11 +17,13 @@ public class Ballgenerator : MonoBehaviour
     private List<GameObject> ballList = new List<GameObject>();
     private void Start()
     {
-        StartCoroutine(StartCountdown());
-      
+        //StartCoroutine(StartCountdown());
+        //SampleSoundManager.Instance.PlayBgm(BgmType.BGM4);
     }
     private void OnEnable()
     {
+        SampleSoundManager.Instance.PlaySe(SeType.SE10);
+        SampleSoundManager.Instance.PlayBgm(BgmType.BGM4);
         StartCoroutine(StartCountdown());
     }
     void Update()
@@ -45,6 +47,7 @@ public class Ballgenerator : MonoBehaviour
             currentTime--;
         }
 
+  
 
         countdownText.text = "";
     }
@@ -52,7 +55,7 @@ public class Ballgenerator : MonoBehaviour
     {
       
         yield return new WaitForSeconds(3);
-
+      
         this.delta += Time.deltaTime;
 
         // インターバル時間を超えた場合

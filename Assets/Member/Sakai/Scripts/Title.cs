@@ -69,7 +69,7 @@ public class Title : MonoBehaviour
     {
         await anim.TitleAnimation();
         SampleSoundManager.Instance.StopBgm();
-        sceneManagement.OnGameOver();
+        sceneManagement.OnMainGameMove();
      
     }
     async public void Exit()

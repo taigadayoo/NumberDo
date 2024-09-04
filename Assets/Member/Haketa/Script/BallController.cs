@@ -21,7 +21,7 @@ public class BallController : MonoBehaviour
     void Update()
     {
         // UIオブジェクトの位置を移動
-        rectTransform.anchoredPosition += new Vector2(0, -0.5f);
+        rectTransform.anchoredPosition += new Vector2(0, -1.5f);
         transform.SetAsLastSibling();
         // yが-187.0fになったとき削除する
         if (rectTransform.anchoredPosition.y < -200f)

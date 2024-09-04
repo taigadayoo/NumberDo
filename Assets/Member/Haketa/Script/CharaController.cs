@@ -39,6 +39,7 @@ public class CharaController : MonoBehaviour
     }
     public void RbuttonClick()
     {
+        SampleSoundManager.Instance.PlaySe(SeType.SE11);
         // 位置を変更
         rectTransform.anchoredPosition += new Vector2(160, 0);
         if (soundManager != null)
@@ -53,6 +54,7 @@ public class CharaController : MonoBehaviour
     public void LButtonClick()
     {
         // 位置を変更
+        SampleSoundManager.Instance.PlaySe(SeType.SE11);
         rectTransform.anchoredPosition += new Vector2(-160, 0);
         if (soundManager != null)
         {
@@ -101,7 +103,7 @@ public class CharaController : MonoBehaviour
             objectManager.OnMiniGame = false;
             objectManager.miniGameDead.SetActive(true);
             objectManager.miniGame.SetActive(false);
-
+            SampleSoundManager.Instance.PlaySe(SeType.SE12);
          
             ////ゲーム内の時間を止める
             //Time.timeScale = 0f;          

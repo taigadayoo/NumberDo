@@ -796,7 +796,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2066634784}
         m_TargetAssemblyTypeName: Title, Assembly-CSharp
-        m_MethodName: OnScenario
+        m_MethodName: OnMainGameScenario
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1179,6 +1179,9 @@ MonoBehaviour:
   - Type: 3
     Clip: {fileID: 8300000, guid: a33fac1a6d890e14e9a358c3f37bb278, type: 3}
     Volume: 0.77
+  - Type: 4
+    Clip: {fileID: 8300000, guid: 00839d03a0ebae74a92820d6fcedb856, type: 3}
+    Volume: 0.77
   seList:
   - Type: 1
     Clip: {fileID: 8300000, guid: ec00ed7e5f936bb46825739bf87bcea1, type: 3}
@@ -1207,6 +1210,18 @@ MonoBehaviour:
   - Type: 9
     Clip: {fileID: 8300000, guid: 0140ac7e4f6dc0e4a84fa28576221a34, type: 3}
     Volume: 1
+  - Type: 10
+    Clip: {fileID: 8300000, guid: f4a02c170e2a8564a96543968b71aefa, type: 3}
+    Volume: 1
+  - Type: 11
+    Clip: {fileID: 8300000, guid: 6222234e397dc18438ac37a0be47f7bc, type: 3}
+    Volume: 1
+  - Type: 12
+    Clip: {fileID: 8300000, guid: 7d56bdd277280aa47a0a3231a7dbd7ed, type: 3}
+    Volume: 0.4
+  - Type: 13
+    Clip: {fileID: 8300000, guid: 56898fdabc653af4783f1dcde77c15ad, type: 3}
+    Volume: 0.47
   fadeDuration: 1
 --- !u!4 &1973339976
 Transform:

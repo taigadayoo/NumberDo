@@ -12872,7 +12872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1826508599}
-  timeRemaining: 3
+  timeRemaining: 180
   sceneManagement: {fileID: 1803941573}
 --- !u!114 &1826508599
 MonoBehaviour:

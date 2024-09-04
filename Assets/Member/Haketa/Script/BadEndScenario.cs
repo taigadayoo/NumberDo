@@ -60,7 +60,7 @@ public class BadEndScenario : MonoBehaviour
                 //}
                 if ("End" == question.move)
                 {
-                    //ƒV[ƒ“‘JˆÚ
+                    SceneManagement.Instance.OnMainGame();
                 }
                 else if("Black" ==  question.move)
                 {

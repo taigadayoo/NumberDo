@@ -28,11 +28,13 @@ public class BadEndScenario2 : MonoBehaviour
     public int math = 0;
     [SerializeField]
     public Animator anim;
+    SceneManagement sceneManagement;
     // Start is called before the first frame update
     void Start()
     {
         //anim = GetComponent<Animator>();
         ReadQuestion();
+     sceneManagement =    FindObjectOfType<SceneManagement>();
     }
 
     // Update is called once per frame

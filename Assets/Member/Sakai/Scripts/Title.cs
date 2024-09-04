@@ -62,10 +62,17 @@ public class Title : MonoBehaviour
    async public void OnScenario()
     {
         SampleSoundManager.Instance.StopBgm();
-        Debug.Log("シナリオです。");
+        sceneManagement.OnGameOver();
         await anim.TitleAnimation();
     }
-   async public void Exit()
+    async public void OnMainGameScenario()
+    {
+        await anim.TitleAnimation();
+        SampleSoundManager.Instance.StopBgm();
+        sceneManagement.OnGameOver();
+     
+    }
+    async public void Exit()
     {
         {
             SampleSoundManager.Instance.StopBgm();

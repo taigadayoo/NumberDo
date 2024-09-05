@@ -29,6 +29,8 @@ public class BadEndScenario2 : MonoBehaviour
     [SerializeField]
     public Animator anim;
     SceneManagement sceneManagement;
+    public GameObject camera1;
+    public GameObject camera2;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +55,7 @@ public class BadEndScenario2 : MonoBehaviour
                 }
                 else if ("BadEnd" == question.move)
                 {
+                   
                     anim.SetBool("isusua_b", false);
                     anim.SetBool("isbadend", true);
                 }
@@ -64,6 +67,8 @@ public class BadEndScenario2 : MonoBehaviour
                     _black.SetActive(true);
                     await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
                     _black.SetActive(false);
+                    camera1.SetActive(false);
+                    camera2.SetActive(true);
                     check = true;
                
                 }

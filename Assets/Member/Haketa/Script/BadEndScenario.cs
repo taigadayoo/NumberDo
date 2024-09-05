@@ -22,7 +22,7 @@ public class BadEndScenario : MonoBehaviour
     private GameObject _do;
     [SerializeField]
     private AudioSource audioSource;
-
+    public GameObject _backBlack;
     bool _chack = true;
     public int math = 0;
     [SerializeField]
@@ -70,9 +70,10 @@ public class BadEndScenario : MonoBehaviour
                     audioSource.PlayOneShot(audioSource.clip);
                     _black.SetActive(true);
                     _do.SetActive(false);
-                    await UniTask.Delay(TimeSpan.FromSeconds(5.0f));
+                    await UniTask.Delay(TimeSpan.FromSeconds(4.0f));
                     _black.SetActive(false);
-                    _red.SetActive(true);
+                    _backBlack.SetActive(true);
+                    //_red.SetActive(true);
                     _chack = true;
 
                 }

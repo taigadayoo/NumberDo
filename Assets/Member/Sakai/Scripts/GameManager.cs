@@ -21,8 +21,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         sampleSoundManager = FindFirstObjectByType<SampleSoundManager>();
-
+        sceneManagement = FindObjectOfType<SceneManagement>();
         objectManager = FindObjectOfType<ObjectManager>();
+       
     }
     
     // Update is called once per frame

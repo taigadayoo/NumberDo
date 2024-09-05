@@ -76,6 +76,7 @@ public class BadEndScenario2 : MonoBehaviour
                 else if ("End" == question.move)
 
                 {
+                    SampleSoundManager.Instance.PlayBgm(BgmType.BGM3);
                     SceneManagement.Instance.OnMainGame();
                 }
             }

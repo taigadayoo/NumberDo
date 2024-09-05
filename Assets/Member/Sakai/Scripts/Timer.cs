@@ -12,9 +12,11 @@ public class Timer : MonoBehaviour
     [SerializeField]
     SceneManagement sceneManagement;
     ObjectManager objectManager;
+    GameManager gameManager;
     private void Start()
     {
         objectManager = FindObjectOfType<ObjectManager>();
+      gameManager =  FindObjectOfType<GameManager>();
     }
     void Update()
     {
@@ -27,7 +29,8 @@ public class Timer : MonoBehaviour
         {
             timeRemaining = 0; // タイマーが0になったら、時間を0に設定
             DisplayTime(timeRemaining); // 残り時間を表示
-                sceneManagement.OnGameOver();
+            SampleSoundManager.Instance.StopBgm();
+            gameManager.isGameOver = true;
                 OneGameOver = true;
             
         }

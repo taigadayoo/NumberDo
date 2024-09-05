@@ -122,6 +122,10 @@ public class ObjectManager : MonoBehaviour
             password.SetActive(false);
             zoomShelf.SetActive(false);
         }
+        if (gameName == GameName.mainGame)
+        {
+          
+        }
         canvasTouchMouse = FindObjectOfType<CanvasTouchMouse>();
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
         itemBer = FindObjectOfType<ItemBer>();
@@ -608,6 +612,7 @@ public class ObjectManager : MonoBehaviour
                     }
                     else
                     {
+                        SampleSoundManager.Instance.PlayBgm(BgmType.BGM4);
                         miniGame.SetActive(true);
                         allColliderSwicth(false);
                     }

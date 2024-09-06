@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTouch: 0
+  speed: 250
 --- !u!222 &4748532736468370488
 CanvasRenderer:
   m_ObjectHideFlags: 0

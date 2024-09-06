@@ -65,6 +65,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject doorOpen;
     public GameObject bombRock;
     public GameObject bombUnrock;
+    public GameObject pictureLight;
+    public GameObject monitorGamed;
 
     public List<GameObject> touchObject = new List<GameObject>();
 
@@ -150,6 +152,10 @@ public class ObjectManager : MonoBehaviour
 
         if (gameName == GameName.tutorial)
         {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManagement.Instance.OnTitle();
+            }
             ObjectTouch();
             if (passwordScripts != null)
             {
@@ -177,6 +183,10 @@ public class ObjectManager : MonoBehaviour
         if (gameName == GameName.mainGame)
         {
             MainObjectTouch();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManagement.Instance.OnTitle();
+            }
             interactable = door.GetComponent<Interactable>();
             if (!canvasTouchMouse.isCandleSelected && !canvasTouchMouse.isKnifeSelected)
             {
@@ -514,7 +524,8 @@ public class ObjectManager : MonoBehaviour
                     if(canvasTouchMouse.isLightSelected)
                     {
                         itemBer.OffBer();
-                        pictureImage.sprite = lightImage;
+                        touchPicture.SetActive(false);
+                        pictureLight.SetActive(true);
                         if (canvasTouchMouse.lastClickedObject != null)
                         {
                             itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);

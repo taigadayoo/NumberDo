@@ -52,17 +52,22 @@ public class BadEndScenario2 : MonoBehaviour
                 {
                     anim.SetBool("isusua_b", true);
                     anim.SetBool("isbadend", false);
+                   
                 }
                 else if ("BadEnd" == question.move)
                 {
                    
-                    anim.SetBool("isusua_b", false);
-                    anim.SetBool("isbadend", true);
+                    //anim.SetBool("isusua_b", false);
+                    //anim.SetBool("isbadend", true);
                 }
                 else if("Black" == question.move)
                 {
                     check = false;
                     //ì|ÇÍÇÈSE
+                    ReadQuestion();
+                    ++math;
+                     anim.SetBool("isusua_b", false);
+                    anim.SetBool("isbadend", true);
                     _batan.PlayOneShot(_batan.clip);
                     _black.SetActive(true);
                     await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
@@ -70,7 +75,8 @@ public class BadEndScenario2 : MonoBehaviour
                     camera1.SetActive(false);
                     camera2.SetActive(true);
                     check = true;
-               
+                    
+
                 }
                 else if ("Off2" == question.move)
                 {

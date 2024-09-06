@@ -1185,7 +1185,7 @@ MonoBehaviour:
   seList:
   - Type: 1
     Clip: {fileID: 8300000, guid: ec00ed7e5f936bb46825739bf87bcea1, type: 3}
-    Volume: 1
+    Volume: 0.6
   - Type: 2
     Clip: {fileID: 8300000, guid: 0b0bb468e6ff7874f941e51553a44f1f, type: 3}
     Volume: 1

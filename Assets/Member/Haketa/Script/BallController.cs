@@ -8,6 +8,7 @@ public class BallController : MonoBehaviour
     RectTransform rectTransform;
     
     public bool isTouch;
+    public float speed = 20f;
     void Start()
     {
         // RectTransformコンポーネントを取得
@@ -20,8 +21,9 @@ public class BallController : MonoBehaviour
 
     void Update()
     {
-        // UIオブジェクトの位置を移動
-        rectTransform.anchoredPosition += new Vector2(0, -1.5f);
+
+      
+        rectTransform.anchoredPosition += new Vector2(0, -speed * Time.deltaTime);
         transform.SetAsLastSibling();
         // yが-187.0fになったとき削除する
         if (rectTransform.anchoredPosition.y < -200f)

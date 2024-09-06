@@ -59,6 +59,8 @@ public class TimeCounter : MonoBehaviour
                 SampleSoundManager.Instance.PlaySe(SeType.SE13);
                 OneClear = true;
             }
+            objectManager.monitor.SetActive(false);
+            objectManager.monitorGamed.SetActive(true);
             objectManager.allColliderSwicth(true);
             objectManager.OnKeyCode = false;
      

@@ -7528,6 +7528,7 @@ MonoBehaviour:
   isLightSelected: 0
   isCandleSelected: 0
   isKnifeSelected: 0
+  isKeyDoorSelected: 0
   keyTag: Key
   bombTag: Bomb
   rockerTag: Rocker
@@ -7535,6 +7536,7 @@ MonoBehaviour:
   CandleFireTag: candleFire
   KnifeTag: candleKnife
   PictureTag: Picture
+  keyDoorTag: KeyDoor
   lastClickedObject: {fileID: 0}
   previousClickedObject: {fileID: 0}
   rockerScripts: {fileID: 955510917}
@@ -8018,7 +8020,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 90
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -8968,10 +8970,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneNameGame: 
   sceneNameClear: Clear
-  sceneNameGameOver: GameOver
   sceneNameTitle: 
   sceneNameAttention: 
   sceneNameScenario: 
+  sceneNameScenario2: 
+  sceneNameMainGame: 
+  sceneNameGameOver: GameOver
+  sceneNameGameOver2: 
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   fadeSpeed: 1
 --- !u!4 &1803941574
@@ -10878,6 +10883,13 @@ MonoBehaviour:
   poizon: {fileID: 0}
   poizonCandle: {fileID: 0}
   poizonKnife: {fileID: 0}
+  bomb: {fileID: 0}
+  bombPass: {fileID: 0}
+  door: {fileID: 0}
+  doorOpen: {fileID: 0}
+  bombRock: {fileID: 0}
+  bombUnrock: {fileID: 0}
+  pictureLight: {fileID: 0}
   touchObject:
   - {fileID: 141495095}
   - {fileID: 177886493}
@@ -10902,12 +10914,16 @@ MonoBehaviour:
   oneLight: 0
   OnMedicine: 0
   Onclock: 0
+  OnBomb: 0
+  OnHaveBomb: 0
   OnFruit: 0
   OnMiniGame: 0
   OnKeyCode: 0
   imageNum: 0
   addItemNum: 0
   OnClock: 0
+  recipeGet: 0
+  OnGoal: 0
   lightImage: {fileID: 0}
   getSet: {fileID: 227419227}
   dialogueManager: {fileID: 2001652941}

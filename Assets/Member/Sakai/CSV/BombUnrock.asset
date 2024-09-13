@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: BombUnrock
   m_EditorClassIdentifier: 
   lines:
+  - dialogueText: 
   - dialogueText: "\u2026\u2026\u4E00\u5FDC\u3001\u6301\u3063\u3066\u884C\u3063\u3068\u304F\u304B\u3002\n\u4E38\u8170\u306E\u307E\u307E\u3060\u3068\u4E0D\u5B89\u3060\u3057\u3002"

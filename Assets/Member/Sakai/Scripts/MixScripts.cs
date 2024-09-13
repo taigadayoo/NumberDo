@@ -48,6 +48,7 @@ public class MixButton : MonoBehaviour
             mixImageScripts.mixImage.enabled = false;
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;
+            itemBer.OnItemBer();
         }
        else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "Clock" && canvasTouchMouse.previousClickedObject.gameObject.tag == "Nabe" || canvasTouchMouse.previousClickedObject.gameObject.tag == "Clock" && canvasTouchMouse.lastClickedObject.gameObject.tag == "Nabe")
         {
@@ -63,6 +64,7 @@ public class MixButton : MonoBehaviour
             mixImageScripts.mixImage.enabled = false;
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;
+            itemBer.OnItemBer();
         }
         else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "Fruit" && canvasTouchMouse.previousClickedObject.gameObject.tag == "Conpas" || canvasTouchMouse.previousClickedObject.gameObject.tag == "Fruit" && canvasTouchMouse.lastClickedObject.gameObject.tag == "Conpas")
         {
@@ -79,6 +81,7 @@ public class MixButton : MonoBehaviour
             mixImageScripts.mixImage.enabled = false;
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;
+            itemBer.OnItemBer();
         }
         else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "Fruited" && canvasTouchMouse.previousClickedObject.gameObject.tag == "Light" || canvasTouchMouse.previousClickedObject.gameObject.tag == "Fruited" && canvasTouchMouse.lastClickedObject.gameObject.tag == "Light")
         {
@@ -94,6 +97,7 @@ public class MixButton : MonoBehaviour
             mixImageScripts.mixImage.enabled = false;
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;
+            itemBer.OnItemBer();
         }
         else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "candle" && canvasTouchMouse.previousClickedObject.gameObject.tag == "Matti" || canvasTouchMouse.previousClickedObject.gameObject.tag == "candle" && canvasTouchMouse.lastClickedObject.gameObject.tag == "Matti")
         {
@@ -109,6 +113,7 @@ public class MixButton : MonoBehaviour
             mixImageScripts.mixImage.enabled = false;
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;
+            itemBer.OnItemBer();
         }
         else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "candleFire" && canvasTouchMouse.previousClickedObject.gameObject.tag == "Koge" || canvasTouchMouse.previousClickedObject.gameObject.tag == "candleFire" && canvasTouchMouse.lastClickedObject.gameObject.tag == "Koge")
         {
@@ -126,6 +131,7 @@ public class MixButton : MonoBehaviour
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;
             objectManager.recipeGet = true;
+            itemBer.OnItemBer();
         }
         else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "candlestick" && canvasTouchMouse.previousClickedObject.gameObject.tag == "knife" || canvasTouchMouse.previousClickedObject.gameObject.tag == "candlestick" && canvasTouchMouse.lastClickedObject.gameObject.tag == "knife")
         {
@@ -142,6 +148,7 @@ public class MixButton : MonoBehaviour
             mixImageScripts.mixImage.enabled = false;
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;
+            itemBer.OnItemBer();
         }
         else
         {

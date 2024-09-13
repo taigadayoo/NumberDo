@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: BeMain
   m_EditorClassIdentifier: 
   lines:
+  - dialogueText: 
   - dialogueText: "\u50D5\u304C\u5BDD\u304B\u3055\u308C\u3066\u3044\u305F\u30D9\u30C3\u30C9\u3002\n\u56FA\u3044\u3057\u3001\u3042\u307E\u308A\u826F\u3044\u3082\u306E\u3068\u306F\u8A00\u3048\u306A\u3044\u3002"

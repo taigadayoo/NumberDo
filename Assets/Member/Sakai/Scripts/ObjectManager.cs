@@ -59,6 +59,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject poizon;
     public GameObject poizonCandle;
     public GameObject poizonKnife;
+    public GameObject poizonNomalKnife;
     public GameObject bomb;
     public GameObject bombPass;
     public GameObject door;
@@ -188,25 +189,35 @@ public class ObjectManager : MonoBehaviour
                 SceneManagement.Instance.OnTitle();
             }
             interactable = door.GetComponent<Interactable>();
-            if (!canvasTouchMouse.isCandleSelected && !canvasTouchMouse.isKnifeSelected)
+            if (!canvasTouchMouse.isCandleSelected && !canvasTouchMouse.isKnifeSelected && !canvasTouchMouse.isNomalKnifeSelected)
             {
                 poizon.SetActive(true);
                 poizonCandle.SetActive(false);
                 poizonKnife.SetActive(false);
+                poizonNomalKnife.SetActive(false);
             }
             else if (canvasTouchMouse.isCandleSelected)
             {
                 poizon.SetActive(false);
                 poizonCandle.SetActive(true);
                 poizonKnife.SetActive(false);
+                poizonNomalKnife.SetActive(false);
             }
             else if (canvasTouchMouse.isKnifeSelected)
             {
                 poizon.SetActive(false);
                 poizonCandle.SetActive(false);
                 poizonKnife.SetActive(true);
+                poizonNomalKnife.SetActive(false);
             }
-            if(textEnd)
+            else if (canvasTouchMouse.isNomalKnifeSelected)
+            {
+                poizon.SetActive(false);
+                poizonCandle.SetActive(false);
+                poizonKnife.SetActive(false);
+                poizonNomalKnife.SetActive(true);
+            }
+            if (textEnd)
             {
                 allColliderZoomSwicth(true);
             }
@@ -523,7 +534,8 @@ public class ObjectManager : MonoBehaviour
                 {
                     if(canvasTouchMouse.isLightSelected)
                     {
-                        itemBer.OffBer();
+                      
+                        //itemBer.OffBer();
                         touchPicture.SetActive(false);
                         pictureLight.SetActive(true);
                         if (canvasTouchMouse.lastClickedObject != null)
@@ -531,6 +543,7 @@ public class ObjectManager : MonoBehaviour
                             itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
                         }
                         canvasTouchMouse.lastClickedObject = null;
+                        itemBer.OnItemBer();
                     }
                    
 
@@ -547,6 +560,7 @@ public class ObjectManager : MonoBehaviour
                             itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
                         }
                         canvasTouchMouse.lastClickedObject = null;
+                        itemBer.OnItemBer();
                     }
                 }
                     if (hit.collider.gameObject == poizonCandle && recipeGet)
@@ -561,6 +575,7 @@ public class ObjectManager : MonoBehaviour
                             itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
                         }
                         canvasTouchMouse.lastClickedObject = null;
+                        itemBer.OnItemBer();
                     }
                   
 

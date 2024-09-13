@@ -16,6 +16,9 @@ public class SimpleDialogueManager : MonoBehaviour
     ItemBer itemBer;
 
     GameManager gameManager;
+    private Coroutine typingCoroutine;
+    private bool isTyping = false;
+    private bool fullTextDisplayed = false; // 全文が表示されているかどうか
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -23,9 +26,34 @@ public class SimpleDialogueManager : MonoBehaviour
         itemBer = FindObjectOfType<ItemBer>();
         gameObject.SetActive(false); // 初期状態で非表示に設定
         chatEnd = false;
-        
+        isTyping = false;
+        fullTextDisplayed = false;
     }
-    
+    IEnumerator TypeText(string text)
+    {
+        isTyping = true;
+        fullTextDisplayed = false;
+        dialogueText.text = "";
+        foreach (char c in text)
+        {
+            dialogueText.text += c;
+            yield return new WaitForSeconds(0.05f);
+        }
+        isTyping = false;
+        fullTextDisplayed = true;
+    }
+    void SkipToFullLine()
+    {
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+        var line = currentDialogue.lines[currentLineIndex];
+        dialogueText.text = line.dialogueText;
+        isTyping = false;
+        fullTextDisplayed = true;
+    }
     public void StartDialogue(Dialogue dialogue)
     {
         currentDialogue = dialogue;
@@ -33,15 +61,17 @@ public class SimpleDialogueManager : MonoBehaviour
         gameObject.SetActive(true); // 会話開始時に表示
         DisplayLine();
         objectManager.Ontext = true;
+        isTyping = false;
     }
     public void StartDialogue2(Dialogue dialogue)
     {
-
         currentDialogue = dialogue;
         currentLineIndex = 0;
         gameObject.SetActive(true); // 会話開始時に表示
         DisplayLine2();
-      
+        objectManager.Ontext = true;
+        isTyping = false;
+
     }
     public void StartDialogueItemGeted(Dialogue dialogue)
     {
@@ -49,6 +79,8 @@ public class SimpleDialogueManager : MonoBehaviour
         currentLineIndex = 0;
         gameObject.SetActive(true); // 会話開始時に表示
         DisplayLine3();
+        objectManager.Ontext = true;
+        isTyping = false;
     }
     public void StartDialogueFruit(Dialogue dialogue)
     {
@@ -57,15 +89,29 @@ public class SimpleDialogueManager : MonoBehaviour
         gameObject.SetActive(true); // 会話開始時に表示
         DisplayLineFruit();
         objectManager.Ontext = true;
+        isTyping = false;
     }
     void Update()
     {
-        // タップを検知し、次の会話行に進む
+
         if (Input.GetMouseButtonDown(0)) // 左クリックまたはタップ
         {
-            NextLine();
+            if (isTyping)
+            {
+                // 文字を表示中にクリックされたら全文表示
+                SkipToFullLine();
+            }
+            else if (fullTextDisplayed)
+            {
+                // 全文が表示された後にクリックされたら次の行に進む
+                NextLine();
+            }
         }
-        if(this.gameObject.activeSelf)
+        //if (Input.GetMouseButtonDown(0)) // 左クリックまたはタップ
+        //{
+        //    NextLine();
+        //}
+        if (this.gameObject.activeSelf)
         {
             objectManager.Ontext = true;
         }
@@ -79,23 +125,55 @@ public class SimpleDialogueManager : MonoBehaviour
     {
         if (gameManager.itemGet == true && gameManager.itemGet2 == true)
         {
-            DisplayLine();
-            currentLineIndex++;
+            if (currentLineIndex < currentDialogue.lines.Count - 1)
+            {
+                currentLineIndex++;
+                DisplayLine(); // 次の行を表示
+            }
+            else
+            {
+                // 次の行がない場合、EndDialogueを呼び出す
+                EndDialogue();
+            }
         }
         if (gameManager.itemGet == false && gameManager.itemGet2 == false )
         {
-            DisplayLine2();
-            currentLineIndex++;
+            if (currentLineIndex < currentDialogue.lines.Count - 1)
+            {
+                currentLineIndex++;
+                DisplayLine2(); // 次の行を表示
+            }
+            else
+            {
+                // 次の行がない場合、EndDialogueを呼び出す
+                EndDialogue2();
+            }
         }
         if (gameManager.itemGet == true && gameManager.itemGet2 == false)
         {
-            DisplayLine3();
-            currentLineIndex++;
+            if (currentLineIndex < currentDialogue.lines.Count - 1)
+            {
+                currentLineIndex++;
+                DisplayLine3(); // 次の行を表示
+            }
+            else
+            {
+                // 次の行がない場合、EndDialogueを呼び出す
+                EndDialogue2();
+            }
         }
         if(gameManager.itemGet == false && gameManager.itemGet2 == true)
         {
-            DisplayLineFruit();
-            currentLineIndex++;
+            if (currentLineIndex < currentDialogue.lines.Count - 1)
+            {
+                currentLineIndex++;
+                DisplayLineFruit(); // 次の行を表示
+            }
+            else
+            {
+                // 次の行がない場合、EndDialogueを呼び出す
+                EndDialogueFruit();
+            }
         }
     }
     public void DisplayLine()
@@ -103,7 +181,11 @@ public class SimpleDialogueManager : MonoBehaviour
         if (currentLineIndex < currentDialogue.lines.Count)
         {
             var line = currentDialogue.lines[currentLineIndex];
-            dialogueText.text = line.dialogueText; // 会話内容のみ表示
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
+            typingCoroutine = StartCoroutine(TypeText(line.dialogueText));
         }
         else
         {
@@ -115,7 +197,11 @@ public class SimpleDialogueManager : MonoBehaviour
         if (currentLineIndex < currentDialogue.lines.Count)
         {
             var line = currentDialogue.lines[currentLineIndex];
-            dialogueText.text = line.dialogueText; // 会話内容のみ表示
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
+            typingCoroutine = StartCoroutine(TypeText(line.dialogueText));
         }
         else
         {
@@ -124,22 +210,32 @@ public class SimpleDialogueManager : MonoBehaviour
     }
     public void DisplayLine3()
     {
-        if (currentLineIndex <1)
+        if (currentLineIndex < currentDialogue.lines.Count)
         {
             var line = currentDialogue.lines[currentLineIndex];
-            dialogueText.text = line.dialogueText; // 会話内容のみ表示
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
+            typingCoroutine = StartCoroutine(TypeText(line.dialogueText));
         }
         else
         {
             EndDialogue2();
         }
     }
+
+  
     public void DisplayLineFruit()
     {
         if (currentLineIndex < currentDialogue.lines.Count)
         {
             var line = currentDialogue.lines[currentLineIndex];
-            dialogueText.text = line.dialogueText; // 会話内容のみ表示
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
+            typingCoroutine = StartCoroutine(TypeText(line.dialogueText));
         }
         else
         {
@@ -164,6 +260,7 @@ public class SimpleDialogueManager : MonoBehaviour
             objectManager.bombUnrock.SetActive(false);
         }
         objectManager.Ontext = false;
+        objectManager.allColliderSwicth(true);
     }
     public void EndDialogue2()
     {
@@ -186,13 +283,14 @@ public class SimpleDialogueManager : MonoBehaviour
                 SampleSoundManager.Instance.StopBgm();
             }
         }
+        objectManager.allColliderSwicth(true);
     }
     public void EndDialogueFruit()
     {
         dialogueText.text = "";
         
         StartCoroutine(FruitTouch());
-
+        objectManager.allColliderSwicth(true);
 
     }
     IEnumerator FruitTouch()

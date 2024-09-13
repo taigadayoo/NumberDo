@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: monirorMiniGameStart
   m_EditorClassIdentifier: 
   lines:
+  - dialogueText: 
   - dialogueText: "\u7A93\u3058\u3083\u306A\u3044\uFF01\uFF1F\n\u507D\u7269\u2026\u2026\u3058\u3083\u3042\u3053\u3053\u306F\u3001\u3069\u3053\u306A\u3093\u3060\uFF1F"

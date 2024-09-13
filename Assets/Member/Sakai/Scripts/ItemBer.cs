@@ -86,6 +86,7 @@ public class ItemBer : MonoBehaviour
         image.sprite = OffBerImage;
         slider.value = 0;
         exitItember.SetActive(false);
+        GetItemCount();
         OnBar = false;
     }
 

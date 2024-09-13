@@ -16,6 +16,7 @@ public class CanvasTouchMouse : MonoBehaviour
     public bool isLightSelected = false;
     public bool isCandleSelected = false;
     public bool isKnifeSelected = false;
+    public bool isNomalKnifeSelected = false;
     public bool isKeyDoorSelected = false;
 
     // 特定のオブジェクトを識別するためのタグ
@@ -25,6 +26,7 @@ public class CanvasTouchMouse : MonoBehaviour
     public string LightTag = "BlackLight";
     public string CandleFireTag = "candleFire";
     public string KnifeTag = "candleKnife";
+    public string nomalKnifeTag = "knife";
     public string PictureTag = "Picture";
     public string keyDoorTag = "KeyDoor";
     public CheckBool lastClickedObject;
@@ -38,6 +40,7 @@ public class CanvasTouchMouse : MonoBehaviour
     RockerScripts rockerScripts;
     // クリックされた最後の2つのオブジェクトを格納するリスト
     private List<CheckBool> clickedObjects = new List<CheckBool>();
+    MixImageScripts imageScripts;
 
     void Start()
     {
@@ -50,6 +53,7 @@ public class CanvasTouchMouse : MonoBehaviour
         {
             eventSystem = FindObjectOfType<EventSystem>();
         }
+        imageScripts = FindObjectOfType<MixImageScripts>();
     }
 
     void Update()
@@ -81,6 +85,7 @@ public class CanvasTouchMouse : MonoBehaviour
                     // 同じオブジェクトが再度クリックされた場合
                     if (clickableObject == lastClickedObject)
                     {
+                        imageScripts.foundMatch = false;
                         // 選択を解除
                         clickableObject.isCheck = false;
                         itemNextLight.ChangeNomal();
@@ -133,9 +138,10 @@ public class CanvasTouchMouse : MonoBehaviour
                     isCandleSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(CandleFireTag));
                     isKnifeSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(KnifeTag));
                     isKeyDoorSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(keyDoorTag));
+                    isNomalKnifeSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(nomalKnifeTag));
 
 
-                
+
                 }
 
                 break; // 最初のヒットしたUI要素のみ処理

@@ -23,10 +23,16 @@ public class BadEndScenario : MonoBehaviour
     [SerializeField]
     private AudioSource audioSource;
 
+
     bool _chack = true;
     public int math = 0;
     [SerializeField]
     public Animator anim;
+
+    private bool isTextDisplaying = false;
+    private string fullText;
+    private Coroutine displayCoroutine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,52 +43,78 @@ public class BadEndScenario : MonoBehaviour
     // Update is called once per frame
     async void Update()
     {
-        if (_chack)
+        if (_chack && Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            if (isTextDisplaying)
             {
-                ReadQuestion();
-                ++math;
-                //if ("understanding" == question.move)
-                //{
-                //    anim.SetBool("isunder", true);
-                //    anim.SetBool("isusua", false);
-                //}
-                //else if ("think" == question.move)
-                //{
-                //    anim.SetBool("isunder", false);
-                //    anim.SetBool("isthink", true);
-                //}
-                //else if ("usually" == question.move)
-                //{
-                //    anim.SetBool("isthink", false);
-                //    anim.SetBool("isusua", true);
-                //}
-                if ("End" == question.move)
-                {
-                    //ÉVÅ[ÉìëJà⁄
-                }
-                else if("Black" ==  question.move)
-                {
-                    _chack = false;
-                    //îöî≠SE
-                    audioSource.PlayOneShot(audioSource.clip);
-                    _black.SetActive(true);
-                    _do.SetActive(false);
-                    await UniTask.Delay(TimeSpan.FromSeconds(5.0f));
-                    _black.SetActive(false);
-                    _red.SetActive(true);
-                    _chack = true;
-
-                }
+                StopCoroutine(displayCoroutine);
+                _text.text = fullText;
+                isTextDisplaying = false;
             }
+            else
+            {
+               ++math;
+               ReadQuestion();
+            }
+            //if ("understanding" == question.move)
+            //{
+            //    anim.SetBool("isunder", true);
+            //    anim.SetBool("isusua", false);
+            //}
+            //else if ("think" == question.move)
+            //{
+            //    anim.SetBool("isunder", false);
+            //    anim.SetBool("isthink", true);
+            //}
+            //else if ("usually" == question.move)
+            //{
+            //    anim.SetBool("isthink", false);
+            //    anim.SetBool("isusua", true);
+            //}
+            if ("End" == question.move)
+            {
+                //ÉVÅ[ÉìëJà⁄
+            }
+            else if ("Black" == question.move)
+            {
+                _chack = false;
+                //îöî≠SE
+                audioSource.PlayOneShot(audioSource.clip);
+                _black.SetActive(true);
+                _do.SetActive(false);
+                await UniTask.Delay(TimeSpan.FromSeconds(5.0f));
+                _black.SetActive(false);
+                _red.SetActive(true);
+                _chack = true;
+
+            }
+            
         }
     }
 
     private void ReadQuestion()
     {
-        question = _csvrerder.GetQuestion();
-        _text.text = question.bun;
-        _name.text = question.name;
+        if (math < _csvrerder.Questions.Count) 
+        {
+            question = _csvrerder.GetQuestion();
+            fullText = question.bun;
+            _name.text = question.name;
+
+            displayCoroutine = StartCoroutine(DisplayText(fullText));
+        }
+        
+    }
+
+    private IEnumerator DisplayText(string text)
+    {
+        _text.text = "";
+        isTextDisplaying = true;
+        foreach (char letter in text)
+        {
+            _text.text += letter;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        isTextDisplaying = false;
     }
 }

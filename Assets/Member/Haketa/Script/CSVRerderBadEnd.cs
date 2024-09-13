@@ -17,6 +17,9 @@ public class CSVRerderBadEnd : MonoBehaviour
     List<string[]> csvDatas = new List<string[]>();
     [SerializeField]
     public Text text;
+
+    public List<Question> Questions => _questions;
+
     void Awake()
     {
 
@@ -38,6 +41,8 @@ public class CSVRerderBadEnd : MonoBehaviour
         }
         //textDisplay.text = csvDatas[0][0].ToString()
 
+        //StartCoroutine(TypeWriterEffect(GetQuestion().bun));
+
     }
     public Question GetQuestion()
     {
@@ -45,4 +50,5 @@ public class CSVRerderBadEnd : MonoBehaviour
         return q;
 
     }
+    
 }

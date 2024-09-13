@@ -16,6 +16,11 @@ public class TutorialScenario: MonoBehaviour
     public int math = 0;
     [SerializeField]
     public Animator anim;
+
+    private bool isTextDisplaying = false;
+    private string fullText;
+    private Coroutine displayCoroutine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +33,17 @@ public class TutorialScenario: MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            ReadQuestion();
-            ++math;
+            if (isTextDisplaying)
+            {
+                StopCoroutine(displayCoroutine);
+                _text.text = fullText;
+                isTextDisplaying = false;
+            }
+            else
+            {
+                ++math;
+                ReadQuestion();
+            }
             if ("understanding" == question.move)
             {
                 anim.SetBool("isunder", true);
@@ -54,8 +68,26 @@ public class TutorialScenario: MonoBehaviour
 
     private void ReadQuestion()
     {
-        question = _csvrerder.GetQuestion();
-        _text.text = question.bun;
-        _name.text = question.name;
+        if (math < _csvrerder.Questions.Count)
+        {
+            question = _csvrerder.GetQuestion();
+            fullText = question.bun;
+            _name.text = question.name;
+
+            displayCoroutine = StartCoroutine(DisplayText(fullText));
+        }
+    }
+
+    private IEnumerator DisplayText(string text)
+    {
+        _text.text = "";
+        isTextDisplaying = true;
+        foreach (char letter in text)
+        {
+            _text.text += letter;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        isTextDisplaying = false;
     }
 }

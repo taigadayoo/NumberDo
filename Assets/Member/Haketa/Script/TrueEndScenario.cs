@@ -29,6 +29,7 @@ public class TrueEndScenario : MonoBehaviour
     [SerializeField]
     public Animator anim;
 
+    private bool oneBGM = false;
     private bool isTextDisplaying = false;
     private string fullText;
     private Coroutine displayCoroutine;
@@ -37,6 +38,7 @@ public class TrueEndScenario : MonoBehaviour
     {
         //anim = GetComponent<Animator>();
         ReadQuestion();
+      
     }
 
     // Update is called once per frame
@@ -64,6 +66,11 @@ public class TrueEndScenario : MonoBehaviour
                 }
                 else if ("TrueEnd" == question.move)
                 {
+                    if (!oneBGM)
+                    {
+                        SampleSoundManager.Instance.PlayBgm(BgmType.BGM5);
+                        oneBGM = true;
+                    }
                     anim.SetBool("isusua_b", false);
                     anim.SetBool("istrueend", true);
                 }

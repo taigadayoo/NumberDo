@@ -68,7 +68,7 @@ public class TrueEndScenario2 : MonoBehaviour
             }
             else if ("End" == question.move)
             {
-                //ƒV[ƒ“‘JˆÚ
+                SceneManagement.Instance.OnTrueEnd3();
             }
         }
     }

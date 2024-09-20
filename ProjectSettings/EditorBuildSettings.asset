@@ -56,4 +56,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Member/Sakai/Scenes/TrueEndScene.unity
     guid: 0eec05412864b39419c73c268af68b0c
+  - enabled: 1
+    path: Assets/Member/Haketa/Scenes/TrueEnd2.unity
+    guid: dc327e84e59ba0b4aae5de823ba6ca85
+  - enabled: 1
+    path: Assets/Member/Haketa/Scenes/TrueEnd3.unity
+    guid: f5b9b5b20838b754fb3de90f9f58400d
   m_configObjects: {}

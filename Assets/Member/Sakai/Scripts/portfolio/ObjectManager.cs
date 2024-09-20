@@ -106,6 +106,7 @@ public class ObjectManager : MonoBehaviour
     public bool OnGoal = false;
     public bool OnTrueShelse = false;
     public bool OnTrueMonitor = false;
+    public bool OnTrueDesk = false;
     public Sprite lightImage;
     ItemBer itemBer;
     SampleSoundManager sampleSoundManager;
@@ -139,7 +140,8 @@ public class ObjectManager : MonoBehaviour
         }
         if (gameName == GameName.trueEnd)
         {
-            
+            OnTrueMonitor = false;
+            OnTrueShelse = false;
             deskCol = trueDesk.GetComponent<Collider2D>();
             deskCol.enabled = false;
         }
@@ -246,14 +248,28 @@ public class ObjectManager : MonoBehaviour
             miniGame.SetActive(true);
             miniGameZoom.SetActive(false);
             allColliderSwicth(false);
-           
-           
+        
+
+
         }
        if(gameName == GameName.trueEnd)
         {
-            if(OnTrueMonitor && OnTrueShelse)
+            TrueObjectTouch();
+            //Debug.Log(OnTrueMonitor);
+            //Debug.Log(OnTrueShelse);
+
+
+            if (OnTrueMonitor && OnTrueShelse)
             {
                 deskCol.enabled = true;
+            }
+            else if(!OnTrueShelse || !OnTrueMonitor)
+            {
+                deskCol.enabled = false;
+            }
+            if(OnTrueDesk && textEnd)
+            {
+                SceneManagement.Instance.OnTrueEnd2();
             }
         }
       
@@ -708,12 +724,14 @@ public class ObjectManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector2.zero);
 
             // RayÇ™Collider2DÇ…ìñÇΩÇ¡ÇΩÇ©ÇåüèoÇ∑ÇÈ
-            if (hit.collider != null && textEnd)
+            if (hit.collider != null )
             {
+                Debug.Log(OnTrueMonitor);
                 if (hit.collider.gameObject == trueShelf)
                 {
 
                     OnTrueShelse = true;
+                  
 
                 }
                 if (hit.collider.gameObject == trueShelf2)
@@ -726,6 +744,12 @@ public class ObjectManager : MonoBehaviour
                 {
 
                     OnTrueMonitor = true;
+                   
+                }
+                if (hit.collider.gameObject == trueDesk)
+                {
+
+                    OnTrueDesk = true;
 
                 }
             }

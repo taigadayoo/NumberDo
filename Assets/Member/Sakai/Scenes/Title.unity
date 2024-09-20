@@ -1125,6 +1125,8 @@ MonoBehaviour:
   sceneNameGameOver2: BadEndScene2
   sceneNameScecnarioSelect: ScenarioSelect
   sceneNameTrueEndGameScene: TrueEndScene
+  sceneNameTrueEnd2: TrueEnd2
+  sceneNameTrueEnd3: TrueEnd3
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   fadeSpeed: 1
 --- !u!4 &1677333356
@@ -1184,6 +1186,9 @@ MonoBehaviour:
   - Type: 4
     Clip: {fileID: 8300000, guid: 00839d03a0ebae74a92820d6fcedb856, type: 3}
     Volume: 0.599
+  - Type: 5
+    Clip: {fileID: 8300000, guid: 7c17a33be2745af49b6a870c284ba53e, type: 3}
+    Volume: 1
   seList:
   - Type: 1
     Clip: {fileID: 8300000, guid: ec00ed7e5f936bb46825739bf87bcea1, type: 3}

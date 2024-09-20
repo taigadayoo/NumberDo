@@ -22,6 +22,12 @@ public class TrueEndScenario : MonoBehaviour
     [SerializeField]
     private GameObject _textbox;
     [SerializeField]
+    private GameObject _camera;
+    [SerializeField]
+    private GameObject _maecamera;
+    [SerializeField]
+    private GameObject _bgmobj;
+    [SerializeField]
     private AudioSource _audioSource;
 
     public int math = 0;
@@ -74,6 +80,9 @@ public class TrueEndScenario : MonoBehaviour
                     //SEä‘Ç…çáÇ¡Çƒñ≥Ç©Ç¡ÇΩÇÁÇ±Ç±Ç…èeê∫
                     _audioSource.PlayOneShot(_audioSource.clip);
                     await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
+                    _maecamera.SetActive(true);
+                    _camera.SetActive(false);
+                    _bgmobj.SetActive(true);
                     _panel.SetActive(false);
                     _chack = true;
                 }

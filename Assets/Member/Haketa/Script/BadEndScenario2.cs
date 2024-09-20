@@ -21,9 +21,17 @@ public class BadEndScenario2 : MonoBehaviour
     [SerializeField] 
     private GameObject _white;
     [SerializeField]
+    private GameObject _camera;
+    [SerializeField]
+    private GameObject _maecamera;
+    [SerializeField]
+    private GameObject _bgmobj;
+    [SerializeField]
     private AudioSource _batan;
     [SerializeField]
     private AudioSource _brain;
+    
+    
     bool check = true;
     public int math = 0;
     [SerializeField]
@@ -75,6 +83,9 @@ public class BadEndScenario2 : MonoBehaviour
                     _batan.PlayOneShot(_batan.clip);
                     _black.SetActive(true);
                     await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
+                    _maecamera.SetActive(true);
+                    _camera.SetActive(false);
+                    _bgmobj.SetActive(true);
                     _black.SetActive(false);
                     check = true;
                

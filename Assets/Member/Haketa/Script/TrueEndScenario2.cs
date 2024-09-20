@@ -17,6 +17,8 @@ public class TrueEndScenario2 : MonoBehaviour
     [SerializeField]
     private GameObject _textbox;
     [SerializeField]
+    private GameObject _bgmobj;
+    [SerializeField]
     private VideoPlayer _videoPlayer;
 
     public int math = 0;
@@ -63,6 +65,7 @@ public class TrueEndScenario2 : MonoBehaviour
             //}
             if ("PlayVideo" == question.move)
             {
+                _bgmobj.SetActive(false);
                 _textbox.SetActive(false);
                 PlayVideo();
             }

@@ -17,6 +17,9 @@ public class CSVRerderBadEnd2 : MonoBehaviour
     List<string[]> csvDatas = new List<string[]>();
     [SerializeField]
     public Text text;
+
+    public List<Question> Questions => _questions;
+
     void Awake()
     {
 

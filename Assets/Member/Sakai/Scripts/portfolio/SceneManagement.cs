@@ -15,6 +15,8 @@ public class SceneManagement : MonoBehaviour
     [SerializeField] private string sceneNameMainGame;
     [SerializeField] private string sceneNameGameOver;
     [SerializeField] private string sceneNameGameOver2;
+    [SerializeField] private string sceneNameScecnarioSelect;
+    [SerializeField] private string sceneNameTrueEndGameScene;
     [SerializeField] private Color fadeColor;
     [SerializeField] private float fadeSpeed;
 
@@ -89,5 +91,13 @@ public class SceneManagement : MonoBehaviour
     public void OnMainGame()
     {
         Initiate.Fade(sceneNameMainGame, fadeColor, fadeSpeed);
+    }
+    public void OnScenarioSelect()
+    {
+        Initiate.Fade(sceneNameScecnarioSelect, fadeColor, fadeSpeed);
+    }
+    public void OnTrueEnd()
+    {
+        Initiate.Fade(sceneNameTrueEndGameScene, fadeColor, fadeSpeed);
     }
 }

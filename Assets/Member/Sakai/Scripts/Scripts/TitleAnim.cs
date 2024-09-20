@@ -39,12 +39,12 @@ public class TitleAnim : MonoBehaviour
         FadeOut();
         await UniTask.Delay(TimeSpan.FromSeconds(0.5));
         anim.SetBool("isTitle2",true);
-        await UniTask.Delay(TimeSpan.FromSeconds(1));
+
     }
 
     void FadeOut()
     {
-        alpha += 0.6f;
+        alpha += 1f;
         fadealpha.color = new Color(0, 0, 0, alpha);
     }
 

@@ -61,9 +61,10 @@ public class Title : MonoBehaviour
     }
    async public void OnScenario()
     {
-        SampleSoundManager.Instance.StopBgm();
-        sceneManagement.OnGameOver();
         await anim.TitleAnimation();
+        SampleSoundManager.Instance.StopBgm();
+        sceneManagement.OnScenarioSelect();
+      
     }
     async public void OnMainGameScenario()
     {

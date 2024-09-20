@@ -34,16 +34,5 @@ public class ClearMonitor : MonoBehaviour
             this.gameObject.SetActive(false);
         }
     }
-    //private void OnMouseDown()
-    //{
-    //   objectManager.addItemNum = 7;
-    //    itemBer.AddItem(objectManager.items[objectManager.addItemNum]);
-    //   objectManager.imageNum = 3;
-    //    getSet.ImageChange(objectManager.imageNum);
-    //    timeCounter.isclier = false;
-    //   objectManager.miniGameClear.SetActive(false);
-    //   objectManager.allColliderSwicth(false);
-    //    this.gameObject.SetActive(false);
-    //}
 
 }

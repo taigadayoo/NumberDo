@@ -50,4 +50,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Member/Sakai/Scenes/GameOver.unity
     guid: b63d113e0e04f7247b6704d049687d79
+  - enabled: 1
+    path: Assets/Member/Sakai/Scenes/ScenarioSelect.unity
+    guid: a89e1158b1b5aaa4fa57f953fb4c1543
+  - enabled: 1
+    path: Assets/Member/Sakai/Scenes/TrueEndScene.unity
+    guid: 0eec05412864b39419c73c268af68b0c
   m_configObjects: {}

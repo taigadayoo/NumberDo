@@ -8,7 +8,8 @@ public class ObjectManager : MonoBehaviour
     public enum GameName
     {
         tutorial,
-        mainGame
+        mainGame,
+        trueEnd
     }
     [SerializeField]
     GameName gameName;
@@ -68,6 +69,11 @@ public class ObjectManager : MonoBehaviour
     public GameObject bombUnrock;
     public GameObject pictureLight;
     public GameObject monitorGamed;
+    [Header("トゥルーエンドで触るもの")]
+    public GameObject trueDesk;
+    public GameObject trueShelf;
+    public GameObject trueShelf2;
+    public GameObject trueMonitor;
 
     public List<GameObject> touchObject = new List<GameObject>();
 
@@ -98,6 +104,8 @@ public class ObjectManager : MonoBehaviour
     public bool OnClock = false;
     public bool recipeGet = false;
     public bool OnGoal = false;
+    public bool OnTrueShelse = false;
+    public bool OnTrueMonitor = false;
     public Sprite lightImage;
     ItemBer itemBer;
     SampleSoundManager sampleSoundManager;
@@ -113,8 +121,8 @@ public class ObjectManager : MonoBehaviour
     TimeCounter timeCounter;
 
     Interactable interactable;
-   
 
+   private Collider2D deskCol;
 
     private List<Collider2D> allColliders = new List<Collider2D>();
     private List<Collider2D> allZoomColliders = new List<Collider2D>();
@@ -127,14 +135,20 @@ public class ObjectManager : MonoBehaviour
         }
         if (gameName == GameName.mainGame)
         {
-          
+            pictureImage = touchPicture.GetComponent<Image>();
+        }
+        if (gameName == GameName.trueEnd)
+        {
+            
+            deskCol = trueDesk.GetComponent<Collider2D>();
+            deskCol.enabled = false;
         }
         canvasTouchMouse = FindObjectOfType<CanvasTouchMouse>();
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
         itemBer = FindObjectOfType<ItemBer>();
         buttonCotroller = FindObjectOfType<ButtonCotroller>();
         timer = FindFirstObjectByType<Timer>();
-        pictureImage = touchPicture.GetComponent<Image>();
+      
         // 各オブジェクトからコライダーを取得してリストに追加
         foreach (GameObject obj in touchObject)
         {
@@ -235,7 +249,13 @@ public class ObjectManager : MonoBehaviour
            
            
         }
-       
+       if(gameName == GameName.trueEnd)
+        {
+            if(OnTrueMonitor && OnTrueShelse)
+            {
+                deskCol.enabled = true;
+            }
+        }
       
     }
     public void DeactivateAllObjects()
@@ -678,5 +698,37 @@ public class ObjectManager : MonoBehaviour
 
         textEnd = true;
         Ontext = false;
+    }
+    private void TrueObjectTouch()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            // マウスの位置からRayを飛ばす
+            Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector2.zero);
+
+            // RayがCollider2Dに当たったかを検出する
+            if (hit.collider != null && textEnd)
+            {
+                if (hit.collider.gameObject == trueShelf)
+                {
+
+                    OnTrueShelse = true;
+
+                }
+                if (hit.collider.gameObject == trueShelf2)
+                {
+
+                    OnTrueShelse = true;
+
+                }
+                if (hit.collider.gameObject == trueMonitor)
+                {
+
+                    OnTrueMonitor = true;
+
+                }
+            }
+        }
     }
 }

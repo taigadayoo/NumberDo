@@ -70,7 +70,7 @@ public class TrueEndScenario : MonoBehaviour
                 }
                 else if ("End" == question.move)
                 {
-                    //ƒV[ƒ“‘JˆÚ
+                    SceneManagement.Instance.OnTrueEnd();
                 }
             }
         }

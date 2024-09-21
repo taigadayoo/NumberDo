@@ -24,6 +24,8 @@ public class BadEndScenario2 : MonoBehaviour
     private AudioSource _batan;
     [SerializeField]
     private AudioSource _brain;
+    [SerializeField]
+    private AudioSource _bgm;
     bool check = true;
     public int math = 0;
     [SerializeField]
@@ -33,6 +35,7 @@ public class BadEndScenario2 : MonoBehaviour
     private string fullText;
     private Coroutine displayCoroutine;
 
+    private bool batan = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +68,11 @@ public class BadEndScenario2 : MonoBehaviour
                 }
                 else if ("BadEnd" == question.move)
                 {
+                    if (!batan)
+                    {
+                        _bgm.Play();
+                        batan = true;
+                    }
                     anim.SetBool("isusua_b", false);
                     anim.SetBool("isbadend", true);
                 }

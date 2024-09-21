@@ -1579,7 +1579,6 @@ MonoBehaviour:
   trueShelf2: {fileID: 1135719238}
   trueMonitor: {fileID: 1151185475}
   touchObject:
-  - {fileID: 1533911473}
   - {fileID: 1151185475}
   - {fileID: 1135719238}
   - {fileID: 831477033}
@@ -1606,6 +1605,7 @@ MonoBehaviour:
   OnGoal: 0
   OnTrueShelse: 0
   OnTrueMonitor: 0
+  OnTrueDesk: 0
   lightImage: {fileID: 21300000, guid: 712a694b2596a8b44b6efc4f28be378c, type: 3}
   getSet: {fileID: 0}
   dialogueManager: {fileID: 0}
@@ -3172,7 +3172,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533911473}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -3794,6 +3794,8 @@ MonoBehaviour:
   sceneNameGameOver2: 
   sceneNameScecnarioSelect: 
   sceneNameTrueEndGameScene: 
+  sceneNameTrueEnd2: 
+  sceneNameTrueEnd3: 
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   fadeSpeed: 1
 --- !u!4 &1803941574

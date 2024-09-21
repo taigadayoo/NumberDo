@@ -1,7 +1,11 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
+using static Unity.Collections.AllocatorManager;
 
 public class TrueEndScenario3 : MonoBehaviour
 {
@@ -12,14 +16,19 @@ public class TrueEndScenario3 : MonoBehaviour
     private Text _text;
     [SerializeField]
     private Text _name;
-
+    [SerializeField]
+    private VideoPlayer _videoPlayer;
+    [SerializeField]
+    private GameObject _textbox;
     public int math = 0;
     [SerializeField]
     public Animator anim;
-
+    public GameObject panel;
     private bool isTextDisplaying = false;
     private string fullText;
     private Coroutine displayCoroutine;
+
+    private bool skip = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +37,12 @@ public class TrueEndScenario3 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+   async void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space) && skip)
+        {
+            SceneManagement.Instance.OnTitle();
+        }
         if (Input.GetMouseButtonDown(0))
         {
             if (isTextDisplaying)
@@ -53,9 +66,14 @@ public class TrueEndScenario3 : MonoBehaviour
             //    anim.SetBool("isusua_b", false);
             //    anim.SetBool("istrueend", true);
             //}
-            if ("End" == question.move)
+         if ("End" == question.move)
             {
-                //ÉVÅ[ÉìëJà⁄
+              
+                PlayVideo();
+              
+                await UniTask.Delay(TimeSpan.FromSeconds(60.0f));
+
+                SceneManagement.Instance.OnTitle();
             }
         }
     }
@@ -84,5 +102,18 @@ public class TrueEndScenario3 : MonoBehaviour
         }
 
         isTextDisplaying = false;
+    }
+    private void PlayVideo()
+    {
+        skip = true;
+        _videoPlayer.gameObject.SetActive(true);
+        _videoPlayer.Play();
+        _videoPlayer.loopPointReached += OnVideoEnd;
+    }
+
+    private void OnVideoEnd(VideoPlayer vp)
+    {
+        vp.gameObject.SetActive(false);
+ 
     }
 }

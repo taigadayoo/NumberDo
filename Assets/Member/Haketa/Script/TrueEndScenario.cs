@@ -24,26 +24,37 @@ public class TrueEndScenario : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
 
+    [SerializeField]
+    private AudioSource _audioSourceBGM;
+
     public int math = 0;
     private bool _chack = true;
     [SerializeField]
     public Animator anim;
 
     private bool oneBGM = false;
+    private bool bgmStart = false;
     private bool isTextDisplaying = false;
     private string fullText;
     private Coroutine displayCoroutine;
+
+    SampleSoundManager soundManager;
     // Start is called before the first frame update
     void Start()
     {
         //anim = GetComponent<Animator>();
         ReadQuestion();
-      
+        soundManager = FindObjectOfType<SampleSoundManager>();
     }
 
     // Update is called once per frame
     async void Update()
     {
+        if (!oneBGM && bgmStart)
+        {
+            soundManager.PlayBgm(BgmType.BGM5);
+            oneBGM = true;
+        }
         if (_chack == true)
         {
             if (Input.GetMouseButtonDown(0))
@@ -66,11 +77,7 @@ public class TrueEndScenario : MonoBehaviour
                 }
                 else if ("TrueEnd" == question.move)
                 {
-                    if (!oneBGM)
-                    {
-                        SampleSoundManager.Instance.PlayBgm(BgmType.BGM5);
-                        oneBGM = true;
-                    }
+                    bgmStart = true;
                     anim.SetBool("isusua_b", false);
                     anim.SetBool("istrueend", true);
                 }

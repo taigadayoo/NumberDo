@@ -16,6 +16,8 @@ public class Title1 : MonoBehaviour
     public GameObject tutorial1;
     public GameObject tutorial2;
     public GameObject back;
+    public GameObject trueEnd;
+    public GameObject panel;
 
     public List<Sprite> touchImage = new List<Sprite>();
 
@@ -27,6 +29,7 @@ public class Title1 : MonoBehaviour
     private Image tutoroal1Image;
     private Image tutoroal2Image;
     private Image backImage;
+    private Image trueImage;
 
     private GraphicRaycaster raycaster;
     private PointerEventData pointerEventData;
@@ -38,6 +41,7 @@ public class Title1 : MonoBehaviour
     private GameObject previousHoverTutorial1 = null;
     private GameObject previousHoverTutorial2 = null;
     private GameObject previousHoverBack = null;
+    private GameObject previousHovertrue = null;
     [SerializeField]
     TitleAnim anim;
     SampleSoundManager soundManager;
@@ -51,6 +55,7 @@ public class Title1 : MonoBehaviour
         tutoroal1Image = tutorial1.GetComponent<Image>();
         tutoroal2Image = tutorial2.GetComponent<Image>();
         backImage = back.GetComponent<Image>();
+        trueImage = trueEnd.GetComponent<Image>();
         soundManager = FindObjectOfType<SampleSoundManager>();
         // 初期画像を設定する
         DefaultEnd1();
@@ -59,7 +64,8 @@ public class Title1 : MonoBehaviour
         DefaultTutorial1();
         DefaultTutorial2();
         DefaultBack();
-
+        DefaultTrue();
+        panel.SetActive(false);
         raycaster = GetComponent<GraphicRaycaster>();
         eventSystem = GetComponent<EventSystem>();
 
@@ -72,14 +78,14 @@ public class Title1 : MonoBehaviour
         soundManager.PlaySe(SeType.SE6);
         SampleSoundManager.Instance.StopBgm();
         sceneManagement.OnGameOver();
-
+        panel.SetActive(true);
     }
      public void OnEnd2()
     {
         soundManager.PlaySe(SeType.SE6);
         SampleSoundManager.Instance.StopBgm();
         sceneManagement.OnGameOver2();
-        
+        panel.SetActive(true);
     }
      public void OnMainGame()
     {
@@ -87,7 +93,7 @@ public class Title1 : MonoBehaviour
         SampleSoundManager.Instance.StopBgm();
         SampleSoundManager.Instance.PlayBgm(BgmType.BGM3); 
         sceneManagement.OnMainGame();
-
+        panel.SetActive(true);
     }
      public void OnTutorial1()
     {
@@ -95,22 +101,29 @@ public class Title1 : MonoBehaviour
 
         SampleSoundManager.Instance.StopBgm();
         sceneManagement.OnAttention();
-
+        panel.SetActive(true);
     }
     public void OnTutorial2()
     {
         soundManager.PlaySe(SeType.SE6);
         SampleSoundManager.Instance.StopBgm();
         sceneManagement.OnMainGameMove();
-
+        panel.SetActive(true);
     }
      public void OnTitle()
     {
         SampleSoundManager.Instance.StopBgm();
         sceneManagement.OnTitle();
         soundManager.PlaySe(SeType.SE6);
+        panel.SetActive(true);
     }
-
+    public void OnTrueEnd()
+    {
+        SampleSoundManager.Instance.StopBgm();
+        sceneManagement.OnClear();
+        soundManager.PlaySe(SeType.SE6);
+        panel.SetActive(true);
+    }
     async void Update()
     {
         // Raycastの結果を保存するリスト
@@ -130,6 +143,7 @@ public class Title1 : MonoBehaviour
         bool isHoveringTutorial1 = false;
         bool isHoveringTutorial2 = false;
         bool isHoveringBack = false;
+        bool isHoveringTrue = false;
 
         // Raycast結果があった場合
         if (results.Count > 0)
@@ -200,6 +214,16 @@ public class Title1 : MonoBehaviour
                         soundManager.PlaySe(SeType.SE7);
                     }
                 }
+                else if (hitObject == trueEnd)
+                {
+                    isHoveringTrue = true;
+                    if (hitObject != previousHovertrue)
+                    {
+                        ChangeTrue();
+                        previousHovertrue = hitObject;
+                        soundManager.PlaySe(SeType.SE7);
+                    }
+                }
             }
         }
         if (!isHoveringEnd1 && previousHoverEnd1 != null)
@@ -231,6 +255,11 @@ public class Title1 : MonoBehaviour
         {
             DefaultBack();
             previousHoverBack = null;
+        }
+        if (!isHoveringTrue && previousHovertrue != null)
+        {
+            DefaultTrue();
+            previousHovertrue = null;
         }
     }
 
@@ -279,6 +308,13 @@ public class Title1 : MonoBehaviour
             backImage.sprite = touchImage[5]; // touchImageリストの3番目の要素を設定
         }
     }
+    private void ChangeTrue()
+    {
+        if (trueEnd != null && touchImage.Count > 6)
+        {
+            trueImage.sprite = touchImage[6]; // touchImageリストの3番目の要素を設定
+        }
+    }
     private void DefaultEnd1()
     {
         if (end1Image != null && defaultImage.Count > 0)
@@ -323,6 +359,13 @@ public class Title1 : MonoBehaviour
                 backImage.sprite = defaultImage[5]; // defaultImageリストの3番目の要素を設定
             }
         }
+    private void DefaultTrue()
+    {
+        if (trueImage != null && defaultImage.Count > 6)
+        {
+            trueImage.sprite = defaultImage[6]; // defaultImageリストの3番目の要素を設定
+        }
     }
+}
 
 

@@ -89,7 +89,7 @@ public class ObjectManager : MonoBehaviour
     public bool ItemGet = false;
     public bool Ontext = false;
     public bool unrocking = false;
-    public bool textEnd = false;
+    public bool textEnd = true;
     public bool oneLight = false;
 
     public bool OnMedicine = false;
@@ -259,7 +259,7 @@ public class ObjectManager : MonoBehaviour
             //Debug.Log(OnTrueShelse);
 
 
-            if (OnTrueMonitor && OnTrueShelse)
+            if (OnTrueMonitor && OnTrueShelse && textEnd)
             {
                 deskCol.enabled = true;
             }
@@ -634,6 +634,7 @@ public class ObjectManager : MonoBehaviour
                             itemBer.RemoveItem(canvasTouchMouse.lastClickedObject.gameObject);
                         }
                         canvasTouchMouse.lastClickedObject = null;
+                          itemBer.OnItemBer();
                     }
 
 
@@ -719,6 +720,7 @@ public class ObjectManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log(textEnd);
             // マウスの位置からRayを飛ばす
             Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector2.zero);
@@ -726,31 +728,29 @@ public class ObjectManager : MonoBehaviour
             // RayがCollider2Dに当たったかを検出する
             if (hit.collider != null )
             {
-                Debug.Log(OnTrueMonitor);
+
                 if (hit.collider.gameObject == trueShelf)
                 {
-
                     OnTrueShelse = true;
-                  
 
+                    allColliderSwicth(false);
                 }
-                if (hit.collider.gameObject == trueShelf2)
+                if (hit.collider.gameObject == trueShelf2 )
                 {
-
                     OnTrueShelse = true;
-
+                    allColliderSwicth(false);
                 }
-                if (hit.collider.gameObject == trueMonitor)
+                if (hit.collider.gameObject == trueMonitor )
                 {
 
                     OnTrueMonitor = true;
-                   
+                    allColliderSwicth(false);
                 }
-                if (hit.collider.gameObject == trueDesk)
+                if (hit.collider.gameObject == trueDesk )
                 {
 
                     OnTrueDesk = true;
-
+                    allColliderSwicth(false);
                 }
             }
         }

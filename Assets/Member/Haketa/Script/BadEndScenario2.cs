@@ -73,6 +73,7 @@ public class BadEndScenario2 : MonoBehaviour
                 }
                 else if ("BadEnd" == question.move)
                 {
+                    _black.SetActive(false);
                     anim.SetBool("isusua_b", false);
                     anim.SetBool("isbadend", true);
                 }
@@ -86,15 +87,29 @@ public class BadEndScenario2 : MonoBehaviour
                     _maecamera.SetActive(true);
                     _camera.SetActive(false);
                     _bgmobj.SetActive(true);
-                    _black.SetActive(false);
+                    //_black.SetActive(false);
                     check = true;
                
                 }
+                else if ("Black2" == question.move)
+                {
+                    check = false;
+                    //ì|ÇÍÇÈSE
+                    _batan.PlayOneShot(_batan.clip);
+                    _black.SetActive(true);
+                    await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
+                    _maecamera.SetActive(true);
+                    _camera.SetActive(false);
+                    _bgmobj.SetActive(true);
+                    _do.SetActive(false);
+                    _black.SetActive(false);
+                    _white.SetActive(true);
+                    check = true;
+                }
                 else if ("Off2" == question.move)
                 {
-                   _brain.PlayOneShot(_brain.clip);
-                    _white.SetActive(true);
-                    _do.SetActive(false);
+                    _brain.PlayOneShot(_brain.clip);
+ 
                 }
                 else if ("End" == question.move)
 

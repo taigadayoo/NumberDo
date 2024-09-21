@@ -70,6 +70,7 @@ public class TrueEndScenario : MonoBehaviour
                 }
                 else if ("TrueEnd" == question.move)
                 {
+                    _panel.SetActive(false);
                     anim.SetBool("isusua_b", false);
                     anim.SetBool("istrueend", true);
                 }
@@ -83,7 +84,7 @@ public class TrueEndScenario : MonoBehaviour
                     _maecamera.SetActive(true);
                     _camera.SetActive(false);
                     _bgmobj.SetActive(true);
-                    _panel.SetActive(false);
+                    //_panel.SetActive(false);
                     _chack = true;
                 }
                 else if("Off" == question.move)

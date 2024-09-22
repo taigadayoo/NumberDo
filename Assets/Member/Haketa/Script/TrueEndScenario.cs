@@ -83,8 +83,11 @@ public class TrueEndScenario : MonoBehaviour
                     await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
                     _maecamera.SetActive(true);
                     _camera.SetActive(false);
-                    _bgmobj.SetActive(true);
                     //_panel.SetActive(false);
+                    _panel.SetActive(false);
+                    _bgmobj.SetActive(true);
+                    anim.SetBool("isusua_b", false);
+                    anim.SetBool("istrueend", true);
                     _chack = true;
                 }
                 else if("Off" == question.move)

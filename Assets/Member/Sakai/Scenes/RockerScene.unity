@@ -3133,7 +3133,6 @@ RectTransform:
   - {fileID: 614256472}
   - {fileID: 245743354}
   - {fileID: 955510912}
-  - {fileID: 1446092955}
   - {fileID: 1939785017}
   - {fileID: 237852661}
   - {fileID: 1533911474}
@@ -5176,6 +5175,7 @@ GameObject:
   - component: {fileID: 955510914}
   - component: {fileID: 955510913}
   - component: {fileID: 955510916}
+  - component: {fileID: 955510917}
   m_Layer: 5
   m_Name: rocker
   m_TagString: Rocker
@@ -5301,6 +5301,25 @@ MonoBehaviour:
   dialogueManager: {fileID: 0}
   textBox: {fileID: 1803675411}
   touchAction: 0
+--- !u!114 &955510917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955510911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b53889c8d22174099ce277255b4aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 76518980}
+  videoPlayer: {fileID: 76518983}
+  bikkuri: {fileID: 1105631981}
+  textBox: {fileID: 198857904}
+  blackBack: {fileID: 531667218}
+  dialogueManager: {fileID: 2001652941}
+  dialogue: {fileID: 11400000, guid: e10b44f7fa3c14646b34eac5bc23b17f, type: 2}
 --- !u!1 &959878827
 GameObject:
   m_ObjectHideFlags: 0
@@ -7212,127 +7231,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1082664594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1446092954
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1446092955}
-  - component: {fileID: 1446092958}
-  - component: {fileID: 1446092957}
-  - component: {fileID: 1446092956}
-  m_Layer: 5
-  m_Name: rocker (1)
-  m_TagString: Rocker
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1446092955
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446092954}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0812632, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 473227583}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 872, y: -61}
-  m_SizeDelta: {x: 240, y: 900}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!61 &1446092956
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446092954}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 12.628624, y: 10.812729}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 125.576096, y: 855.2057}
-  m_EdgeRadius: 0
---- !u!114 &1446092957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446092954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cf995e79857030d468578e17676fbffd, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1446092958
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446092954}
-  m_CullTransparentMesh: 1
 --- !u!1001 &1473028979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7720,7 +7618,6 @@ MonoBehaviour:
   raycaster: {fileID: 0}
   eventSystem: {fileID: 0}
   isCheck: 0
-  isKeySelected: 0
   isLightSelected: 0
   isCandleSelected: 0
   isKnifeSelected: 0
@@ -7737,7 +7634,7 @@ MonoBehaviour:
   keyDoorTag: KeyDoor
   lastClickedObject: {fileID: 0}
   previousClickedObject: {fileID: 0}
-  rockerScripts: {fileID: 0}
+  rockerScripts: {fileID: 955510917}
 --- !u!1 &1533911473
 GameObject:
   m_ObjectHideFlags: 0
@@ -9179,6 +9076,7 @@ MonoBehaviour:
   sceneNameTrueEndGameScene: 
   sceneNameTrueEnd2: 
   sceneNameTrueEnd3: 
+  sceneNameRocker: 
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   fadeSpeed: 1
 --- !u!4 &1803941574
@@ -10968,8 +10866,6 @@ MonoBehaviour:
   targetObjectBox4: {fileID: 1792268846}
   targetObjectKey: {fileID: 1249335863}
   passKey: {fileID: 1665022787}
-  rockerTutorial: {fileID: 955510911}
-  rockerFake: {fileID: 1446092954}
   key: {fileID: 9169443778130632048, guid: 0dc48092e1e1bb34e95d5125ac11e872, type: 3}
   items:
   - {fileID: 9169443778130632048, guid: a9a714935be608647b938a78b90805d8, type: 3}

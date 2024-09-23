@@ -71,7 +71,7 @@ public class MixImageScripts : MonoBehaviour
             {
                 mixImage.enabled = false;
 
-
+                Debug.Log(foundMatch);
             }
         }
     }

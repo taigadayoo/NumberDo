@@ -87,8 +87,6 @@ public class BadEndScenario2 : MonoBehaviour
                     await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
                     _maecamera.SetActive(true);
                     _camera.SetActive(false);
-                    //_bgmobj.SetActive(true);
-                    //_black.SetActive(false);
                     _black.SetActive(false);
                     _bgmobj.SetActive(true);
                     anim.SetBool("isusua_b", false);
@@ -114,13 +112,20 @@ public class BadEndScenario2 : MonoBehaviour
                 else if ("Off2" == question.move)
                 {
                     _brain.PlayOneShot(_brain.clip);
- 
+                    
+
                 }
                 else if ("End" == question.move)
 
                 {
-                    SceneManagement.Instance.OnMainGame();
+                    SampleSoundManager.Instance.StopBgm();
+
                     SampleSoundManager.Instance.PlayBgm(BgmType.BGM3);
+
+                    await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
+
+                    SceneManagement.Instance.OnMainGame();
+                  
                 }
             }
         }

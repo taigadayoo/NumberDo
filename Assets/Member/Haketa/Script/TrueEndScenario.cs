@@ -81,14 +81,15 @@ public class TrueEndScenario : MonoBehaviour
                     _panel.SetActive(true);
                     //SEä‘Ç…çáÇ¡Çƒñ≥Ç©Ç¡ÇΩÇÁÇ±Ç±Ç…èeê∫
                     _audioSource.PlayOneShot(_audioSource.clip);
+                    anim.SetBool("isusua_b", false);
+                    anim.SetBool("istrueend", true);
                     await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
                     _maecamera.SetActive(true);
                     _camera.SetActive(false);
                     //_panel.SetActive(false);
                     _panel.SetActive(false);
                     SampleSoundManager.Instance.PlayBgm(BgmType.BGM5);
-                    anim.SetBool("isusua_b", false);
-                    anim.SetBool("istrueend", true);
+                   
                     _chack = true;
                 }
                 else if("Off" == question.move)

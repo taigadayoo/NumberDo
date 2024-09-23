@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CanvasTouchMouse : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class CanvasTouchMouse : MonoBehaviour
     public bool isCheck = false;
 
     private GameObject clickBomb;
-    private bool isKeySelected = false;
+    public bool isKeySelected = false;
     public bool isLightSelected = false;
     public bool isCandleSelected = false;
     public bool isKnifeSelected = false;
@@ -32,12 +33,12 @@ public class CanvasTouchMouse : MonoBehaviour
     public CheckBool lastClickedObject;
     public CheckBool previousClickedObject; // ひとつ前にクリックされたオブジェクト
 
-
     SceneManagement sceneManagement;
     ItemLight itemLight;
     ItemLight itemNextLight;
     [SerializeField]
     RockerScripts rockerScripts;
+
     // クリックされた最後の2つのオブジェクトを格納するリスト
     private List<CheckBool> clickedObjects = new List<CheckBool>();
     MixImageScripts imageScripts;
@@ -62,6 +63,7 @@ public class CanvasTouchMouse : MonoBehaviour
         {
             Vector2 clickPosition = Input.mousePosition;
 
+         
             // マウスのポインタ位置からRayを飛ばす
             PointerEventData pointerEventData = new PointerEventData(eventSystem);
             pointerEventData.position = Input.mousePosition;
@@ -85,63 +87,65 @@ public class CanvasTouchMouse : MonoBehaviour
                     // 同じオブジェクトが再度クリックされた場合
                     if (clickableObject == lastClickedObject)
                     {
-                        imageScripts.foundMatch = false;
+                        imageScripts.foundMatch = false; // 一方の選択が外れた場合にfalseに設定
+
+                        imageScripts.mixImage.enabled = false;
                         // 選択を解除
                         clickableObject.isCheck = false;
                         itemNextLight.ChangeNomal();
                         Debug.Log("Deselected: " + hitObject.name);
 
-                        // lastClickedObjectとpreviousClickedObjectをリセット
-                        lastClickedObject = null;
-                        if (previousClickedObject == clickableObject)
+                        // 同じオブジェクトを三回クリックしてもpreviousClickedObjectがnullにならないようにする
+                        if (previousClickedObject != null)
                         {
-                            previousClickedObject = null;
-                        }
-                        else if (previousClickedObject != null)
-                        {
-                            // 一つ前のオブジェクトは選択されたまま
+                            // 前のオブジェクトを再び選択状態にして光らせる
                             lastClickedObject = previousClickedObject;
                             itemLight = previousClickedObject.GetComponent<ItemLight>();
                             itemLight.ChangeLight();
+                            previousClickedObject = null; // 一度リセット
+                        }
+                        else
+                        {
+                            lastClickedObject = null; // 選択を完全に解除
                         }
                     }
                     else
                     {
-                        // 前にクリックされたオブジェクトの処理
-                        if (previousClickedObject != null)
+                        // 前のオブジェクトが選択されていた場合は選択解除
+                        if (previousClickedObject != null && previousClickedObject != clickableObject)
                         {
+                            imageScripts.foundMatch = false; // 一方の選択が外れた場合にfalseに設定
+                            imageScripts.mixImage.enabled = false;
                             itemLight = previousClickedObject.GetComponent<ItemLight>();
                             previousClickedObject.isCheck = false;
                             itemLight.ChangeNomal();
                         }
 
-                        // 現在のオブジェクトのisCheckをtrueに設定し、ChangeLightを呼び出してスプライトを入れ替える
+                        // 現在のオブジェクトのisCheckをtrueに設定し、ChangeLightを呼び出す
                         clickableObject.isCheck = true;
                         itemNextLight.ChangeLight();
-                        //SampleSoundManager.Instance.PlaySe(SeType.SE1);
 
                         // lastClickedObjectをpreviousClickedObjectに移す
                         previousClickedObject = lastClickedObject;
 
-                        // 現在のオブジェクトをlastClickedObjectとして記憶
+                        // 現在のオブジェクトをlastClickedObjectにセット
                         lastClickedObject = clickableObject;
 
-                        // クリックされた最後の2つのオブジェクトを管理
+                        // clickedObjectsリストを更新
                         clickedObjects.Add(clickableObject);
                         if (clickedObjects.Count > 2)
                         {
-                            clickedObjects.RemoveAt(0);
+                            clickedObjects.RemoveAt(0); // 2つまで保持
                         }
                     }
+
+                    // タグに基づいてフラグを更新
                     isKeySelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(keyTag));
                     isLightSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(LightTag));
                     isCandleSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(CandleFireTag));
                     isKnifeSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(KnifeTag));
                     isKeyDoorSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(keyDoorTag));
                     isNomalKnifeSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(nomalKnifeTag));
-
-
-
                 }
 
                 break; // 最初のヒットしたUI要素のみ処理
@@ -154,19 +158,10 @@ public class CanvasTouchMouse : MonoBehaviour
                 // ボムがマウスでクリックされた場合の処理
                 if (isKeySelected)
                 {
-                    rockerScripts.OpenRocker();
+                    SceneManager.LoadScene("TutorialScenarioScene2");
                 }
                 isKeySelected = false;
             }
-            //if (hit.collider != null && hit.collider.CompareTag(PictureTag))
-            //{
-            //    // ボムがマウスでクリックされた場合の処理
-            //    if (isLightSelected)
-            //    {
-            //        Debug.Log("これはライトです。");
-            //    }
-            //    isLightSelected = false;
-            //}
         }
     }
 }

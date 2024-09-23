@@ -55,7 +55,7 @@ public class Password : MonoBehaviour
         {
             sampleSoundManager.PlaySe(SeType.SE9);
             objectManager.unrocking = true;
-            this.gameObject.SetActive(false);
+            objectManager.password.SetActive(false);
             interactable.touchAction = Interactable.TouchAction.itemGeted;
             shelfSprite.sprite = opendSprite;
             zoomKey.SetActive(false);

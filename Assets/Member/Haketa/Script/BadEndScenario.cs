@@ -73,8 +73,13 @@ public class BadEndScenario : MonoBehaviour
             //}
             if ("End" == question.move)
             {
-                SceneManagement.Instance.OnMainGame();
+                SampleSoundManager.Instance.StopBgm();
+
                 SampleSoundManager.Instance.PlayBgm(BgmType.BGM3);
+
+                await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
+                SceneManagement.Instance.OnMainGame();
+              
             }
             else if ("Black" == question.move)
             {

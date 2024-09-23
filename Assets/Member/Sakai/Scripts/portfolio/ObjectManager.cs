@@ -22,6 +22,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject targetObjectBox4;
     public GameObject targetObjectKey;
     public GameObject passKey;
+    public GameObject rockerTutorial;
+    public GameObject rockerFake;
     public GameObject key;
     public List<GameObject> items = new List<GameObject>();
     [Header("ÉYÅ[ÉÄÇµÇΩÇ∆Ç´ÇÃÇ‚Ç¬")]
@@ -57,6 +59,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject candle;
     public GameObject candleNomal;
     public GameObject redBook;
+    public GameObject redBookFake;
     public GameObject poizon;
     public GameObject poizonCandle;
     public GameObject poizonKnife;
@@ -108,6 +111,9 @@ public class ObjectManager : MonoBehaviour
     public bool OnTrueMonitor = false;
     public bool OnTrueDesk = false;
     public bool colDeley = false;
+    public bool unrock = false;
+    public bool onePoizon = false;
+    public bool oneKnife = false;
     public Sprite lightImage;
     ItemBer itemBer;
     SampleSoundManager sampleSoundManager;
@@ -123,8 +129,8 @@ public class ObjectManager : MonoBehaviour
     TimeCounter timeCounter;
 
     Interactable interactable;
-
-   private Collider2D deskCol;
+    Collider2D redBookCol;
+    private Collider2D deskCol;
 
     private List<Collider2D> allColliders = new List<Collider2D>();
     private List<Collider2D> allZoomColliders = new List<Collider2D>();
@@ -137,6 +143,7 @@ public class ObjectManager : MonoBehaviour
         }
         if (gameName == GameName.mainGame)
         {
+           
             pictureImage = touchPicture.GetComponent<Image>();
         }
         if (gameName == GameName.trueEnd)
@@ -170,10 +177,7 @@ public class ObjectManager : MonoBehaviour
 
         if (gameName == GameName.tutorial)
         {
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                SceneManagement.Instance.OnTitle();
-            }
+
             ObjectTouch();
             if (passwordScripts != null)
             {
@@ -196,6 +200,16 @@ public class ObjectManager : MonoBehaviour
             {
                 Ontext = false;
             }
+            if(canvasTouchMouse.isKeySelected)
+            {
+                rockerFake.SetActive(true);
+                rockerTutorial.SetActive(false);
+            }
+            else
+            {
+                rockerFake.SetActive(false);
+                rockerTutorial.SetActive(true);
+            }
         }
 
         if (gameName == GameName.mainGame)
@@ -205,10 +219,7 @@ public class ObjectManager : MonoBehaviour
             {
                 StartCoroutine(ColDeray());
             }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SceneManagement.Instance.OnTitle();
-            }
+    
             interactable = door.GetComponent<Interactable>();
             if (!canvasTouchMouse.isCandleSelected && !canvasTouchMouse.isKnifeSelected && !canvasTouchMouse.isNomalKnifeSelected)
             {
@@ -462,6 +473,11 @@ public class ObjectManager : MonoBehaviour
             {
                 if (hit.collider.gameObject == itemGetPanel)
                 {
+                    if(unrock)
+                    {
+                        allColliderSwicth(true);
+                        unrock = false;
+                    }
                     itemGetPanel.SetActive(false);
                     ItemGet = false;
                 }
@@ -563,15 +579,16 @@ public class ObjectManager : MonoBehaviour
                 }
                 if (hit.collider.gameObject == redBook)
                 {
-
+                    
                     addItemNum = 10;
                     if (getSet != null)
                     {
                         imageNum = 10;
                         ItemGet = true;
                     }
-                 
 
+                    redBook.SetActive(false);
+                    redBookFake.SetActive(true);
                 }
                 if (hit.collider.gameObject == touchPicture)
                 {
@@ -591,7 +608,7 @@ public class ObjectManager : MonoBehaviour
                    
 
                 }
-                if (hit.collider.gameObject == poizonKnife)
+                if (hit.collider.gameObject == poizonKnife && !oneKnife)
                 {
                     if (canvasTouchMouse.isKnifeSelected)
                     {
@@ -604,9 +621,10 @@ public class ObjectManager : MonoBehaviour
                         }
                         canvasTouchMouse.lastClickedObject = null;
                         itemBer.OnItemBer();
+                        oneKnife = true;
                     }
                 }
-                    if (hit.collider.gameObject == poizonCandle && recipeGet)
+                    if (hit.collider.gameObject == poizonCandle && recipeGet &&!onePoizon)
                 {
                     if (canvasTouchMouse.isCandleSelected)
                     {
@@ -619,6 +637,7 @@ public class ObjectManager : MonoBehaviour
                         }
                         canvasTouchMouse.lastClickedObject = null;
                         itemBer.OnItemBer();
+                        onePoizon = true;
                     }
                   
 
@@ -693,8 +712,8 @@ public class ObjectManager : MonoBehaviour
                 }
                 if (hit.collider.gameObject == bomb)
                 {
-                   
-                        bombPass.SetActive(true);
+                    textEnd = false;
+                    bombPass.SetActive(true);
                         zoomOffColMain.SetActive(true);
                         allColliderSwicth(false);
                    

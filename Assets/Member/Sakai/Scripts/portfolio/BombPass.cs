@@ -58,8 +58,10 @@ public class BombPass : MonoBehaviour
             }
             itemBer.AddItem(objectManager.items[16]);
             getSet.ImageChange(22);
+            objectManager.allColliderSwicth(false);
+            objectManager.unrock = true;
             objectManager.bombPass.SetActive(false);
-            objectManager.allColliderSwicth(true);
+            objectManager.zoomOffColMain.SetActive(false);
             timer.Stop();
             objectManager.bombRock.SetActive(false);
             objectManager.bombUnrock.SetActive(true);

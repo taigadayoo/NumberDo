@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using static Unity.Collections.AllocatorManager;
+using Cysharp.Threading.Tasks;
+using System;
 
 public class TrueEndScenario2 : MonoBehaviour
 {
@@ -20,7 +22,7 @@ public class TrueEndScenario2 : MonoBehaviour
     private GameObject _bgmobj;
     [SerializeField]
     private VideoPlayer _videoPlayer;
-
+    public GameObject panel;
     public int math = 0;
     private bool chack = true;
     [SerializeField]
@@ -38,7 +40,7 @@ public class TrueEndScenario2 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+   async void Update()
     {
         if (chack && Input.GetMouseButtonDown(0))
         {
@@ -65,9 +67,18 @@ public class TrueEndScenario2 : MonoBehaviour
             //}
             if ("PlayVideo" == question.move)
             {
-                _bgmobj.SetActive(false);
+                panel.SetActive(true);
                 _textbox.SetActive(false);
                 PlayVideo();
+
+                await UniTask.Delay(TimeSpan.FromSeconds(9.5f));
+
+                SceneManagement.Instance.OnTrueEnd3();
+               
+            }
+            else if("StopBGM" == question.move)
+            {
+                SampleSoundManager.Instance.StopBgm();
             }
             else if ("End" == question.move)
             {

@@ -107,6 +107,7 @@ public class ObjectManager : MonoBehaviour
     public bool OnTrueShelse = false;
     public bool OnTrueMonitor = false;
     public bool OnTrueDesk = false;
+    public bool colDeley = false;
     public Sprite lightImage;
     ItemBer itemBer;
     SampleSoundManager sampleSoundManager;
@@ -200,6 +201,10 @@ public class ObjectManager : MonoBehaviour
         if (gameName == GameName.mainGame)
         {
             MainObjectTouch();
+            if(colDeley)
+            {
+                StartCoroutine(ColDeray());
+            }
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManagement.Instance.OnTitle();
@@ -627,7 +632,7 @@ public class ObjectManager : MonoBehaviour
                    
                     if (canvasTouchMouse.isKeyDoorSelected)
                     {
-                       
+                        SampleSoundManager.Instance.PlaySe(SeType.SE8);
                         itemBer.OffBer();
                         door.SetActive(false);
                         doorOpen.SetActive(true);
@@ -707,6 +712,15 @@ public class ObjectManager : MonoBehaviour
         }
 
     }
+    IEnumerator ColDeray()
+    {
+
+            yield return new WaitForSeconds(0.1f);
+
+            allColliderSwicth(true);
+            colDeley = false;
+
+    }
     IEnumerator FruitTouch()
     {
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
@@ -752,7 +766,7 @@ public class ObjectManager : MonoBehaviour
                     OnTrueMonitor = true;
                     allColliderSwicth(false);
                 }
-                if (hit.collider.gameObject == trueDesk )
+                if (hit.collider.gameObject == trueDesk && textEnd )
                 {
 
                     OnTrueDesk = true;

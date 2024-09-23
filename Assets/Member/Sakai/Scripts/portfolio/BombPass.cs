@@ -113,10 +113,12 @@ public class BombPass : MonoBehaviour
              !IsMouseOverUIElement(digit3) &&
              !IsMouseOverUIElement(digit4))
             {
+              
                 objectManager.Ontext = false;
-                objectManager.password.SetActive(false);
+                objectManager.bombPass.SetActive(false);
                 objectManager.OnPass = false;
                 objectManager.OnBox4 = false;
+                objectManager.allColliderSwicth(true);
             }
         }
     }
@@ -132,6 +134,7 @@ public class BombPass : MonoBehaviour
 
     bool IsMouseOverUIElement(Text textElement)
     {
+      
         // UI—v‘f‚Ì‹«ŠE‹éŒ`‚ðŽæ“¾
         RectTransform rectTransform = textElement.GetComponent<RectTransform>();
         Vector2 localMousePosition = rectTransform.InverseTransformPoint(Input.mousePosition);

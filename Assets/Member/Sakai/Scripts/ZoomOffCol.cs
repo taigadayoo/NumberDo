@@ -34,10 +34,10 @@ public class ZoomOffCol : MonoBehaviour
             medicine.SetActive(false);
             monitorPass.SetActive(false);
             this.gameObject.SetActive(false);
-            objectManager.allColliderSwicth(true);
             miniGameClear.SetActive(false);
             bombPass.SetActive(false);
             objectManager.OnBox4 = false;
+            objectManager.colDeley = true;
         }
     }
 }

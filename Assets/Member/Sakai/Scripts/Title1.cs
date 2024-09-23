@@ -49,7 +49,7 @@ public class Title1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        SampleSoundManager.Instance.PlayBgm(BgmType.BGM1);
         end1Image = end1.GetComponent<Image>();
         end2Image = end2.GetComponent<Image>();
         mainImage = main.GetComponent<Image>();
@@ -70,7 +70,7 @@ public class Title1 : MonoBehaviour
         raycaster = GetComponent<GraphicRaycaster>();
         eventSystem = GetComponent<EventSystem>();
         StartCoroutine(EnableClickAfterDelay(1f));  // 1秒後にクリック可能に
-        SampleSoundManager.Instance.PlayBgm(BgmType.BGM1);
+      
     }
     IEnumerator EnableClickAfterDelay(float delay)
     {

@@ -41,6 +41,7 @@ public class TrueEndScenario : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         //anim = GetComponent<Animator>();
         ReadQuestion();
     }
@@ -85,7 +86,7 @@ public class TrueEndScenario : MonoBehaviour
                     _camera.SetActive(false);
                     //_panel.SetActive(false);
                     _panel.SetActive(false);
-                    _bgmobj.SetActive(true);
+                    SampleSoundManager.Instance.PlayBgm(BgmType.BGM5);
                     anim.SetBool("isusua_b", false);
                     anim.SetBool("istrueend", true);
                     _chack = true;
@@ -96,7 +97,7 @@ public class TrueEndScenario : MonoBehaviour
                 }
                 else if ("End" == question.move)
                 {
-                    //ÉVÅ[ÉìëJà⁄
+                    SceneManagement.Instance.OnTrueEnd();
                 }
             }
         }

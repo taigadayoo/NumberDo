@@ -68,10 +68,12 @@ public class TrueEndScenario3 : MonoBehaviour
             //}
          if ("End" == question.move)
             {
-              
+                _textbox.SetActive(false);
+                await UniTask.Delay(TimeSpan.FromSeconds(2.0f));
+
                 PlayVideo();
               
-                await UniTask.Delay(TimeSpan.FromSeconds(60.0f));
+                await UniTask.Delay(TimeSpan.FromSeconds(63.0f));
 
                 SceneManagement.Instance.OnTitle();
             }
@@ -105,6 +107,7 @@ public class TrueEndScenario3 : MonoBehaviour
     }
     private void PlayVideo()
     {
+        
         skip = true;
         _videoPlayer.gameObject.SetActive(true);
         _videoPlayer.Play();

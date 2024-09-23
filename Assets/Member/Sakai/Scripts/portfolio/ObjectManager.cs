@@ -388,14 +388,7 @@ public class ObjectManager : MonoBehaviour
                     OnBox4 = true;
                     Ontext = true;
                 }
-                else if (hit.collider.gameObject == targetObjectBox4 && OnBox4 && !Ontext)
-                {
-                    zoomShelf.SetActive(false);
-                    password.SetActive(false);
-                    Ontext = false;
-                    OnBox4 = false;
-                    OnPass = false;
-                }
+
                  if (hit.collider.gameObject == targetObjectKey && !OneKey)
                 {
                     addItemNum = 3;
@@ -413,7 +406,7 @@ public class ObjectManager : MonoBehaviour
                     OneKey = true;
                 }
             }
-            if (hit.collider != null && !OnBox4 && !OnPass && !ItemGet)
+            if (hit.collider != null && !OnBox4 && !OnPass && !ItemGet && !Ontext)
             {
                 // 当たったCollider2DのGameObjectが特定のオブジェクトであるかを確認する
                 if (hit.collider.gameObject == targetObjectBox)
@@ -431,7 +424,7 @@ public class ObjectManager : MonoBehaviour
 
                 }
 
-                if (hit.collider.gameObject == targetObjectBox2 && !OnBox2)
+                if (hit.collider.gameObject == targetObjectBox2 && !OnBox2 && !Ontext)
                 {
                     
                     addItemNum = 0;
@@ -443,7 +436,7 @@ public class ObjectManager : MonoBehaviour
 
                     OnBox2 = true;
                 }
-                if (hit.collider.gameObject == targetObjectBox3 && !OnBox3)
+                if (hit.collider.gameObject == targetObjectBox3 && !OnBox3 && !Ontext)
                 {
             
                     addItemNum = 1;

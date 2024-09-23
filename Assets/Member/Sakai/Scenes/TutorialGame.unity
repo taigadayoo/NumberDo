@@ -2144,8 +2144,6 @@ GameObject:
   - component: {fileID: 245743354}
   - component: {fileID: 245743357}
   - component: {fileID: 245743356}
-  - component: {fileID: 245743355}
-  - component: {fileID: 245743358}
   m_Layer: 5
   m_Name: Candle
   m_TagString: Untagged
@@ -2172,51 +2170,6 @@ RectTransform:
   m_AnchoredPosition: {x: -373, y: 229}
   m_SizeDelta: {x: 174, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!61 &245743355
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 245743353}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.61641693, y: -17.26152}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 71.27496, y: 176.06894}
-  m_EdgeRadius: 0
 --- !u!114 &245743356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2255,22 +2208,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245743353}
   m_CullTransparentMesh: 1
---- !u!114 &245743358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 245743353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66d3e4c5f43ee3b4c884d6b7d490d9d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 6b717e25032577a448e1746fe38975f9, type: 2}
-  dialogueManager: {fileID: 0}
-  textBox: {fileID: 1803675411}
-  touchAction: 0
 --- !u!1 &251306856
 GameObject:
   m_ObjectHideFlags: 0
@@ -7749,7 +7686,6 @@ GameObject:
   - component: {fileID: 1533911474}
   - component: {fileID: 1533911477}
   - component: {fileID: 1533911476}
-  - component: {fileID: 1533911475}
   m_Layer: 5
   m_Name: Fruit
   m_TagString: Untagged
@@ -7776,51 +7712,6 @@ RectTransform:
   m_AnchoredPosition: {x: 281, y: 214}
   m_SizeDelta: {x: 480, y: 360}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!61 &1533911475
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533911473}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 18.947418, y: 4.736908}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 259.9489, y: 288.37018}
-  m_EdgeRadius: 0
 --- !u!114 &1533911476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9786,8 +9677,6 @@ GameObject:
   - component: {fileID: 1939785017}
   - component: {fileID: 1939785020}
   - component: {fileID: 1939785019}
-  - component: {fileID: 1939785018}
-  - component: {fileID: 1939785021}
   m_Layer: 5
   m_Name: poizon
   m_TagString: Untagged
@@ -9814,51 +9703,6 @@ RectTransform:
   m_AnchoredPosition: {x: -262, y: 226}
   m_SizeDelta: {x: 240, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!61 &1939785018
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939785016}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.7167969, y: 1.3058395}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 113.86629, y: 193.3957}
-  m_EdgeRadius: 0
 --- !u!114 &1939785019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9897,22 +9741,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939785016}
   m_CullTransparentMesh: 1
---- !u!114 &1939785021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939785016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66d3e4c5f43ee3b4c884d6b7d490d9d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 885f79b828100a24d84ce79a465b67db, type: 2}
-  dialogueManager: {fileID: 0}
-  textBox: {fileID: 1803675411}
-  touchAction: 0
 --- !u!1 &1945843608 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4998470370804749554, guid: 11b3d8c5b374d4f4da58a6fb71187b78, type: 3}
@@ -11005,6 +10833,7 @@ MonoBehaviour:
   candle: {fileID: 0}
   candleNomal: {fileID: 0}
   redBook: {fileID: 0}
+  redBookFake: {fileID: 0}
   poizon: {fileID: 0}
   poizonCandle: {fileID: 0}
   poizonKnife: {fileID: 0}
@@ -11060,6 +10889,8 @@ MonoBehaviour:
   OnTrueDesk: 0
   colDeley: 0
   unrock: 0
+  onePoizon: 0
+  oneKnife: 0
   lightImage: {fileID: 0}
   getSet: {fileID: 227419227}
   dialogueManager: {fileID: 2001652941}

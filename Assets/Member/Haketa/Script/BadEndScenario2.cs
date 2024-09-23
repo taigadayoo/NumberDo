@@ -21,11 +21,17 @@ public class BadEndScenario2 : MonoBehaviour
     [SerializeField] 
     private GameObject _white;
     [SerializeField]
+    private GameObject _camera;
+    [SerializeField]
+    private GameObject _maecamera;
+    [SerializeField]
+    private GameObject _bgmobj;
+    [SerializeField]
     private AudioSource _batan;
     [SerializeField]
     private AudioSource _brain;
-    [SerializeField]
-    private AudioSource _bgm;
+    
+    
     bool check = true;
     public int math = 0;
     [SerializeField]
@@ -35,7 +41,6 @@ public class BadEndScenario2 : MonoBehaviour
     private string fullText;
     private Coroutine displayCoroutine;
 
-    private bool batan = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,13 +73,10 @@ public class BadEndScenario2 : MonoBehaviour
                 }
                 else if ("BadEnd" == question.move)
                 {
-                    if (!batan)
-                    {
-                        _bgm.Play();
-                        batan = true;
-                    }
-                    anim.SetBool("isusua_b", false);
-                    anim.SetBool("isbadend", true);
+                    //_black.SetActive(false);
+                    //_bgmobj.SetActive(true);
+                    //anim.SetBool("isusua_b", false);
+                    //anim.SetBool("isbadend", true);
                 }
                 else if("Black" == question.move)
                 {
@@ -83,21 +85,41 @@ public class BadEndScenario2 : MonoBehaviour
                     _batan.PlayOneShot(_batan.clip);
                     _black.SetActive(true);
                     await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
+                    _maecamera.SetActive(true);
+                    _camera.SetActive(false);
+                    //_bgmobj.SetActive(true);
+                    //_black.SetActive(false);
                     _black.SetActive(false);
+                    _bgmobj.SetActive(true);
+                    anim.SetBool("isusua_b", false);
+                    anim.SetBool("isbadend", true);
                     check = true;
                
                 }
+                else if ("Black2" == question.move)
+                {
+                    check = false;
+                    //ì|ÇÍÇÈSE
+                    _batan.PlayOneShot(_batan.clip);
+                    _black.SetActive(true);
+                    await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
+                    _maecamera.SetActive(true);
+                    _camera.SetActive(false);
+                    _bgmobj.SetActive(true);
+                    _do.SetActive(false);
+                    _black.SetActive(false);
+                    _white.SetActive(true);
+                    check = true;
+                }
                 else if ("Off2" == question.move)
                 {
-                   _brain.PlayOneShot(_brain.clip);
-                    _white.SetActive(true);
-                    _do.SetActive(false);
+                    _brain.PlayOneShot(_brain.clip);
+ 
                 }
                 else if ("End" == question.move)
 
                 {
-                    SceneManagement.Instance.OnMainGame();
-                    SampleSoundManager.Instance.PlayBgm(BgmType.BGM3);
+                    //ÉVÅ[ÉìëJà⁄
                 }
             }
         }

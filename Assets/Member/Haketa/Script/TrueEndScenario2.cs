@@ -1,5 +1,3 @@
-using Cysharp.Threading.Tasks;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,9 +17,10 @@ public class TrueEndScenario2 : MonoBehaviour
     [SerializeField]
     private GameObject _textbox;
     [SerializeField]
+    private GameObject _bgmobj;
+    [SerializeField]
     private VideoPlayer _videoPlayer;
 
-    public GameObject panel;
     public int math = 0;
     private bool chack = true;
     [SerializeField]
@@ -33,14 +32,13 @@ public class TrueEndScenario2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        panel.SetActive(false);
         //anim = GetComponent<Animator>();
         ReadQuestion();
         _videoPlayer.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
-   async void Update()
+    void Update()
     {
         if (chack && Input.GetMouseButtonDown(0))
         {
@@ -55,10 +53,11 @@ public class TrueEndScenario2 : MonoBehaviour
                 ++math;
                 ReadQuestion();
             }
-            if ("StopBGM" == question.move)
-            {
-                SampleSoundManager.Instance.StopBgm();
-            }
+            //if ("usually_blood" == question.move)
+            //{
+            //    anim.SetBool("isusua_b", true);
+            //    anim.SetBool("istrueend", false);
+            //}
             //else if ("TrueEnd" == question.move)
             //{
             //    anim.SetBool("isusua_b", false);
@@ -66,18 +65,13 @@ public class TrueEndScenario2 : MonoBehaviour
             //}
             if ("PlayVideo" == question.move)
             {
-             
-                chack = false;
+                _bgmobj.SetActive(false);
                 _textbox.SetActive(false);
                 PlayVideo();
-                await UniTask.Delay(TimeSpan.FromSeconds(7.0f));
-                chack = false;
-                panel.SetActive(true);
-                SceneManagement.Instance.OnTrueEnd3();
             }
             else if ("End" == question.move)
             {
-               
+                //ÉVÅ[ÉìëJà⁄
             }
         }
     }

@@ -22,39 +22,32 @@ public class TrueEndScenario : MonoBehaviour
     [SerializeField]
     private GameObject _textbox;
     [SerializeField]
-    private AudioSource _audioSource;
-
+    private GameObject _camera;
     [SerializeField]
-    private AudioSource _audioSourceBGM;
+    private GameObject _maecamera;
+    [SerializeField]
+    private GameObject _bgmobj;
+    [SerializeField]
+    private AudioSource _audioSource;
 
     public int math = 0;
     private bool _chack = true;
     [SerializeField]
     public Animator anim;
 
-    private bool oneBGM = false;
-    private bool bgmStart = false;
     private bool isTextDisplaying = false;
     private string fullText;
     private Coroutine displayCoroutine;
-
-    SampleSoundManager soundManager;
     // Start is called before the first frame update
     void Start()
     {
         //anim = GetComponent<Animator>();
         ReadQuestion();
-        soundManager = FindObjectOfType<SampleSoundManager>();
     }
 
     // Update is called once per frame
     async void Update()
     {
-        if (!oneBGM && bgmStart)
-        {
-            soundManager.PlayBgm(BgmType.BGM5);
-            oneBGM = true;
-        }
         if (_chack == true)
         {
             if (Input.GetMouseButtonDown(0))
@@ -77,7 +70,7 @@ public class TrueEndScenario : MonoBehaviour
                 }
                 else if ("TrueEnd" == question.move)
                 {
-                    bgmStart = true;
+                    _panel.SetActive(false);
                     anim.SetBool("isusua_b", false);
                     anim.SetBool("istrueend", true);
                 }
@@ -88,7 +81,13 @@ public class TrueEndScenario : MonoBehaviour
                     //SEä‘Ç…çáÇ¡Çƒñ≥Ç©Ç¡ÇΩÇÁÇ±Ç±Ç…èeê∫
                     _audioSource.PlayOneShot(_audioSource.clip);
                     await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
+                    _maecamera.SetActive(true);
+                    _camera.SetActive(false);
+                    //_panel.SetActive(false);
                     _panel.SetActive(false);
+                    _bgmobj.SetActive(true);
+                    anim.SetBool("isusua_b", false);
+                    anim.SetBool("istrueend", true);
                     _chack = true;
                 }
                 else if("Off" == question.move)
@@ -97,7 +96,7 @@ public class TrueEndScenario : MonoBehaviour
                 }
                 else if ("End" == question.move)
                 {
-                    SceneManagement.Instance.OnTrueEnd();
+                    //ÉVÅ[ÉìëJà⁄
                 }
             }
         }

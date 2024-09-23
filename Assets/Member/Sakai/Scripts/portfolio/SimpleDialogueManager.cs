@@ -210,7 +210,7 @@ public class SimpleDialogueManager : MonoBehaviour
     }
     public void DisplayLine3()
     {
-        if (currentLineIndex < currentDialogue.lines.Count)
+        if (currentLineIndex < 2)
         {
             var line = currentDialogue.lines[currentLineIndex];
             if (typingCoroutine != null)
@@ -283,7 +283,10 @@ public class SimpleDialogueManager : MonoBehaviour
                 SampleSoundManager.Instance.StopBgm();
             }
         }
-        objectManager.allColliderSwicth(true);
+        if (!objectManager.OnBox4)
+        {
+            objectManager.allColliderSwicth(true);
+        }
     }
     public void EndDialogueFruit()
     {

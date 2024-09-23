@@ -4431,6 +4431,7 @@ GameObject:
   - component: {fileID: 604477284}
   - component: {fileID: 604477283}
   - component: {fileID: 604477282}
+  - component: {fileID: 604477287}
   m_Layer: 5
   m_Name: ZoomOffCol
   m_TagString: Untagged
@@ -4599,7 +4600,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -751.9811, y: 165.9958}
+  m_Offset: {x: -751.9811, y: 104.98065}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4610,7 +4611,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 440.989, y: 760.98083}
+  m_Size: {x: 440.989, y: 883.0111}
   m_EdgeRadius: 0
 --- !u!61 &604477286
 BoxCollider2D:
@@ -4644,7 +4645,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 42.80072, y: -383.9477}
+  m_Offset: {x: 558.21826, y: -383.9477}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4655,7 +4656,52 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2090.6821, y: 330.8175}
+  m_Size: {x: 1059.8472, y: 330.8175}
+  m_EdgeRadius: 0
+--- !u!61 &604477287
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604477280}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -250.48328, y: -276.1738}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 540.50244, y: 116.60762}
   m_EdgeRadius: 0
 --- !u!1 &614256471
 GameObject:
@@ -7479,6 +7525,10 @@ MonoBehaviour:
   bombUnrock: {fileID: 737207395}
   pictureLight: {fileID: 389992573}
   monitorGamed: {fileID: 407763841}
+  trueDesk: {fileID: 0}
+  trueShelf: {fileID: 0}
+  trueShelf2: {fileID: 0}
+  trueMonitor: {fileID: 0}
   touchObject:
   - {fileID: 289620642}
   - {fileID: 1203707317}
@@ -7524,6 +7574,9 @@ MonoBehaviour:
   OnClock: 0
   recipeGet: 0
   OnGoal: 0
+  OnTrueShelse: 0
+  OnTrueMonitor: 0
+  OnTrueDesk: 0
   lightImage: {fileID: 21300000, guid: 712a694b2596a8b44b6efc4f28be378c, type: 3}
   getSet: {fileID: 227419227}
   dialogueManager: {fileID: 0}
@@ -11078,7 +11131,6 @@ RectTransform:
   m_Children:
   - {fileID: 1423468580}
   - {fileID: 473227583}
-  - {fileID: 811213450}
   - {fileID: 195049609}
   - {fileID: 1584612893}
   - {fileID: 325123789}
@@ -11091,6 +11143,7 @@ RectTransform:
   - {fileID: 604477281}
   - {fileID: 1726198222}
   - {fileID: 976260237}
+  - {fileID: 811213450}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -13217,6 +13270,10 @@ MonoBehaviour:
   sceneNameMainGame: 
   sceneNameGameOver: 
   sceneNameGameOver2: 
+  sceneNameScecnarioSelect: 
+  sceneNameTrueEndGameScene: 
+  sceneNameTrueEnd2: 
+  sceneNameTrueEnd3: 
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   fadeSpeed: 1
 --- !u!4 &1803941574

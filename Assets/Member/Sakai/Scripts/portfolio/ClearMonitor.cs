@@ -15,7 +15,7 @@ public class ClearMonitor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        SampleSoundManager.Instance.PlayBgm(BgmType.BGM3);
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class ClearMonitor : MonoBehaviour
             itemBer.AddItem(objectManager.items[objectManager.addItemNum]);
             objectManager.imageNum = 19;
             getSet.ImageChange(objectManager.imageNum);
-            SampleSoundManager.Instance.PlayBgm(BgmType.BGM3);
+           
             objectManager.miniGameClear.SetActive(false);
             objectManager.allColliderSwicth(true);
             this.gameObject.SetActive(false);

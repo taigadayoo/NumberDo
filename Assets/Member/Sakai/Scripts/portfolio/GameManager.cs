@@ -44,11 +44,16 @@ public class GameManager : MonoBehaviour
     }
     public void No()
     {
+        SampleSoundManager.Instance.StopBgm();
+
+        SampleSoundManager.Instance.PlayBgm(BgmType.BGM3);
+
+
         objectManager.miniGameDead.SetActive(false);
         noImage.sprite = pushNo;
         StartCoroutine(RevertSpriteNo());
         objectManager.allColliderSwicth(true);
-        SampleSoundManager.Instance.PlayBgm(BgmType.BGM3);
+       
     }
     private IEnumerator RevertSpriteYes()
     {

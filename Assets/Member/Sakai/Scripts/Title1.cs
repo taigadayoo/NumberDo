@@ -45,10 +45,11 @@ public class Title1 : MonoBehaviour
     [SerializeField]
     TitleAnim anim;
     SampleSoundManager soundManager;
-
+    private bool canClick = false;
     // Start is called before the first frame update
     void Start()
     {
+
         end1Image = end1.GetComponent<Image>();
         end2Image = end2.GetComponent<Image>();
         mainImage = main.GetComponent<Image>();
@@ -68,61 +69,85 @@ public class Title1 : MonoBehaviour
         panel.SetActive(false);
         raycaster = GetComponent<GraphicRaycaster>();
         eventSystem = GetComponent<EventSystem>();
-
+        StartCoroutine(EnableClickAfterDelay(1f));  // 1秒後にクリック可能に
         SampleSoundManager.Instance.PlayBgm(BgmType.BGM1);
     }
-
-   public void OnEnd1()
+    IEnumerator EnableClickAfterDelay(float delay)
     {
-
-        soundManager.PlaySe(SeType.SE6);
-        SampleSoundManager.Instance.StopBgm();
-        sceneManagement.OnGameOver();
-        panel.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        canClick = true;  // クリックを有効にする
+    }
+    public void OnEnd1()
+    {
+        if (canClick)
+        {
+            soundManager.PlaySe(SeType.SE6);
+            SampleSoundManager.Instance.StopBgm();
+            sceneManagement.OnGameOver();
+            panel.SetActive(true);
+        }
     }
      public void OnEnd2()
     {
-        soundManager.PlaySe(SeType.SE6);
-        SampleSoundManager.Instance.StopBgm();
-        sceneManagement.OnGameOver2();
-        panel.SetActive(true);
+        if (canClick)
+        {
+            soundManager.PlaySe(SeType.SE6);
+            SampleSoundManager.Instance.StopBgm();
+            sceneManagement.OnGameOver2();
+            panel.SetActive(true);
+        }
     }
      public void OnMainGame()
     {
-        soundManager.PlaySe(SeType.SE6);
-        SampleSoundManager.Instance.StopBgm();
-        SampleSoundManager.Instance.PlayBgm(BgmType.BGM3); 
-        sceneManagement.OnMainGame();
-        panel.SetActive(true);
+        if (canClick)
+        {
+            soundManager.PlaySe(SeType.SE6);
+            SampleSoundManager.Instance.StopBgm();
+            SampleSoundManager.Instance.PlayBgm(BgmType.BGM3);
+            sceneManagement.OnMainGame();
+            panel.SetActive(true);
+        }
     }
      public void OnTutorial1()
     {
-        soundManager.PlaySe(SeType.SE6);
+        if (canClick)
+        {
+            soundManager.PlaySe(SeType.SE6);
 
-        SampleSoundManager.Instance.StopBgm();
-        sceneManagement.OnAttention();
-        panel.SetActive(true);
+            SampleSoundManager.Instance.StopBgm();
+            sceneManagement.OnAttention();
+            panel.SetActive(true);
+        }
     }
     public void OnTutorial2()
     {
-        soundManager.PlaySe(SeType.SE6);
-        SampleSoundManager.Instance.StopBgm();
-        sceneManagement.OnMainGameMove();
-        panel.SetActive(true);
+        if (canClick)
+        {
+            soundManager.PlaySe(SeType.SE6);
+            SampleSoundManager.Instance.StopBgm();
+            sceneManagement.OnMainGameMove();
+            panel.SetActive(true);
+        }
     }
      public void OnTitle()
     {
-        SampleSoundManager.Instance.StopBgm();
-        sceneManagement.OnTitle();
-        soundManager.PlaySe(SeType.SE6);
-        panel.SetActive(true);
+        if (canClick)
+        {
+            SampleSoundManager.Instance.StopBgm();
+            sceneManagement.OnTitle();
+            soundManager.PlaySe(SeType.SE6);
+            panel.SetActive(true);
+        }
     }
     public void OnTrueEnd()
     {
-        SampleSoundManager.Instance.StopBgm();
-        sceneManagement.OnClear();
-        soundManager.PlaySe(SeType.SE6);
-        panel.SetActive(true);
+        if (canClick)
+        {
+            SampleSoundManager.Instance.StopBgm();
+            sceneManagement.OnClear();
+            soundManager.PlaySe(SeType.SE6);
+            panel.SetActive(true);
+        }
     }
     async void Update()
     {

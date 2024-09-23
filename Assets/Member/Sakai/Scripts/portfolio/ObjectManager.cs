@@ -363,9 +363,10 @@ public class ObjectManager : MonoBehaviour
                     OnPass = false;
                     allColliderSwicth(true);
                 }
-            
-                if (hit.collider.gameObject == targetObjectBox4 && !OnBox4 && !Ontext)
+              
+                if (hit.collider.gameObject == targetObjectBox4 && !OnBox4 /*&& !Ontext*/)
                 {
+                    Debug.Log("aaa");
                     allColliderSwicth(false);
                     zoomShelf.SetActive(true);
                     OnBox4 = true;
@@ -461,7 +462,7 @@ public class ObjectManager : MonoBehaviour
                 }
             }
 
-            if (hit.collider != null && !OnBox4 && !OnPass && !ItemGet)
+            if (hit.collider != null  && !OnPass && !ItemGet)
             {
                 // 当たったCollider2DのGameObjectが特定のオブジェクトであるかを確認する
                 if (hit.collider.gameObject == targetObjectBox)
@@ -490,6 +491,7 @@ public class ObjectManager : MonoBehaviour
                     }
                     nabeobj.SetActive(false);
                     OnMedicine = true;
+                  
                 }
                 if (hit.collider.gameObject == clock && !Onclock)
                 {
@@ -641,6 +643,7 @@ public class ObjectManager : MonoBehaviour
                 }
                 if (hit.collider.gameObject == bookShelf)
                 {
+                    OnBox4 = true;
                     bookZoom.SetActive(true);
                     zoomOffColMain.SetActive(true);
                     allColliderSwicth(false);
@@ -651,6 +654,7 @@ public class ObjectManager : MonoBehaviour
                 }
                 if (hit.collider.gameObject == medicine)
                 {
+                    OnBox4 = true;
                     shelfZoom.SetActive(true);
                     zoomOffColMain.SetActive(true);
                     allColliderSwicth(false);
@@ -664,11 +668,13 @@ public class ObjectManager : MonoBehaviour
                     pictureZoom.SetActive(true);
                     zoomOffColMain.SetActive(true);
                     allColliderSwicth(false);
+                    OnBox4 = true;
                 }
                 if (hit.collider.gameObject == monitor)
                 {
                     if (!OnKeyCode)
                     {
+                        OnBox4 = true;
                         monitorZoom.SetActive(true);
                         zoomOffColMain.SetActive(true);
                         allColliderSwicth(false);

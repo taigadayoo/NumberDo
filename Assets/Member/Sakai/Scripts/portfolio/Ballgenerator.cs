@@ -13,18 +13,29 @@ public class Ballgenerator : MonoBehaviour
     public TimeCounter timeCounter; // カウントダウンを管理するスクリプト
     public Text countdownText; // UI上でカウントダウンを表示するText
     public int countdownTime = 3; // カウントダウンの開始値
-
+    private bool isFirstEnable = true;
     private List<GameObject> ballList = new List<GameObject>();
     private void Start()
     {
-        //StartCoroutine(StartCountdown());
-        //SampleSoundManager.Instance.PlayBgm(BgmType.BGM4);
+        SampleSoundManager.Instance.StopBgm();
+        StartCoroutine(StartCountdown());
+       
     }
     private void OnEnable()
     {
-        SampleSoundManager.Instance.PlaySe(SeType.SE10);
-        SampleSoundManager.Instance.PlayBgm(BgmType.BGM4);
-        StartCoroutine(StartCountdown());
+
+            if (isFirstEnable)
+            {
+                // 最初の有効化ではOnEnableは何もしない
+                isFirstEnable = false;
+            }
+            else
+            {
+            SampleSoundManager.Instance.StopBgm();
+
+            StartCoroutine(StartCountdown());
+            }
+          
     }
     void Update()
     {
@@ -33,6 +44,9 @@ public class Ballgenerator : MonoBehaviour
     }
     private IEnumerator StartCountdown()
     {
+        SampleSoundManager.Instance.PlayBgm(BgmType.BGM4);
+
+        SampleSoundManager.Instance.PlaySe(SeType.SE10);
         int currentTime = countdownTime;
 
         while (currentTime > 0)

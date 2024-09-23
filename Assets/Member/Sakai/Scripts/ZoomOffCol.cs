@@ -37,6 +37,7 @@ public class ZoomOffCol : MonoBehaviour
             objectManager.allColliderSwicth(true);
             miniGameClear.SetActive(false);
             bombPass.SetActive(false);
+            objectManager.OnBox4 = false;
         }
     }
 }

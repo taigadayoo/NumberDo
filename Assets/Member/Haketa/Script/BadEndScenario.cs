@@ -23,7 +23,7 @@ public class BadEndScenario : MonoBehaviour
     [SerializeField]
     private AudioSource audioSource;
 
-
+    public GameObject icon;
     bool _chack = true;
     public int math = 0;
     [SerializeField]
@@ -85,10 +85,12 @@ public class BadEndScenario : MonoBehaviour
             {
                 _chack = false;
                 //”š”­SE
+                icon.SetActive(false);
                 audioSource.PlayOneShot(audioSource.clip);
                 _black.SetActive(true);
                 _do.SetActive(false);
                 await UniTask.Delay(TimeSpan.FromSeconds(5.0f));
+                icon.SetActive(true);
                 _black.SetActive(false);
                 _red.SetActive(true);
                 _chack = true;

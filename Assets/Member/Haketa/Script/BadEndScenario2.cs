@@ -30,8 +30,8 @@ public class BadEndScenario2 : MonoBehaviour
     private AudioSource _batan;
     [SerializeField]
     private AudioSource _brain;
-    
-    
+
+    public GameObject icon;
     bool check = true;
     public int math = 0;
     [SerializeField]
@@ -84,7 +84,9 @@ public class BadEndScenario2 : MonoBehaviour
                     //ì|ÇÍÇÈSE
                     _batan.PlayOneShot(_batan.clip);
                     _black.SetActive(true);
+                    icon.SetActive(false);
                     await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
+                    icon.SetActive(true);
                     _maecamera.SetActive(true);
                     _camera.SetActive(false);
                     _black.SetActive(false);
@@ -100,7 +102,11 @@ public class BadEndScenario2 : MonoBehaviour
                     //ì|ÇÍÇÈSE
                     _batan.PlayOneShot(_batan.clip);
                     _black.SetActive(true);
-                    await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
+                    icon.SetActive(false);
+                    await UniTask.Delay(TimeSpan.FromSeconds(1.0f));
+                    _brain.PlayOneShot(_brain.clip);
+                    await UniTask.Delay(TimeSpan.FromSeconds(2.0f));
+                    icon.SetActive(true);
                     _maecamera.SetActive(true);
                     _camera.SetActive(false);
                     _bgmobj.SetActive(true);
@@ -111,7 +117,7 @@ public class BadEndScenario2 : MonoBehaviour
                 }
                 else if ("Off2" == question.move)
                 {
-                    _brain.PlayOneShot(_brain.clip);
+                
                     
 
                 }

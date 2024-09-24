@@ -28,6 +28,7 @@ public class TutorialScenario2 : MonoBehaviour
     private bool isTextDisplaying = false;
     private string fullText;
     private Coroutine displayCoroutine;
+    public GameObject icon;
     public GameObject bikkuri;
     // Start is called before the first frame update
     void Start()
@@ -72,7 +73,7 @@ public class TutorialScenario2 : MonoBehaviour
 
                 _textbox.SetActive(false);
 
-
+                icon.SetActive(false);
                 await UniTask.Delay(TimeSpan.FromSeconds(1f));
                 chack = false;
                 PlayVideo();
@@ -86,6 +87,7 @@ public class TutorialScenario2 : MonoBehaviour
                 bikkuri.SetActive(false);
                 chack = true;
                 _textbox.SetActive(true);
+                icon.SetActive(true);
                 SampleSoundManager.Instance.PlayBgm(BgmType.BGM3);
             }
             else if ("understanding_blood" == question.move)

@@ -27,7 +27,7 @@ public class TrueEndScenario2 : MonoBehaviour
     private bool chack = true;
     [SerializeField]
     public Animator anim;
-
+    public GameObject icon;
     private bool isTextDisplaying = false;
     private string fullText;
     private Coroutine displayCoroutine;
@@ -70,7 +70,7 @@ public class TrueEndScenario2 : MonoBehaviour
                 panel.SetActive(true);
                 _textbox.SetActive(false);
                 PlayVideo();
-
+                icon.SetActive(false);
                 await UniTask.Delay(TimeSpan.FromSeconds(9.5f));
 
                 SceneManagement.Instance.OnTrueEnd3();

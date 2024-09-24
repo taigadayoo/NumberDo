@@ -14,7 +14,7 @@ public class TrueEndScenario : MonoBehaviour
     private Text _text;
     [SerializeField]
     private Text _name;
-
+    public GameObject icon;
     [SerializeField]
     private GameObject _panel;
     [SerializeField]
@@ -66,8 +66,7 @@ public class TrueEndScenario : MonoBehaviour
                 }
                 if ("usually_blood" == question.move)
                 {
-                    anim.SetBool("isusua_b", true);
-                    anim.SetBool("istrueend", false);
+                   
                 }
                 else if ("TrueEnd" == question.move)
                 {
@@ -81,9 +80,15 @@ public class TrueEndScenario : MonoBehaviour
                     _panel.SetActive(true);
                     //SEä‘Ç…çáÇ¡Çƒñ≥Ç©Ç¡ÇΩÇÁÇ±Ç±Ç…èeê∫
                     _audioSource.PlayOneShot(_audioSource.clip);
+                   
+                    icon.SetActive(false);
+                    await UniTask.Delay(TimeSpan.FromSeconds(2.7f));
                     anim.SetBool("isusua_b", false);
                     anim.SetBool("istrueend", true);
-                    await UniTask.Delay(TimeSpan.FromSeconds(3.0f));
+                    await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
+                    anim.SetBool("isusua_b", true);
+                    anim.SetBool("istrueend", false);
+                    icon.SetActive(true);
                     _maecamera.SetActive(true);
                     _camera.SetActive(false);
                     //_panel.SetActive(false);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Cysharp.Threading.Tasks;
 public class ObjectManager : MonoBehaviour
 {
     public enum GameName
@@ -17,7 +17,9 @@ public class ObjectManager : MonoBehaviour
     [Header("チュートリアルで触るもの")]
     public GameObject targetObjectBox;
     public GameObject targetObjectBox2;
+    public GameObject targetObjectBox2After;
     public GameObject targetObjectBox3;
+    public GameObject targetObjectBox3After;
     public GameObject targetObjectPass;
     public GameObject targetObjectBox4;
     public GameObject targetObjectKey;
@@ -335,7 +337,7 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
-    private void ObjectTouch()
+  async  private void ObjectTouch()
     {
 
         if (Input.GetMouseButtonDown(0))
@@ -388,8 +390,43 @@ public class ObjectManager : MonoBehaviour
                     OnBox4 = true;
                     Ontext = true;
                 }
-
-                 if (hit.collider.gameObject == targetObjectKey && !OneKey)
+                if (hit.collider.gameObject == targetObjectBox2 && !OnBox2)
+                {
+                    addItemNum = 1;
+                    imageNum = 1;
+                    OnBox2 = true;
+                    await UniTask.WaitUntil(() => textEnd);
+                    itemBer.AddItem(items[addItemNum]);
+                    getSet.ImageChange(imageNum);
+                    OnPass = false;
+                    OnBox4 = false;
+                    if (sampleSoundManager != null)
+                    {
+                        SampleSoundManager.Instance.PlaySe(SeType.SE4);
+                    }
+                   
+                    targetObjectBox2.SetActive(false);
+                    targetObjectBox2After.SetActive(true);
+                }
+                if (hit.collider.gameObject == targetObjectBox3 && !OnBox3)
+                {
+                    addItemNum = 0;
+                    imageNum = 0;
+                    OnBox3 = true;
+                    await UniTask.WaitUntil(() => textEnd);
+                    itemBer.AddItem(items[addItemNum]);
+                    getSet.ImageChange(imageNum);
+                    OnPass = false;
+                    OnBox4 = false;
+                    if (sampleSoundManager != null)
+                    {
+                        SampleSoundManager.Instance.PlaySe(SeType.SE4);
+                    }
+                  
+                    targetObjectBox3.SetActive(false);
+                    targetObjectBox3After.SetActive(true);
+                }
+                if (hit.collider.gameObject == targetObjectKey && !OneKey)
                 {
                     addItemNum = 3;
                     itemBer.AddItem(items[addItemNum]);
@@ -402,12 +439,39 @@ public class ObjectManager : MonoBehaviour
                     {
                         SampleSoundManager.Instance.PlaySe(SeType.SE4);
                     }
+              
                     unrockingRock.SetActive(false);
                     OneKey = true;
                 }
             }
             if (hit.collider != null && !OnBox4 && !OnPass && !ItemGet && !Ontext)
             {
+
+                //if (hit.collider.gameObject == targetObjectBox2 && !OnBox2 && !Ontext)
+                //{
+
+                //    addItemNum = 0;
+                //    if (getSet != null)
+                //    {
+                //        imageNum = 0;
+                //        ItemGet = true;
+                //    }
+
+                //    OnBox2 = true;
+                //}
+              
+                //if (hit.collider.gameObject == targetObjectBox3 && !OnBox3 && !Ontext)
+                //{
+
+                //    addItemNum = 1;
+                //    if (getSet != null)
+                //    {
+                //        imageNum = 1;
+                //        ItemGet = true;
+                //    }
+                //    OnBox3 = true;
+                //}
+
                 // 当たったCollider2DのGameObjectが特定のオブジェクトであるかを確認する
                 if (hit.collider.gameObject == targetObjectBox)
                 {
@@ -424,29 +488,6 @@ public class ObjectManager : MonoBehaviour
 
                 }
 
-                if (hit.collider.gameObject == targetObjectBox2 && !OnBox2 && !Ontext)
-                {
-                    
-                    addItemNum = 0;
-                    if (getSet != null)
-                    {
-                        imageNum = 0;
-                        ItemGet = true;
-                    }
-
-                    OnBox2 = true;
-                }
-                if (hit.collider.gameObject == targetObjectBox3 && !OnBox3 && !Ontext)
-                {
-            
-                    addItemNum = 1;
-                    if (getSet != null)
-                    {
-                        imageNum = 1;
-                        ItemGet = true;
-                    }
-                    OnBox3 = true;
-                }
                
 
             }

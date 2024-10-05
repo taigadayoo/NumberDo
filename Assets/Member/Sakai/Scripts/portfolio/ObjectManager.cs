@@ -176,6 +176,11 @@ public class ObjectManager : MonoBehaviour
     }
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            SampleSoundManager.Instance.PlayBgm(BgmType.BGM1);
+            SceneManagement.Instance.OnTitle();
+        }
 
         if (gameName == GameName.tutorial)
         {
@@ -223,14 +228,14 @@ public class ObjectManager : MonoBehaviour
             }
     
             interactable = door.GetComponent<Interactable>();
-            if (!canvasTouchMouse.isCandleSelected && !canvasTouchMouse.isKnifeSelected && !canvasTouchMouse.isNomalKnifeSelected)
+            if (!canvasTouchMouse.isCandle2Selected && !canvasTouchMouse.isKnifeSelected && !canvasTouchMouse.isNomalKnifeSelected)
             {
                 poizon.SetActive(true);
                 poizonCandle.SetActive(false);
                 poizonKnife.SetActive(false);
                 poizonNomalKnife.SetActive(false);
             }
-            else if (canvasTouchMouse.isCandleSelected)
+            else if (canvasTouchMouse.isCandle2Selected)
             {
                 poizon.SetActive(false);
                 poizonCandle.SetActive(true);
@@ -349,6 +354,7 @@ public class ObjectManager : MonoBehaviour
             {
                 if (hit.collider.gameObject == itemGetPanel)
                 {
+                   
                     itemGetPanel.SetActive(false);
                     ItemGet = false;
                 }
@@ -507,7 +513,8 @@ public class ObjectManager : MonoBehaviour
             {
                 if (hit.collider.gameObject == itemGetPanel)
                 {
-                    if(unrock)
+                    timer.Restart();
+                    if (unrock)
                     {
                         allColliderSwicth(true);
                         unrock = false;
@@ -537,6 +544,7 @@ public class ObjectManager : MonoBehaviour
 
                 if (hit.collider.gameObject == nabeobj && !OnMedicine)
                 {
+                    timer.Stop();
                     getSet.ImageChange(5);
                     itemBer.AddItem(items[0]);
                     if (getSet != null)
@@ -562,7 +570,7 @@ public class ObjectManager : MonoBehaviour
                 }
                 if (hit.collider.gameObject == fruit && !OnFruit)
                 {
-
+                    timer.Stop();
                     StartCoroutine(FruitTouch());
                     if (getSet != null)
                     {
@@ -574,7 +582,7 @@ public class ObjectManager : MonoBehaviour
                 }
                 if (hit.collider.gameObject == lightobj)
                 {
-
+                    timer.Stop();
                     getSet.ImageChange(17);
                     itemBer.AddItem(items[2]);
                     if (getSet != null)
@@ -608,7 +616,7 @@ public class ObjectManager : MonoBehaviour
                     candle.SetActive(false);
                     getSet.ImageChange(7);
                     itemBer.AddItem(items[8]);
-                 
+                    timer.Stop();
 
                 }
                 if (hit.collider.gameObject == redBook)
@@ -646,6 +654,7 @@ public class ObjectManager : MonoBehaviour
                 {
                     if (canvasTouchMouse.isKnifeSelected)
                     {
+                        timer.Stop();
                         getSet.ImageChange(15);
                         itemBer.AddItem(items[15]);
                         itemBer.OffBer();
@@ -660,8 +669,10 @@ public class ObjectManager : MonoBehaviour
                 }
                     if (hit.collider.gameObject == poizonCandle && recipeGet &&!onePoizon)
                 {
-                    if (canvasTouchMouse.isCandleSelected)
+                    Debug.Log(canvasTouchMouse.isCandle2Selected);
+                    if (canvasTouchMouse.isCandle2Selected)
                     {
+                        timer.Stop();
                         getSet.ImageChange(12);
                         itemBer.AddItem(items[12]);
                         itemBer.OffBer();

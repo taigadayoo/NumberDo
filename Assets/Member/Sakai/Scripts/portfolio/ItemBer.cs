@@ -29,9 +29,10 @@ public class ItemBer : MonoBehaviour
     ObjectManager objectManager;
     private GameObject newpageSpawn;
     public int spawnedItemCount = 0;
-
+    Timer timer;
     void Start()
     {
+        timer = FindObjectOfType<Timer>();
         exitItember.SetActive(false);
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
         objectManager = FindObjectOfType<ObjectManager>();
@@ -66,10 +67,7 @@ public class ItemBer : MonoBehaviour
             {
                 sampleSoundManager.PlaySe(SeType.SE2);
             }
-            image.sprite = OnBerImage;
-            exitItember.SetActive(true);
-            slider.value = getItemList.Count * 0.078f; // アイテムの個数に応じてアイテムバーを伸ばす
-            OnBar = true;
+            OnBer();
         }
         else if (OnBar)
         {
@@ -89,9 +87,16 @@ public class ItemBer : MonoBehaviour
         GetItemCount();
         OnBar = false;
     }
-
+    public void OnBer()
+    {
+        image.sprite = OnBerImage;
+        exitItember.SetActive(true);
+        slider.value = getItemList.Count * 0.078f; // アイテムの個数に応じてアイテムバーを伸ばす
+        OnBar = true;
+    }
     public void AddItem(GameObject item)
     {
+        timer.Stop();
         getItemList.Add(item);
         itemGetPanel.SetActive(true);
 
@@ -120,6 +125,7 @@ public class ItemBer : MonoBehaviour
             {
                 slider.value = getItemList.Count * 0.075f; // 一個目のオブジェクトは必ず非表示
             }
+           OnBer();
         }
 
     }

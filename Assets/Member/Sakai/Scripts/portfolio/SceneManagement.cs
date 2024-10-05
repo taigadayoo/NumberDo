@@ -96,6 +96,7 @@ public class SceneManagement : MonoBehaviour
     }
     public void OnScenarioSelect()
     {
+        SampleSoundManager.Instance.StopBgm();
         Initiate.Fade(sceneNameScecnarioSelect, fadeColor, fadeSpeed);
     }
     public void OnTrueEnd()

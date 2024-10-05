@@ -33,6 +33,7 @@ TagManager:
   - Bin
   - DoorKey
   - KeyDoor
+  - CandleFire2
   layers:
   - Default
   - TransparentFX

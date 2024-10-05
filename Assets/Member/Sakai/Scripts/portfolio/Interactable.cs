@@ -9,7 +9,7 @@ public class Interactable : MonoBehaviour
     public GameObject textBox;
     ObjectManager objectManager;
     GameManager gameManager;
-
+    Timer timer;
     public enum TouchAction
     {
        
@@ -23,6 +23,7 @@ public class Interactable : MonoBehaviour
 
     void Start()
     {
+        timer = FindObjectOfType<Timer>();
             gameManager = FindObjectOfType<GameManager>();
         if (dialogueManager == null)
         {
@@ -41,7 +42,7 @@ public class Interactable : MonoBehaviour
         if (!objectManager.ItemGet)
         {
             objectManager.textEnd = false;
-
+          
             if (dialogueManager != null && dialogue != null && touchAction == TouchAction.itemGet && !objectManager.Ontext )
             {
                 gameManager.itemGet = true;

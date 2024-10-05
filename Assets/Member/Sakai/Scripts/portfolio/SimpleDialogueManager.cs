@@ -14,7 +14,7 @@ public class SimpleDialogueManager : MonoBehaviour
     [SerializeField]
     ItemGetSet getSet;
     ItemBer itemBer;
-
+    Timer timer;
     GameManager gameManager;
     private Coroutine typingCoroutine;
     private bool isTyping = false;
@@ -22,7 +22,7 @@ public class SimpleDialogueManager : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-    
+        timer = FindObjectOfType<Timer>();
         itemBer = FindObjectOfType<ItemBer>();
         gameObject.SetActive(false); // 初期状態で非表示に設定
         chatEnd = false;
@@ -244,8 +244,9 @@ public class SimpleDialogueManager : MonoBehaviour
     }
     public void EndDialogue()
     {
-            // 会話終了時の処理
-            dialogueText.text = "";
+     
+        // 会話終了時の処理
+        dialogueText.text = "";
             getSet.ImageChange(objectManager.imageNum);
             itemBer.AddItem(objectManager.items[objectManager.addItemNum]);
             gameObject.SetActive(false); // 会話終了時に非表示に設定
@@ -264,6 +265,7 @@ public class SimpleDialogueManager : MonoBehaviour
     }
     public void EndDialogue2()
     {
+        timer.Restart();
         //Debug.Log("asaa");
         // 会話終了時の処理
         dialogueText.text = "";    
@@ -310,5 +312,6 @@ public class SimpleDialogueManager : MonoBehaviour
         gameObject.SetActive(false); // 会話終了時に非表示に設定
         objectManager.textEnd = true;
         objectManager.Ontext = false;
+        timer.Restart();
     }
 }

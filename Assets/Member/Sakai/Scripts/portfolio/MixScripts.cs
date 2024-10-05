@@ -126,7 +126,7 @@ public class MixButton : MonoBehaviour
             objectManager.imageNum = 11;
             getSet.ImageChange(objectManager.imageNum);
             itemBer.AddItem(objectManager.items[11]);
-            itemBer.AddItem(objectManager.items[9]);
+            itemBer.AddItem(objectManager.items[18]);
             mixImageScripts.mixImage.enabled = false;
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;

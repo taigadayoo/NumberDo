@@ -13,10 +13,12 @@ public class ZoomOffCol : MonoBehaviour
     public GameObject miniGameClear;
     public GameObject bombPass;
     ObjectManager objectManager;
+    Timer timer;
     // Start is called before the first frame update
     void Start()
     {
         objectManager = FindObjectOfType<ObjectManager>();
+        timer = FindObjectOfType<Timer>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,8 @@ public class ZoomOffCol : MonoBehaviour
     {
         if (objectManager.textEnd)
         {
+      
+      
             book.SetActive(false);
             picture.SetActive(false);
             monitor.SetActive(false);

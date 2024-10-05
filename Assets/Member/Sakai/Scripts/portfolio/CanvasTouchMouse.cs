@@ -19,6 +19,7 @@ public class CanvasTouchMouse : MonoBehaviour
     public bool isKnifeSelected = false;
     public bool isNomalKnifeSelected = false;
     public bool isKeyDoorSelected = false;
+    public bool isCandle2Selected = false;
 
     // 特定のオブジェクトを識別するためのタグ
     public string keyTag = "Key";
@@ -30,6 +31,7 @@ public class CanvasTouchMouse : MonoBehaviour
     public string nomalKnifeTag = "knife";
     public string PictureTag = "Picture";
     public string keyDoorTag = "KeyDoor";
+    public string CandleTag = "CandleFire2";
     public CheckBool lastClickedObject;
     public CheckBool previousClickedObject; // ひとつ前にクリックされたオブジェクト
 
@@ -146,6 +148,7 @@ public class CanvasTouchMouse : MonoBehaviour
                     isKnifeSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(KnifeTag));
                     isKeyDoorSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(keyDoorTag));
                     isNomalKnifeSelected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(nomalKnifeTag));
+                    isCandle2Selected = clickedObjects.Exists(obj => obj != null && obj.CompareTag(CandleTag));
                 }
 
                 break; // 最初のヒットしたUI要素のみ処理

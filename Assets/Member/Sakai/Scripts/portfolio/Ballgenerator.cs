@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Ballgenerator : MonoBehaviour
 {
+    Timer timer;
     public RectTransform[] positions; // ランダムに選択される位置の配列
     public GameObject BallPrefab; // 生成するボールのプレハブ
     private float delta = 0;
@@ -17,6 +18,7 @@ public class Ballgenerator : MonoBehaviour
     private List<GameObject> ballList = new List<GameObject>();
     private void Start()
     {
+        timer = FindObjectOfType<Timer>();
         SampleSoundManager.Instance.StopBgm();
         StartCoroutine(StartCountdown());
        
@@ -67,7 +69,7 @@ public class Ballgenerator : MonoBehaviour
     }
     private IEnumerator MiniGameStart()
     {
-      
+        timer.Stop();
         yield return new WaitForSeconds(3);
       
         this.delta += Time.deltaTime;

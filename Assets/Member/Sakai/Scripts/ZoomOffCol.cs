@@ -24,14 +24,18 @@ public class ZoomOffCol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(this.gameObject.activeSelf)
+        {
+            objectManager.allColliderSwicth(false);
+            objectManager.onZoom = true;
+        }
     }
     private void OnMouseDown()
     {
         if (objectManager.textEnd)
         {
-      
-      
+            objectManager.onZoom = false;
+            objectManager.allColliderSwicth(true);
             book.SetActive(false);
             picture.SetActive(false);
             monitor.SetActive(false);

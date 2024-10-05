@@ -42,7 +42,7 @@ public class Interactable : MonoBehaviour
         if (!objectManager.ItemGet)
         {
             objectManager.textEnd = false;
-          
+           
             if (dialogueManager != null && dialogue != null && touchAction == TouchAction.itemGet && !objectManager.Ontext )
             {
                 gameManager.itemGet = true;

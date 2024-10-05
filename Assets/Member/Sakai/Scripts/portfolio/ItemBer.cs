@@ -96,7 +96,10 @@ public class ItemBer : MonoBehaviour
     }
     public void AddItem(GameObject item)
     {
-        timer.Stop();
+        if (timer != null)
+        {
+            timer.Stop();
+        }
         getItemList.Add(item);
         itemGetPanel.SetActive(true);
 

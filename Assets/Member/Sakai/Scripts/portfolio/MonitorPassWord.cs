@@ -45,6 +45,7 @@ public class MonitorPassWord : MonoBehaviour
             //sampleSoundManager.PlaySe(SeType.SE9);
             objectManager.monitorPass.SetActive(false);
             objectManager.miniGameZoom.SetActive(true);
+            objectManager.zoomOffColMain.SetActive(false);
             //interactable.touchAction = Interactable.TouchAction.itemGeted;
         }
         CheckDigitClick(digit1, 0);

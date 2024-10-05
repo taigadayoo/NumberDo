@@ -116,6 +116,7 @@ public class ObjectManager : MonoBehaviour
     public bool unrock = false;
     public bool onePoizon = false;
     public bool oneKnife = false;
+    public bool onZoom = false;
     public Sprite lightImage;
     ItemBer itemBer;
     SampleSoundManager sampleSoundManager;
@@ -138,6 +139,7 @@ public class ObjectManager : MonoBehaviour
     private List<Collider2D> allZoomColliders = new List<Collider2D>();
     private void Start()
     {
+        textEnd = true;
         if (gameName == GameName.tutorial)
         {
             password.SetActive(false);
@@ -258,13 +260,23 @@ public class ObjectManager : MonoBehaviour
             }
             if (textEnd)
             {
+               allColliderSwicth(true);
                 allColliderZoomSwicth(true);
             }
             else
             {
+                allColliderSwicth(false);
                 allColliderZoomSwicth(false);
             }
-
+            if(miniGameZoom.activeSelf)
+            {
+                allColliderZoomSwicth(false);
+            }
+            else
+            {
+                allColliderZoomSwicth(true);
+            }
+          
         }
         if(OnMiniGame && textEnd)
         {
@@ -759,7 +771,7 @@ public class ObjectManager : MonoBehaviour
                 {
                     textEnd = false;
                     bombPass.SetActive(true);
-                        zoomOffColMain.SetActive(true);
+                        //zoomOffColMain.SetActive(true);
                         allColliderSwicth(false);
                    
                 }

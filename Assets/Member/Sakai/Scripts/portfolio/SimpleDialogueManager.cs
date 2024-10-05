@@ -265,7 +265,7 @@ public class SimpleDialogueManager : MonoBehaviour
     }
     public void EndDialogue2()
     {
-        timer.Restart();
+    
         //Debug.Log("asaa");
         // 会話終了時の処理
         dialogueText.text = "";    
@@ -312,6 +312,6 @@ public class SimpleDialogueManager : MonoBehaviour
         gameObject.SetActive(false); // 会話終了時に非表示に設定
         objectManager.textEnd = true;
         objectManager.Ontext = false;
-        timer.Restart();
+      
     }
 }

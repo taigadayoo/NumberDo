@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -56,9 +54,10 @@ public class BombPass : MonoBehaviour
             {
                 sampleSoundManager.PlaySe(SeType.SE9);
             }
+            objectManager.textEnd = true;
             itemBer.AddItem(objectManager.items[16]);
             getSet.ImageChange(22);
-            objectManager.allColliderSwicth(false);
+            objectManager.allColliderSwicth(true);
             objectManager.unrock = true;
             objectManager.bombPass.SetActive(false);
             objectManager.zoomOffColMain.SetActive(false);
@@ -115,12 +114,13 @@ public class BombPass : MonoBehaviour
              !IsMouseOverUIElement(digit3) &&
              !IsMouseOverUIElement(digit4))
             {
-              
+                objectManager.allColliderSwicth(true);
                 objectManager.Ontext = false;
                 objectManager.bombPass.SetActive(false);
                 objectManager.OnPass = false;
                 objectManager.OnBox4 = false;
-                objectManager.allColliderSwicth(true);
+                objectManager.textEnd = true;
+
             }
         }
     }

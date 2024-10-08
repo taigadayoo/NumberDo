@@ -3,7 +3,37 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ballprefab
+  - Bomb
+  - Key
+  - LeftMemo
+  - RightMemo
+  - Rocker
+  - Nabe
+  - Clock
+  - Conpas
+  - Fruit
+  - Light
+  - Fruited
+  - BlackLight
+  - Picture
+  - MiniGame
+  - Matti
+  - MiniGameClear
+  - Monitor
+  - candle
+  - candleFire
+  - Koge
+  - Recipe
+  - candlestick
+  - poizon
+  - knife
+  - candleKnife
+  - Bin
+  - DoorKey
+  - KeyDoor
+  - CandleFire2
   layers:
   - Default
   - TransparentFX
@@ -11,7 +41,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - player
   - 
   - 
   - 
@@ -40,4 +70,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: player
+    uniqueID: 2096109863
     locked: 0

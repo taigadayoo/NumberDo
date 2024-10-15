@@ -16,12 +16,12 @@ public class MixButton : MonoBehaviour
     SampleSoundManager sampleSoundManager;
     [SerializeField]
     MixImageScripts mixImageScripts;
-
-
+    [SerializeField]
+    HintTextChange hintTextChange;
     ItemGetSet getSet;
     private void Start()
     {
-      
+
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
       
     }
@@ -97,6 +97,7 @@ public class MixButton : MonoBehaviour
             mixImageScripts.mixImage.enabled = false;
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;
+            hintTextChange.ImageChange(2);
             itemBer.OnItemBer();
         }
         else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "candle" && canvasTouchMouse.previousClickedObject.gameObject.tag == "Matti" || canvasTouchMouse.previousClickedObject.gameObject.tag == "candle" && canvasTouchMouse.lastClickedObject.gameObject.tag == "Matti")
@@ -113,6 +114,7 @@ public class MixButton : MonoBehaviour
             mixImageScripts.mixImage.enabled = false;
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;
+            hintTextChange.ImageChange(3);
             itemBer.OnItemBer();
         }
         else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "candleFire" && canvasTouchMouse.previousClickedObject.gameObject.tag == "Koge" || canvasTouchMouse.previousClickedObject.gameObject.tag == "candleFire" && canvasTouchMouse.lastClickedObject.gameObject.tag == "Koge")
@@ -131,6 +133,7 @@ public class MixButton : MonoBehaviour
             canvasTouchMouse.lastClickedObject = null;
             canvasTouchMouse.previousClickedObject = null;
             objectManager.recipeGet = true;
+            hintTextChange.ImageChange(4);
             itemBer.OnItemBer();
         }
         else if (canvasTouchMouse.lastClickedObject.gameObject.tag == "candlestick" && canvasTouchMouse.previousClickedObject.gameObject.tag == "knife" || canvasTouchMouse.previousClickedObject.gameObject.tag == "candlestick" && canvasTouchMouse.lastClickedObject.gameObject.tag == "knife")

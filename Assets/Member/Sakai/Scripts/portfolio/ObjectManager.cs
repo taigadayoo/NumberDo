@@ -131,6 +131,8 @@ public class ObjectManager : MonoBehaviour
     [SerializeField]
     TimeCounter timeCounter;
 
+    [SerializeField]
+    HintTextChange hintTextChange;
     Interactable interactable;
     Collider2D redBookCol;
     private Collider2D deskCol;
@@ -594,6 +596,7 @@ public class ObjectManager : MonoBehaviour
                 }
                 if (hit.collider.gameObject == lightobj)
                 {
+                    hintTextChange.ImageChange(1);
                     timer.Stop();
                     getSet.ImageChange(17);
                     itemBer.AddItem(items[2]);

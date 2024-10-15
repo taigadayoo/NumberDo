@@ -16,7 +16,8 @@ public class BombPass : MonoBehaviour
     SceneManagement sceneManagement;
     private bool okBombPass = false;
     SampleSoundManager sampleSoundManager;
-
+    [SerializeField]
+    HintTextChange hint;
     public GameObject doorKey;
     Interactable interactable;
 
@@ -40,6 +41,7 @@ public class BombPass : MonoBehaviour
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
         objectManager.OnePassWord = false;
         objectManager.Ontext = true;
+     
     }
     private void Update()
     {
@@ -64,6 +66,7 @@ public class BombPass : MonoBehaviour
             timer.Stop();
             objectManager.bombRock.SetActive(false);
             objectManager.bombUnrock.SetActive(true);
+            hint.ImageChange(5);
         }
         CheckDigitClick(digit1, 0);
         CheckDigitClick(digit2, 1);

@@ -12,11 +12,14 @@ public class ZoomOffCol : MonoBehaviour
     public GameObject miniGameZoom;
     public GameObject miniGameClear;
     public GameObject bombPass;
+    public GameObject HintPanel;
     ObjectManager objectManager;
     Timer timer;
+    HintButtanScripts hint;
     // Start is called before the first frame update
     void Start()
     {
+        hint = FindObjectOfType<HintButtanScripts>();
         objectManager = FindObjectOfType<ObjectManager>();
         timer = FindObjectOfType<Timer>();
     }
@@ -36,6 +39,7 @@ public class ZoomOffCol : MonoBehaviour
         {
             objectManager.onZoom = false;
             objectManager.allColliderSwicth(true);
+            objectManager.allColliderZoomSwicth(true);
             book.SetActive(false);
             picture.SetActive(false);
             monitor.SetActive(false);
@@ -46,6 +50,8 @@ public class ZoomOffCol : MonoBehaviour
             bombPass.SetActive(false);
             objectManager.OnBox4 = false;
             objectManager.colDeley = true;
+            HintPanel.SetActive(false);
+            hint.onHint = false;
         }
     }
 }

@@ -3264,6 +3264,7 @@ MonoBehaviour:
   pushNo: {fileID: 21300000, guid: 9d8cd7e7f599e234296fe478baabff37, type: 3}
   nomalYes: {fileID: 21300000, guid: 482e0a95ba50afe4e90a0affa84df783, type: 3}
   nomalNo: {fileID: 21300000, guid: 27ffb3845b1108a4282ef4613f4f7c7a, type: 3}
+  timer: {fileID: 1826508598}
 --- !u!1 &366982550
 GameObject:
   m_ObjectHideFlags: 0
@@ -5817,6 +5818,7 @@ MonoBehaviour:
   timeCounter: {fileID: 849931708}
   countdownText: {fileID: 1836957725}
   countdownTime: 3
+  objectManager: {fileID: 994587272}
 --- !u!1 &655322560
 GameObject:
   m_ObjectHideFlags: 0

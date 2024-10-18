@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class BombPass : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class BombPass : MonoBehaviour
     public GameObject doorKey;
     Interactable interactable;
 
+    private bool oneDeray = false;
     public Text digit1;
     public Text digit2;
     public Text digit3;
@@ -52,26 +55,20 @@ public class BombPass : MonoBehaviour
 
         if (IsPasswordCorrect())
         {
-            if (sampleSoundManager != null)
+            if (!oneDeray)
             {
-                sampleSoundManager.PlaySe(SeType.SE9);
+                StartCoroutine(BombDeray());
+                oneDeray = true;
             }
-            objectManager.textEnd = true;
-            itemBer.AddItem(objectManager.items[16]);
-            getSet.ImageChange(22);
-            objectManager.allColliderSwicth(true);
-            objectManager.unrock = true;
-            objectManager.bombPass.SetActive(false);
-            objectManager.zoomOffColMain.SetActive(false);
-            timer.Stop();
-            objectManager.bombRock.SetActive(false);
-            objectManager.bombUnrock.SetActive(true);
-            hint.ImageChange(5);
+       
         }
-        CheckDigitClick(digit1, 0);
-        CheckDigitClick(digit2, 1);
-        CheckDigitClick(digit3, 2);
-        CheckDigitClick(digit4, 3);
+        if (!oneDeray)
+        {
+            CheckDigitClick(digit1, 0);
+            CheckDigitClick(digit2, 1);
+            CheckDigitClick(digit3, 2);
+            CheckDigitClick(digit4, 3);
+        }
     }
     public void CheckPassword()
     {
@@ -79,7 +76,25 @@ public class BombPass : MonoBehaviour
 
 
     }
-
+    IEnumerator BombDeray()
+    {
+        if (sampleSoundManager != null)
+        {
+            sampleSoundManager.PlaySe(SeType.SE4);
+        }
+        yield return new WaitForSeconds(1f);
+        objectManager.textEnd = true;
+        itemBer.AddItem(objectManager.items[16]);
+        getSet.ImageChange(22);
+        objectManager.allColliderSwicth(true);
+        objectManager.unrock = true;
+        objectManager.bombPass.SetActive(false);
+        objectManager.zoomOffColMain.SetActive(false);
+        timer.Stop();
+        objectManager.bombRock.SetActive(false);
+        objectManager.bombUnrock.SetActive(true);
+        hint.ImageChange(5);
+    }
     private void OkPass()
     {
         itemBer.AddItem(objectManager.items[3]);

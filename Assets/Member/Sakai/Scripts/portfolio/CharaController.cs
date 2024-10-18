@@ -32,6 +32,7 @@ public class CharaController : MonoBehaviour
         soundManager = FindObjectOfType<SampleSoundManager>();
         objectManager = FindObjectOfType<ObjectManager>();
     }
+    
     private void OnEnable()
     {
         leftImage.sprite = nomalLeft;
@@ -91,6 +92,13 @@ public class CharaController : MonoBehaviour
 
         // 位置を更新
         rectTransform.anchoredPosition = currentPos;
+        if(objectManager.miniGameDead.activeSelf)
+        {
+            objectManager.allColliderSwicth(false);
+        }
+        {
+            objectManager.allColliderSwicth(true);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -104,7 +112,7 @@ public class CharaController : MonoBehaviour
             objectManager.miniGameDead.SetActive(true);
             objectManager.miniGame.SetActive(false);
             SampleSoundManager.Instance.PlaySe(SeType.SE12);
-         
+           
             ////ゲーム内の時間を止める
             //Time.timeScale = 0f;          
         }

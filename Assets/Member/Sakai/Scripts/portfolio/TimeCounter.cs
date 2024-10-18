@@ -28,10 +28,14 @@ public class TimeCounter : MonoBehaviour
         timer = FindFirstObjectByType<Timer>();
         objectManager = FindObjectOfType<ObjectManager>();
         soundManager = FindObjectOfType<SampleSoundManager>();
-      
+        if (objectManager != null)
+        {
+            objectManager.allColliderSwicth(false);
+        }
     }
     void OnEnable()
     {
+        
         countdown = 13f;
     }
 
@@ -61,7 +65,7 @@ public class TimeCounter : MonoBehaviour
             }
             objectManager.monitor.SetActive(false);
             objectManager.monitorGamed.SetActive(true);
-            objectManager.allColliderSwicth(true);
+            objectManager.colDeley = true;
             objectManager.OnKeyCode = false;
      
             if (soundManager != null)

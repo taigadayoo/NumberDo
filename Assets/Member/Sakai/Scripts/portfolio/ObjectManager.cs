@@ -221,10 +221,21 @@ public class ObjectManager : MonoBehaviour
                 rockerFake.SetActive(false);
                 rockerTutorial.SetActive(true);
             }
+            if (textEnd)
+            {
+                allColliderSwicth(true);
+                allColliderZoomSwicth(true);
+            }
+            else
+            {
+                allColliderSwicth(false);
+                allColliderZoomSwicth(false);
+            }
         }
 
         if (gameName == GameName.mainGame)
         {
+          
             MainObjectTouch();
             if(colDeley)
             {
@@ -262,7 +273,7 @@ public class ObjectManager : MonoBehaviour
             }
             if (textEnd)
             {
-               allColliderSwicth(true);
+                allColliderSwicth(true);
                 allColliderZoomSwicth(true);
             }
             else
@@ -270,22 +281,23 @@ public class ObjectManager : MonoBehaviour
                 allColliderSwicth(false);
                 allColliderZoomSwicth(false);
             }
-            if(miniGameZoom.activeSelf)
-            {
-                allColliderZoomSwicth(false);
-            }
-            else
-            {
-                allColliderZoomSwicth(true);
-            }
-          
+            //if(miniGameZoom.activeSelf)
+            //{
+            //    allColliderZoomSwicth(false);
+            //}
+            //else
+            //{
+            //    allColliderZoomSwicth(true);
+            //}
+
+
         }
         if(OnMiniGame && textEnd)
         {
             miniGame.SetActive(true);
             miniGameZoom.SetActive(false);
             allColliderSwicth(false);
-        
+            textEnd = false;
 
 
         }
@@ -467,32 +479,6 @@ public class ObjectManager : MonoBehaviour
             if (hit.collider != null && !OnBox4 && !OnPass && !ItemGet && !Ontext)
             {
 
-                //if (hit.collider.gameObject == targetObjectBox2 && !OnBox2 && !Ontext)
-                //{
-
-                //    addItemNum = 0;
-                //    if (getSet != null)
-                //    {
-                //        imageNum = 0;
-                //        ItemGet = true;
-                //    }
-
-                //    OnBox2 = true;
-                //}
-              
-                //if (hit.collider.gameObject == targetObjectBox3 && !OnBox3 && !Ontext)
-                //{
-
-                //    addItemNum = 1;
-                //    if (getSet != null)
-                //    {
-                //        imageNum = 1;
-                //        ItemGet = true;
-                //    }
-                //    OnBox3 = true;
-                //}
-
-                // 当たったCollider2DのGameObjectが特定のオブジェクトであるかを確認する
                 if (hit.collider.gameObject == targetObjectBox)
                 {
                     if (OnBox == false)
@@ -608,7 +594,7 @@ public class ObjectManager : MonoBehaviour
                     oneLight = true;
                     lightobj.SetActive(false);
                 }
-                if (hit.collider.gameObject == bombUnrock && !OnBomb)
+                if (hit.collider.gameObject == bombUnrock && !OnBomb )
                 {
                     OnBomb = true;
                     addItemNum = 17;
@@ -704,7 +690,7 @@ public class ObjectManager : MonoBehaviour
                 }
                     if(canvasTouchMouse.isKeyDoorSelected || !canvasTouchMouse.isKeyDoorSelected)
                 {
-                   Destroy(interactable);
+                    Destroy(interactable);
                 }
                 if (hit.collider.gameObject == door)
                 {
@@ -736,7 +722,7 @@ public class ObjectManager : MonoBehaviour
                         lightobj.SetActive(true);
                     }
                 }
-                if (hit.collider.gameObject == medicine)
+                if (hit.collider.gameObject == medicine )
                 {
                     OnBox4 = true;
                     shelfZoom.SetActive(true);
@@ -754,7 +740,7 @@ public class ObjectManager : MonoBehaviour
                     allColliderSwicth(false);
                     OnBox4 = true;
                 }
-                if (hit.collider.gameObject == monitor)
+                if (hit.collider.gameObject == monitor )
                 {
                     if (!OnKeyCode)
                     {
@@ -770,7 +756,7 @@ public class ObjectManager : MonoBehaviour
                         allColliderSwicth(false);
                     }
                 }
-                if (hit.collider.gameObject == bomb)
+                if (hit.collider.gameObject == bomb )
                 {
                     textEnd = false;
                     bombPass.SetActive(true);
@@ -794,7 +780,7 @@ public class ObjectManager : MonoBehaviour
     IEnumerator ColDeray()
     {
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
 
             allColliderSwicth(true);
             colDeley = false;

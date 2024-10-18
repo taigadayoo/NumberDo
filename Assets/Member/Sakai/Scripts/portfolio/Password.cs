@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,7 +34,7 @@ public class Password : MonoBehaviour
     private int[] digits = new int[4];
 
     private int[] correctPassword = new int[4] { 1, 9, 9, 6 };
-
+    private bool oneDeray = false;
     private void Start()
     {
         UpdateDigitTexts();
@@ -53,17 +55,19 @@ public class Password : MonoBehaviour
 
         if (IsPasswordCorrect())
         {
-            sampleSoundManager.PlaySe(SeType.SE9);
-            objectManager.unrocking = true;
-            objectManager.password.SetActive(false);
-            interactable.touchAction = Interactable.TouchAction.itemGeted;
-            shelfSprite.sprite = opendSprite;
-            zoomKey.SetActive(false);
+            if (!oneDeray)
+            {
+                StartCoroutine(BombDeray());
+                oneDeray = true;
+            }
         }
-        CheckDigitClick(digit1, 0);
-        CheckDigitClick(digit2, 1);
-        CheckDigitClick(digit3, 2);
-        CheckDigitClick(digit4, 3);
+        if (!oneDeray)
+        {
+            CheckDigitClick(digit1, 0);
+            CheckDigitClick(digit2, 1);
+            CheckDigitClick(digit3, 2);
+            CheckDigitClick(digit4, 3);
+        }
     }
     public void CheckPassword()
     {
@@ -71,7 +75,17 @@ public class Password : MonoBehaviour
 
       
     }
- 
+    IEnumerator BombDeray()
+    {
+        sampleSoundManager.PlaySe(SeType.SE4);
+        yield return new WaitForSeconds(1f);
+        sampleSoundManager.PlaySe(SeType.SE9);
+        objectManager.unrocking = true;
+        objectManager.password.SetActive(false);
+        interactable.touchAction = Interactable.TouchAction.itemGeted;
+        shelfSprite.sprite = opendSprite;
+        zoomKey.SetActive(false);
+    }
     private void OkPass()
     {
         itemBer.AddItem(objectManager.items[3]);

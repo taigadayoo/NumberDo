@@ -16,6 +16,9 @@ public class Ballgenerator : MonoBehaviour
     public int countdownTime = 3; // カウントダウンの開始値
     private bool isFirstEnable = true;
     private List<GameObject> ballList = new List<GameObject>();
+    [SerializeField]
+    ObjectManager objectManager;
+
     private void Start()
     {
         timer = FindObjectOfType<Timer>();
@@ -25,8 +28,8 @@ public class Ballgenerator : MonoBehaviour
     }
     private void OnEnable()
     {
-
-            if (isFirstEnable)
+      
+        if (isFirstEnable)
             {
                 // 最初の有効化ではOnEnableは何もしない
                 isFirstEnable = false;
@@ -42,7 +45,17 @@ public class Ballgenerator : MonoBehaviour
     void Update()
     {
         StartCoroutine(MiniGameStart());
-       
+        if (this.gameObject.activeSelf)
+        {
+            objectManager.allColliderSwicth(false);
+            objectManager.textEnd = false;
+        }
+        else
+        {
+            objectManager.allColliderSwicth(true);
+            objectManager.textEnd = true;
+        }
+
     }
     private IEnumerator StartCountdown()
     {

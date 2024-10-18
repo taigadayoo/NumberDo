@@ -14,7 +14,7 @@ public class MonitorPassWord : MonoBehaviour
     [SerializeField]
     SceneManagement sceneManagement;
     Interactable interactable;
-
+    private bool oneDeray = false;
     public Text digit1;
     public Text digit2;
     public Text digit3;
@@ -42,17 +42,29 @@ public class MonitorPassWord : MonoBehaviour
 
         if (IsPasswordCorrect())
         {
-            //sampleSoundManager.PlaySe(SeType.SE9);
-            objectManager.monitorPass.SetActive(false);
-            objectManager.miniGameZoom.SetActive(true);
-            objectManager.zoomOffColMain.SetActive(false);
-            //interactable.touchAction = Interactable.TouchAction.itemGeted;
+            if (!oneDeray)
+            {
+                StartCoroutine(BombDeray());
+                oneDeray = true;
+            }
         }
-        CheckDigitClick(digit1, 0);
-        CheckDigitClick(digit2, 1);
-        CheckDigitClick(digit3, 2);
+        if (!oneDeray)
+        {
+            CheckDigitClick(digit1, 0);
+            CheckDigitClick(digit2, 1);
+            CheckDigitClick(digit3, 2);
+        }
     }
-
+    IEnumerator BombDeray()
+    {
+        sampleSoundManager.PlaySe(SeType.SE4);
+        yield return new WaitForSeconds(1f);
+        objectManager.allColliderSwicth(false);
+        objectManager.monitorPass.SetActive(false);
+        objectManager.miniGameZoom.SetActive(true);
+        objectManager.zoomOffColMain.SetActive(false);
+        objectManager.textEnd = false;
+    }
     public void CheckPassword()
     {
         string inputPassword = inputField.text;

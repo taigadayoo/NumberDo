@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public bool? itemGet = false;
     public bool? itemGet2 = false;
     SampleSoundManager sampleSoundManager;
+    [SerializeField]
+    Timer timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,8 @@ public class GameManager : MonoBehaviour
         objectManager.miniGameDead.SetActive(false);
         objectManager.miniGame.SetActive(true);
         yesImage.sprite = pushYest;
-
+        objectManager.allColliderSwicth(false);
+        objectManager.textEnd = false;
         StartCoroutine(RevertSpriteYes());
     }
     public void No()
@@ -48,12 +51,12 @@ public class GameManager : MonoBehaviour
 
         SampleSoundManager.Instance.PlayBgm(BgmType.BGM3);
 
-
+        objectManager.textEnd = true;
         objectManager.miniGameDead.SetActive(false);
         noImage.sprite = pushNo;
         StartCoroutine(RevertSpriteNo());
-        objectManager.allColliderSwicth(true);
-       
+        objectManager.colDeley = true;
+        timer.Restart();
     }
     private IEnumerator RevertSpriteYes()
     {

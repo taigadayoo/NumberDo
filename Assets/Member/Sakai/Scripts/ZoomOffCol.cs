@@ -37,8 +37,8 @@ public class ZoomOffCol : MonoBehaviour
     {
         if (objectManager.textEnd)
         {
-            objectManager.onZoom = false;
-            objectManager.allColliderSwicth(true);
+          
+  
             objectManager.allColliderZoomSwicth(true);
             book.SetActive(false);
             picture.SetActive(false);

@@ -41,7 +41,6 @@ public class TrueEndScenario : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
         //anim = GetComponent<Animator>();
         ReadQuestion();
     }
@@ -93,6 +92,8 @@ public class TrueEndScenario : MonoBehaviour
                     _camera.SetActive(false);
                     //_panel.SetActive(false);
                     _panel.SetActive(false);
+                    //_bgmobj.SetActive(true);
+                    SampleSoundManager.Instance.StopBgm();
                     SampleSoundManager.Instance.PlayBgm(BgmType.BGM5);
                    
                     _chack = true;

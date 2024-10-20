@@ -16,6 +16,14 @@ public class ZoomOffCol : MonoBehaviour
     ObjectManager objectManager;
     Timer timer;
     HintButtanScripts hint;
+
+    public enum ZoomMode
+    {
+        text,
+        zoom
+    }
+    [SerializeField]
+    ZoomMode zoomMode;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,21 +45,31 @@ public class ZoomOffCol : MonoBehaviour
     {
         if (objectManager.textEnd)
         {
-          
-  
-            objectManager.allColliderZoomSwicth(true);
-            book.SetActive(false);
-            picture.SetActive(false);
-            monitor.SetActive(false);
-            medicine.SetActive(false);
-            monitorPass.SetActive(false);
-            this.gameObject.SetActive(false);
-            miniGameClear.SetActive(false);
-            bombPass.SetActive(false);
-            objectManager.OnBox4 = false;
-            objectManager.colDeley = true;
-            HintPanel.SetActive(false);
-            hint.onHint = false;
+
+            if (zoomMode == ZoomMode.zoom)
+            {
+                objectManager.allColliderZoomSwicth(true);
+                book.SetActive(false);
+                picture.SetActive(false);
+                monitor.SetActive(false);
+                medicine.SetActive(false);
+                monitorPass.SetActive(false);
+                this.gameObject.SetActive(false);
+                miniGameClear.SetActive(false);
+                bombPass.SetActive(false);
+                objectManager.OnBox4 = false;
+                objectManager.colDeley = true;
+
+            }
+            if(zoomMode == ZoomMode.text)
+            {
+                objectManager.allColliderZoomSwicth(true);
+                this.gameObject.SetActive(false);
+                HintPanel.SetActive(false);
+                hint.onHint = false;
+                objectManager.OnBox4 = false;
+                objectManager.colDeley = true;
+            }
         }
     }
 }

@@ -31,6 +31,7 @@ public class ObjectManager : MonoBehaviour
     [Header("ズームしたときのやつ")]
     public GameObject password;
     public GameObject zoomoffCol;
+    public GameObject zoomoffColPass;
     public GameObject gameCanvas;
     public GameObject itemGetPanel;
     public GameObject zoomShelf;
@@ -40,6 +41,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject pictureZoom;
     public GameObject monitorZoom;
     public GameObject zoomOffColMain;
+    public GameObject zoomOffColText;
     public GameObject shelfZoom;
     public GameObject miniGameZoom;
     public GameObject monitorPass;
@@ -74,6 +76,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject bombUnrock;
     public GameObject pictureLight;
     public GameObject monitorGamed;
+    public GameObject zoomCandle;
     [Header("トゥルーエンドで触るもの")]
     public GameObject trueDesk;
     public GameObject trueShelf;
@@ -117,6 +120,7 @@ public class ObjectManager : MonoBehaviour
     public bool onePoizon = false;
     public bool oneKnife = false;
     public bool onZoom = false;
+    public bool zoomTutorial = false;
     public Sprite lightImage;
     ItemBer itemBer;
     SampleSoundManager sampleSoundManager;
@@ -223,7 +227,10 @@ public class ObjectManager : MonoBehaviour
             }
             if (textEnd)
             {
-                allColliderSwicth(true);
+                if (!zoomTutorial)
+                {
+                    allColliderSwicth(true);
+                }
                 allColliderZoomSwicth(true);
             }
             else
@@ -411,14 +418,16 @@ public class ObjectManager : MonoBehaviour
                     Ontext = false;
                     OnBox4 = false;
                     OnPass = false;
+                    zoomTutorial = false;
                     allColliderSwicth(true);
                 }
-              
-                if (hit.collider.gameObject == targetObjectBox4 && !OnBox4 /*&& !Ontext*/)
+
+                if (hit.collider.gameObject == targetObjectBox4 && !OnBox4 && !OnePassWord)
                 {
                     Debug.Log("aaa");
                     allColliderSwicth(false);
                     zoomShelf.SetActive(true);
+                    zoomTutorial = true;
                     OnBox4 = true;
                     Ontext = true;
                 }
@@ -615,6 +624,7 @@ public class ObjectManager : MonoBehaviour
                 {
                     candleNomal.SetActive(false);
                     candle.SetActive(false);
+                    zoomCandle.SetActive(false);
                     getSet.ImageChange(7);
                     itemBer.AddItem(items[8]);
                     timer.Stop();

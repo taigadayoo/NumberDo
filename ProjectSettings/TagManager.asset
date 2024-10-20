@@ -34,6 +34,7 @@ TagManager:
   - DoorKey
   - KeyDoor
   - CandleFire2
+  - IgnoreHide
   layers:
   - Default
   - TransparentFX

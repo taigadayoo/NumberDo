@@ -13,6 +13,8 @@ public class Timer : MonoBehaviour
     SceneManagement sceneManagement;
     ObjectManager objectManager;
     GameManager gameManager;
+    [SerializeField]
+    BombPass bombPass;
     private void Start()
     {
         objectManager = FindObjectOfType<ObjectManager>();
@@ -20,6 +22,10 @@ public class Timer : MonoBehaviour
     }
     void Update()
     {
+        if(bombPass.oneDeray)
+        {
+            Stop();
+        }
         if (!isPaused && timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime; // Œo‰ßŽžŠÔ‚ðŒ¸ŽZ

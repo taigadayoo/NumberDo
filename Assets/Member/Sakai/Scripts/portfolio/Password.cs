@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
 public class Password : MonoBehaviour
 {
     [SerializeField]
@@ -29,7 +29,7 @@ public class Password : MonoBehaviour
     public Text digit2;
     public Text digit3;
     public Text digit4;
-
+    public Canvas targetCanvas;
     // 各桁の現在の値
     private int[] digits = new int[4];
 
@@ -85,6 +85,8 @@ public class Password : MonoBehaviour
         interactable.touchAction = Interactable.TouchAction.itemGeted;
         shelfSprite.sprite = opendSprite;
         zoomKey.SetActive(false);
+        objectManager.zoomTutorial = false;
+        objectManager.OnePassWord = true;
     }
     private void OkPass()
     {
@@ -123,10 +125,16 @@ public class Password : MonoBehaviour
              !IsMouseOverUIElement(digit3) &&
              !IsMouseOverUIElement(digit4))
             {
-                objectManager.Ontext = false;
-                objectManager.password.SetActive(false);
-                objectManager.OnPass = false;
-                objectManager.OnBox4 = false;
+                if (!IsMouseOverTaggedUIElementInCanvas("IgnoreHide",targetCanvas))
+                {
+                    objectManager.Ontext = false;
+                    objectManager.password.SetActive(false);
+                    objectManager.OnPass = false;
+                    objectManager.OnBox4 = false;
+                    objectManager.allColliderSwicth(true);
+                    objectManager.textEnd = true;
+                    objectManager.zoomTutorial = false;
+                }
             }
         }
     }
@@ -139,7 +147,29 @@ public class Password : MonoBehaviour
         digit3.text = digits[2].ToString();
         digit4.text = digits[3].ToString();
     }
+    bool IsMouseOverTaggedUIElementInCanvas(string tag, Canvas targetCanvas)
+    {
+        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+        pointerData.position = Input.mousePosition;
 
+        // ターゲットのキャンバスのGraphicRaycasterを使ってRaycast
+        GraphicRaycaster raycaster = targetCanvas.GetComponent<GraphicRaycaster>();
+        List<RaycastResult> results = new List<RaycastResult>();
+        raycaster.Raycast(pointerData, results);
+
+        // 結果をチェック
+        foreach (RaycastResult result in results)
+        {
+            Debug.Log("Hit UI Element: " + result.gameObject.name + " with Tag: " + result.gameObject.tag);
+
+            if (result.gameObject.CompareTag(tag))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
     bool IsMouseOverUIElement(Text textElement)
     {
         // UI要素の境界矩形を取得

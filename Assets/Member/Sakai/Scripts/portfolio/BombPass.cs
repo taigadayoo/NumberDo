@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.EventSystems;
 public class BombPass : MonoBehaviour
 {
     [SerializeField]
     public InputField inputField;
-
-
+    [SerializeField]
+    public Canvas targetCanvas;  // Inspector から設定する
 
     ObjectManager objectManager;
     [SerializeField]
@@ -23,7 +23,7 @@ public class BombPass : MonoBehaviour
     public GameObject doorKey;
     Interactable interactable;
 
-    private bool oneDeray = false;
+    public bool oneDeray = false;
     public Text digit1;
     public Text digit2;
     public Text digit3;
@@ -37,6 +37,7 @@ public class BombPass : MonoBehaviour
 
     private void Start()
     {
+        
         timer = FindObjectOfType<Timer>();
         UpdateDigitTexts();
         objectManager = FindObjectOfType<ObjectManager>();
@@ -48,6 +49,7 @@ public class BombPass : MonoBehaviour
     }
     private void Update()
     {
+
         if (this.gameObject.activeSelf)
         {
             objectManager.Ontext = true;
@@ -57,6 +59,7 @@ public class BombPass : MonoBehaviour
         {
             if (!oneDeray)
             {
+                timer.Stop();
                 StartCoroutine(BombDeray());
                 oneDeray = true;
             }
@@ -90,7 +93,7 @@ public class BombPass : MonoBehaviour
         objectManager.unrock = true;
         objectManager.bombPass.SetActive(false);
         objectManager.zoomOffColMain.SetActive(false);
-        timer.Stop();
+       
         objectManager.bombRock.SetActive(false);
         objectManager.bombUnrock.SetActive(true);
         hint.ImageChange(5);
@@ -107,6 +110,29 @@ public class BombPass : MonoBehaviour
         {
             SampleSoundManager.Instance.PlaySe(SeType.SE4);
         }
+    }
+    bool IsMouseOverTaggedUIElementInCanvas(string tag, Canvas targetCanvas)
+    {
+        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+        pointerData.position = Input.mousePosition;
+
+        // ターゲットのキャンバスのGraphicRaycasterを使ってRaycast
+        GraphicRaycaster raycaster = targetCanvas.GetComponent<GraphicRaycaster>();
+        List<RaycastResult> results = new List<RaycastResult>();
+        raycaster.Raycast(pointerData, results);
+
+        // 結果をチェック
+        foreach (RaycastResult result in results)
+        {
+            Debug.Log("Hit UI Element: " + result.gameObject.name + " with Tag: " + result.gameObject.tag);
+
+            if (result.gameObject.CompareTag(tag))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
     void CheckDigitClick(Text digitText, int digitIndex)
     {
@@ -132,17 +158,20 @@ public class BombPass : MonoBehaviour
              !IsMouseOverUIElement(digit3) &&
              !IsMouseOverUIElement(digit4))
             {
-                objectManager.allColliderSwicth(true);
-                objectManager.Ontext = false;
-                objectManager.bombPass.SetActive(false);
-                objectManager.OnPass = false;
-                objectManager.OnBox4 = false;
-                objectManager.textEnd = true;
+                if (!IsMouseOverTaggedUIElementInCanvas("IgnoreHide",targetCanvas))
+                {
+                    objectManager.allColliderSwicth(true);
+                    objectManager.Ontext = false;
+                    objectManager.bombPass.SetActive(false);
+                    objectManager.OnPass = false;
+                    objectManager.OnBox4 = false;
+                    objectManager.textEnd = true;
+                }
 
             }
         }
     }
-
+  
     void UpdateDigitTexts()
     {
         // 各桁のカウントをテキストに反映

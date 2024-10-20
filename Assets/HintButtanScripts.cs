@@ -25,7 +25,7 @@ public class HintButtanScripts : MonoBehaviour
             hintPanel.SetActive(true);
             objectManager.allColliderSwicth(false);
             objectManager.allColliderZoomSwicth(false);
-            objectManager.zoomOffColMain.SetActive(true);
+            objectManager.zoomOffColText.SetActive(true);
             objectManager.OnBox4 = true;
             onHint = true;
         }
@@ -34,7 +34,7 @@ public class HintButtanScripts : MonoBehaviour
             hintPanel.SetActive(false);
             objectManager.allColliderSwicth(true);
             objectManager.allColliderZoomSwicth(true);
-            objectManager.zoomOffColMain.SetActive(false);
+            objectManager.zoomOffColText.SetActive(false);
             objectManager.OnBox4 = false;
             onHint = false;
         }

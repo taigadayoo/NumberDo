@@ -21,7 +21,6 @@ public class CanvasTouchMouse : MonoBehaviour
     public bool isKeyDoorSelected = false;
     public bool isCandle2Selected = false;
 
-    // 特定のオブジェクトを識別するためのタグ
     public string keyTag = "Key";
     public string bombTag = "Bomb";
     public string rockerTag = "Rocker";
@@ -33,7 +32,7 @@ public class CanvasTouchMouse : MonoBehaviour
     public string keyDoorTag = "KeyDoor";
     public string CandleTag = "CandleFire2";
     public CheckBool lastClickedObject;
-    public CheckBool previousClickedObject; // ひとつ前にクリックされたオブジェクト
+    public CheckBool previousClickedObject;
 
     SceneManagement sceneManagement;
     ItemLight itemLight;
@@ -41,7 +40,6 @@ public class CanvasTouchMouse : MonoBehaviour
     [SerializeField]
     RockerScripts rockerScripts;
 
-    // クリックされた最後の2つのオブジェクトを格納するリスト
     private List<CheckBool> clickedObjects = new List<CheckBool>();
     MixImageScripts imageScripts;
 
@@ -65,7 +63,6 @@ public class CanvasTouchMouse : MonoBehaviour
         {
             Vector2 clickPosition = Input.mousePosition;
 
-         
             // マウスのポインタ位置からRayを飛ばす
             PointerEventData pointerEventData = new PointerEventData(eventSystem);
             pointerEventData.position = Input.mousePosition;
@@ -90,34 +87,40 @@ public class CanvasTouchMouse : MonoBehaviour
                     if (clickableObject == lastClickedObject)
                     {
                         imageScripts.foundMatch = false; // 一方の選択が外れた場合にfalseに設定
-
                         imageScripts.mixImage.enabled = false;
-                        // 選択を解除
+
+                        // 現在の選択を解除
                         clickableObject.isCheck = false;
                         itemNextLight.ChangeNomal();
                         Debug.Log("Deselected: " + hitObject.name);
 
-                        // 同じオブジェクトを三回クリックしてもpreviousClickedObjectがnullにならないようにする
-                        if (previousClickedObject != null)
+                        // previousClickedObjectをnullにして、選択を完全に解除
+                        if (previousClickedObject != null && previousClickedObject == lastClickedObject)
                         {
-                            // 前のオブジェクトを再び選択状態にして光らせる
-                            lastClickedObject = previousClickedObject;
-                            itemLight = previousClickedObject.GetComponent<ItemLight>();
-                            itemLight.ChangeLight();
-                            previousClickedObject = null; // 一度リセット
+                            previousClickedObject = null;
                         }
-                        else
-                        {
-                            lastClickedObject = null; // 選択を完全に解除
-                        }
+                        lastClickedObject = null;
+                    }
+                    else if (clickableObject == previousClickedObject)
+                    {
+                        // 最後から二番目のオブジェクトがクリックされた場合
+                        imageScripts.foundMatch = false;
+                        imageScripts.mixImage.enabled = false;
+
+                        previousClickedObject.isCheck = false;
+                        itemNextLight.ChangeNomal();
+                        Debug.Log("Deselected Previous: " + hitObject.name);
+
+                        previousClickedObject = null; // previousClickedObjectを解除
                     }
                     else
                     {
                         // 前のオブジェクトが選択されていた場合は選択解除
                         if (previousClickedObject != null && previousClickedObject != clickableObject)
                         {
-                            imageScripts.foundMatch = false; // 一方の選択が外れた場合にfalseに設定
+                            imageScripts.foundMatch = false;
                             imageScripts.mixImage.enabled = false;
+
                             itemLight = previousClickedObject.GetComponent<ItemLight>();
                             previousClickedObject.isCheck = false;
                             itemLight.ChangeNomal();

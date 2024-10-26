@@ -19,6 +19,7 @@ public class SimpleDialogueManager : MonoBehaviour
     private Coroutine typingCoroutine;
     private bool isTyping = false;
     private bool fullTextDisplayed = false; // 全文が表示されているかどうか
+
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -29,6 +30,7 @@ public class SimpleDialogueManager : MonoBehaviour
         isTyping = false;
         fullTextDisplayed = false;
     }
+
     IEnumerator TypeText(string text)
     {
         isTyping = true;
@@ -42,6 +44,7 @@ public class SimpleDialogueManager : MonoBehaviour
         isTyping = false;
         fullTextDisplayed = true;
     }
+
     void SkipToFullLine()
     {
         if (typingCoroutine != null)
@@ -54,6 +57,7 @@ public class SimpleDialogueManager : MonoBehaviour
         isTyping = false;
         fullTextDisplayed = true;
     }
+
     public void StartDialogue(Dialogue dialogue)
     {
         currentDialogue = dialogue;
@@ -63,6 +67,7 @@ public class SimpleDialogueManager : MonoBehaviour
         objectManager.Ontext = true;
         isTyping = false;
     }
+
     public void StartDialogue2(Dialogue dialogue)
     {
         currentDialogue = dialogue;
@@ -71,8 +76,8 @@ public class SimpleDialogueManager : MonoBehaviour
         DisplayLine2();
         objectManager.Ontext = true;
         isTyping = false;
-
     }
+
     public void StartDialogueItemGeted(Dialogue dialogue)
     {
         currentDialogue = dialogue;
@@ -82,6 +87,7 @@ public class SimpleDialogueManager : MonoBehaviour
         objectManager.Ontext = true;
         isTyping = false;
     }
+
     public void StartDialogueFruit(Dialogue dialogue)
     {
         currentDialogue = dialogue;
@@ -91,9 +97,9 @@ public class SimpleDialogueManager : MonoBehaviour
         objectManager.Ontext = true;
         isTyping = false;
     }
+
     void Update()
     {
-
         if (Input.GetMouseButtonDown(0)) // 左クリックまたはタップ
         {
             if (isTyping)
@@ -107,10 +113,12 @@ public class SimpleDialogueManager : MonoBehaviour
                 NextLine();
             }
         }
+
         //if (Input.GetMouseButtonDown(0)) // 左クリックまたはタップ
         //{
         //    NextLine();
         //}
+
         if (this.gameObject.activeSelf)
         {
             objectManager.Ontext = true;
@@ -136,7 +144,7 @@ public class SimpleDialogueManager : MonoBehaviour
                 EndDialogue();
             }
         }
-        if (gameManager.itemGet == false && gameManager.itemGet2 == false )
+        if (gameManager.itemGet == false && gameManager.itemGet2 == false)
         {
             if (currentLineIndex < currentDialogue.lines.Count - 1)
             {
@@ -162,7 +170,7 @@ public class SimpleDialogueManager : MonoBehaviour
                 EndDialogue2();
             }
         }
-        if(gameManager.itemGet == false && gameManager.itemGet2 == true)
+        if (gameManager.itemGet == false && gameManager.itemGet2 == true)
         {
             if (currentLineIndex < currentDialogue.lines.Count - 1)
             {
@@ -176,6 +184,7 @@ public class SimpleDialogueManager : MonoBehaviour
             }
         }
     }
+
     public void DisplayLine()
     {
         if (currentLineIndex < currentDialogue.lines.Count)
@@ -192,6 +201,7 @@ public class SimpleDialogueManager : MonoBehaviour
             EndDialogue();
         }
     }
+
     public void DisplayLine2()
     {
         if (currentLineIndex < currentDialogue.lines.Count)
@@ -208,6 +218,7 @@ public class SimpleDialogueManager : MonoBehaviour
             EndDialogue2();
         }
     }
+
     public void DisplayLine3()
     {
         if (currentLineIndex < 2)
@@ -225,7 +236,6 @@ public class SimpleDialogueManager : MonoBehaviour
         }
     }
 
-  
     public void DisplayLineFruit()
     {
         if (currentLineIndex < currentDialogue.lines.Count)
@@ -242,62 +252,65 @@ public class SimpleDialogueManager : MonoBehaviour
             EndDialogueFruit();
         }
     }
+
     public void EndDialogue()
     {
-     
         // 会話終了時の処理
         dialogueText.text = "";
-            getSet.ImageChange(objectManager.imageNum);
-            itemBer.AddItem(objectManager.items[objectManager.addItemNum]);
-            gameObject.SetActive(false); // 会話終了時に非表示に設定
-            objectManager.textEnd = true;
-          if(objectManager.OnClock)
+        getSet.ImageChange(objectManager.imageNum);
+        itemBer.AddItem(objectManager.items[objectManager.addItemNum]);
+        gameObject.SetActive(false); // 会話終了時に非表示に設定
+        objectManager.textEnd = true;
+
+        if (objectManager.OnClock)
         {
             objectManager.clock.SetActive(false);
         }
+
         if (objectManager.OnBomb)
         {
-            
             objectManager.bombUnrock.SetActive(false);
         }
         objectManager.Ontext = false;
         objectManager.allColliderSwicth(true);
     }
+
     public void EndDialogue2()
     {
-    
-        //Debug.Log("asaa");
         // 会話終了時の処理
-        dialogueText.text = "";    
+        dialogueText.text = "";
         gameObject.SetActive(false); // 会話終了時に非表示に設定
         objectManager.Ontext = false;
         objectManager.textEnd = true;
-        if(objectManager.OnGoal)
+
+        if (objectManager.OnGoal)
         {
-            if(objectManager.OnHaveBomb)
+            if (objectManager.OnHaveBomb)
             {
                 SceneManagement.Instance.OnClear();
                 SampleSoundManager.Instance.StopBgm();
             }
-            if(!objectManager.OnHaveBomb)
+            if (!objectManager.OnHaveBomb)
             {
                 SceneManagement.Instance.OnGameOver2();
                 SampleSoundManager.Instance.StopBgm();
             }
         }
+
         if (!objectManager.OnBox4)
         {
             objectManager.allColliderSwicth(true);
         }
     }
+
     public void EndDialogueFruit()
     {
         dialogueText.text = "";
-        
+
         StartCoroutine(FruitTouch());
         objectManager.allColliderSwicth(true);
-
     }
+
     IEnumerator FruitTouch()
     {
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
@@ -312,6 +325,5 @@ public class SimpleDialogueManager : MonoBehaviour
         gameObject.SetActive(false); // 会話終了時に非表示に設定
         objectManager.textEnd = true;
         objectManager.Ontext = false;
-      
     }
 }

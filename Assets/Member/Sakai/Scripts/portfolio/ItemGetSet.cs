@@ -25,7 +25,7 @@ public class ItemGetSet : MonoBehaviour
     {
         if (image != null)
         {
-            image.sprite = itemImages[listNum];
+            image.sprite = itemImages[listNum]; //指定された配列のイメージに変更
         }
     }
 }

@@ -3,68 +3,76 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+
 public class BombPass : MonoBehaviour
 {
     [SerializeField]
-    public InputField inputField;
+    public InputField inputField; // パスワードを入力するためのフィールド
     [SerializeField]
-    public Canvas targetCanvas;  // Inspector から設定する
+    public Canvas targetCanvas;  // ターゲットキャンバスをInspectorから設定する
 
-    ObjectManager objectManager;
+    ObjectManager objectManager; // ObjectManagerスクリプトの参照
     [SerializeField]
-    ItemGetSet getSet;
-    ItemBer itemBer;
+    ItemGetSet getSet; // ItemGetSetスクリプトの参照
+    ItemBer itemBer; // ItemBerスクリプトの参照
     [SerializeField]
-    SceneManagement sceneManagement;
-    private bool okBombPass = false;
-    SampleSoundManager sampleSoundManager;
+    SceneManagement sceneManagement; // シーン管理の参照
+    private bool okBombPass = false; // パスワードが正解であるかを示すフラグ
+    SampleSoundManager sampleSoundManager; // サウンドマネージャーの参照
     [SerializeField]
-    HintTextChange hint;
-    public GameObject doorKey;
-    Interactable interactable;
+    HintTextChange hint; // ヒントテキスト変更のための参照
+    public GameObject doorKey; // ドアの鍵
+    Interactable interactable; // インタラクションのためのスクリプト参照
 
-    public bool oneDeray = false;
-    public Text digit1;
-    public Text digit2;
-    public Text digit3;
-    public Text digit4;
+    public bool oneDeray = false; // 一度だけ遅延処理を行うためのフラグ
+    public Text digit1; // 1桁目のテキスト
+    public Text digit2; // 2桁目のテキスト
+    public Text digit3; // 3桁目のテキスト
+    public Text digit4; // 4桁目のテキスト
 
-    Timer timer;
+    Timer timer; // タイマーの参照
+
     // 各桁の現在の値
     private int[] digits = new int[4];
 
+    // 正しいパスワード
     private int[] correctPassword = new int[4] { 1, 9, 0, 2 };
 
     private void Start()
     {
-        
+        // タイマーと他のオブジェクトを取得
         timer = FindObjectOfType<Timer>();
         UpdateDigitTexts();
         objectManager = FindObjectOfType<ObjectManager>();
         itemBer = FindObjectOfType<ItemBer>();
         sampleSoundManager = FindObjectOfType<SampleSoundManager>();
+
+        // 初期設定
         objectManager.OnePassWord = false;
         objectManager.Ontext = true;
-     
     }
+
     private void Update()
     {
-
+        // オブジェクトがアクティブな場合、テキスト表示フラグをオンにする
         if (this.gameObject.activeSelf)
         {
             objectManager.Ontext = true;
         }
 
+        // パスワードが正しいかを確認
         if (IsPasswordCorrect())
         {
             if (!oneDeray)
             {
+                // タイマーを停止し、遅延処理を開始
                 timer.Stop();
                 StartCoroutine(BombDeray());
                 oneDeray = true;
             }
-       
         }
+
+        // 遅延処理が行われていない場合のみ桁のチェックを行う
         if (!oneDeray)
         {
             CheckDigitClick(digit1, 0);
@@ -73,19 +81,23 @@ public class BombPass : MonoBehaviour
             CheckDigitClick(digit4, 3);
         }
     }
+
     public void CheckPassword()
     {
         string inputPassword = inputField.text;
-
-
+        // 入力フィールドからパスワードを取得するためのメソッド (未使用)
     }
+
     IEnumerator BombDeray()
     {
+        // サウンドを再生し、1秒遅延後に処理を行う
         if (sampleSoundManager != null)
         {
             sampleSoundManager.PlaySe(SeType.SE4);
         }
         yield return new WaitForSeconds(1f);
+
+        // 各種設定を変更し、オブジェクトをアクティブ/非アクティブにする
         objectManager.textEnd = true;
         itemBer.AddItem(objectManager.items[16]);
         getSet.ImageChange(22);
@@ -93,13 +105,14 @@ public class BombPass : MonoBehaviour
         objectManager.unrock = true;
         objectManager.bombPass.SetActive(false);
         objectManager.zoomOffColMain.SetActive(false);
-       
         objectManager.bombRock.SetActive(false);
         objectManager.bombUnrock.SetActive(true);
         hint.ImageChange(5);
     }
+
     private void OkPass()
     {
+        // パスワードが正しかった場合の処理
         itemBer.AddItem(objectManager.items[3]);
         objectManager.imageNum = 3;
         getSet.ImageChange(objectManager.imageNum);
@@ -111,17 +124,19 @@ public class BombPass : MonoBehaviour
             SampleSoundManager.Instance.PlaySe(SeType.SE4);
         }
     }
+
     bool IsMouseOverTaggedUIElementInCanvas(string tag, Canvas targetCanvas)
     {
+        // マウスの位置情報を取得
         PointerEventData pointerData = new PointerEventData(EventSystem.current);
         pointerData.position = Input.mousePosition;
 
-        // ターゲットのキャンバスのGraphicRaycasterを使ってRaycast
+        // 指定したキャンバスのグラフィックレイキャスターを使用してレイキャスト
         GraphicRaycaster raycaster = targetCanvas.GetComponent<GraphicRaycaster>();
         List<RaycastResult> results = new List<RaycastResult>();
         raycaster.Raycast(pointerData, results);
 
-        // 結果をチェック
+        // レイキャストの結果を確認
         foreach (RaycastResult result in results)
         {
             Debug.Log("Hit UI Element: " + result.gameObject.name + " with Tag: " + result.gameObject.tag);
@@ -134,17 +149,18 @@ public class BombPass : MonoBehaviour
 
         return false;
     }
+
     void CheckDigitClick(Text digitText, int digitIndex)
     {
-        // マウスボタンが押され、クリックがUI要素上で行われた場合
+        // マウスボタンが押された際の処理
         if (Input.GetMouseButtonDown(0))
         {
             if (IsMouseOverUIElement(digitText))
             {
-                // 対応する桁のカウントを増やす
+                // 対応する桁のカウントを増加
                 digits[digitIndex]++;
 
-                // カウントが10になったら0に戻す
+                // カウントが10に達したら0に戻す
                 if (digits[digitIndex] > 9)
                 {
                     digits[digitIndex] = 0;
@@ -153,13 +169,15 @@ public class BombPass : MonoBehaviour
                 // 更新されたカウントをテキストに表示
                 UpdateDigitTexts();
             }
+            // 他のUI要素がクリックされた場合の処理
             else if (!IsMouseOverUIElement(digit1) &&
-             !IsMouseOverUIElement(digit2) &&
-             !IsMouseOverUIElement(digit3) &&
-             !IsMouseOverUIElement(digit4))
+                     !IsMouseOverUIElement(digit2) &&
+                     !IsMouseOverUIElement(digit3) &&
+                     !IsMouseOverUIElement(digit4))
             {
-                if (!IsMouseOverTaggedUIElementInCanvas("IgnoreHide",targetCanvas))
+                if (!IsMouseOverTaggedUIElementInCanvas("IgnoreHide", targetCanvas))
                 {
+                    // 全てのコライダーを有効にして、テキスト表示フラグをオフにする
                     objectManager.allColliderSwicth(true);
                     objectManager.Ontext = false;
                     objectManager.bombPass.SetActive(false);
@@ -167,11 +185,10 @@ public class BombPass : MonoBehaviour
                     objectManager.OnBox4 = false;
                     objectManager.textEnd = true;
                 }
-
             }
         }
     }
-  
+
     void UpdateDigitTexts()
     {
         // 各桁のカウントをテキストに反映
@@ -183,7 +200,6 @@ public class BombPass : MonoBehaviour
 
     bool IsMouseOverUIElement(Text textElement)
     {
-      
         // UI要素の境界矩形を取得
         RectTransform rectTransform = textElement.GetComponent<RectTransform>();
         Vector2 localMousePosition = rectTransform.InverseTransformPoint(Input.mousePosition);
@@ -191,6 +207,7 @@ public class BombPass : MonoBehaviour
         // マウス位置がUI要素の範囲内にあるかをチェック
         return rectTransform.rect.Contains(localMousePosition);
     }
+
     bool IsPasswordCorrect()
     {
         // 入力されたカウンターの値がパスワードと一致するかをチェック
@@ -203,5 +220,4 @@ public class BombPass : MonoBehaviour
         }
         return true;
     }
-
 }

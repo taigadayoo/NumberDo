@@ -408,7 +408,7 @@ public class ObjectManager : MonoBehaviour
                         zoomShelf.SetActive(false);
                         Ontext = false;
                         OnPass = true;
-                        allColliderSwicth(true);
+
                     }
                    
                 }
@@ -424,7 +424,6 @@ public class ObjectManager : MonoBehaviour
 
                 if (hit.collider.gameObject == targetObjectBox4 && !OnBox4 && !OnePassWord)
                 {
-                    Debug.Log("aaa");
                     allColliderSwicth(false);
                     zoomShelf.SetActive(true);
                     zoomTutorial = true;
@@ -435,6 +434,7 @@ public class ObjectManager : MonoBehaviour
                 {
                     addItemNum = 1;
                     imageNum = 1;
+                  
                     OnBox2 = true;
                     await UniTask.WaitUntil(() => textEnd);
                     itemBer.AddItem(items[addItemNum]);
@@ -451,6 +451,7 @@ public class ObjectManager : MonoBehaviour
                 }
                 if (hit.collider.gameObject == targetObjectBox3 && !OnBox3)
                 {
+                  
                     addItemNum = 0;
                     imageNum = 0;
                     OnBox3 = true;

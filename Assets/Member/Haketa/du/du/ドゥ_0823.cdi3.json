@@ -1,0 +1,361 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param",
+			"GroupId": "ParamGroup",
+			"Name": "瞳揺れ"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "ParamGroup",
+			"Name": "まつげ揺れ"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "ParamGroup",
+			"Name": "まつげ揺れ右"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "ParamGroup",
+			"Name": "瞳揺れ右"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "ParamGroup2",
+			"Name": "左手動き"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "ParamGroup2",
+			"Name": "左手指"
+		},
+		{
+			"Id": "ParamAngleX",
+			"GroupId": "",
+			"Name": "角度 X"
+		},
+		{
+			"Id": "ParamAngleY",
+			"GroupId": "",
+			"Name": "角度 Y"
+		},
+		{
+			"Id": "ParamAngleZ",
+			"GroupId": "",
+			"Name": "角度 Z"
+		},
+		{
+			"Id": "ParamEyeLOpen",
+			"GroupId": "",
+			"Name": "左目　開閉"
+		},
+		{
+			"Id": "ParamEyeLSmile",
+			"GroupId": "",
+			"Name": "左目　笑顔"
+		},
+		{
+			"Id": "ParamEyeROpen",
+			"GroupId": "",
+			"Name": "右目　開閉"
+		},
+		{
+			"Id": "ParamEyeRSmile",
+			"GroupId": "",
+			"Name": "右目　笑顔"
+		},
+		{
+			"Id": "ParamEyeBallX",
+			"GroupId": "",
+			"Name": "目玉 X"
+		},
+		{
+			"Id": "ParamEyeBallY",
+			"GroupId": "",
+			"Name": "目玉 Y"
+		},
+		{
+			"Id": "ParamEyeBallY2",
+			"GroupId": "",
+			"Name": "目玉 大きさ"
+		},
+		{
+			"Id": "ParamBrowLY",
+			"GroupId": "",
+			"Name": "左眉　上下"
+		},
+		{
+			"Id": "ParamBrowRY",
+			"GroupId": "",
+			"Name": "右眉　上下"
+		},
+		{
+			"Id": "ParamBrowLX",
+			"GroupId": "",
+			"Name": "左眉　左右"
+		},
+		{
+			"Id": "ParamBrowRX",
+			"GroupId": "",
+			"Name": "右眉　左右"
+		},
+		{
+			"Id": "ParamBrowLAngle",
+			"GroupId": "",
+			"Name": "左眉　角度"
+		},
+		{
+			"Id": "ParamBrowRAngle",
+			"GroupId": "",
+			"Name": "右眉　角度"
+		},
+		{
+			"Id": "ParamBrowLForm",
+			"GroupId": "",
+			"Name": "左眉　変形"
+		},
+		{
+			"Id": "ParamBrowRForm",
+			"GroupId": "",
+			"Name": "右眉　変形"
+		},
+		{
+			"Id": "ParamMouthForm",
+			"GroupId": "",
+			"Name": "口　変形"
+		},
+		{
+			"Id": "ParamMouthOpenY",
+			"GroupId": "",
+			"Name": "口　開閉"
+		},
+		{
+			"Id": "ParamCheek",
+			"GroupId": "",
+			"Name": "照れ"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "",
+			"Name": "頬血"
+		},
+		{
+			"Id": "ParamCheek4",
+			"GroupId": "",
+			"Name": "銃跡"
+		},
+		{
+			"Id": "ParamCheek3",
+			"GroupId": "",
+			"Name": "吐血"
+		},
+		{
+			"Id": "ParamCheek2",
+			"GroupId": "",
+			"Name": "青ざめ"
+		},
+		{
+			"Id": "ParamBodyAngleX",
+			"GroupId": "",
+			"Name": "体の回転　X"
+		},
+		{
+			"Id": "ParamBodyAngleY",
+			"GroupId": "",
+			"Name": "体の回転　Y"
+		},
+		{
+			"Id": "ParamBodyAngleZ",
+			"GroupId": "",
+			"Name": "体の回転　Z"
+		},
+		{
+			"Id": "ParamBreath",
+			"GroupId": "",
+			"Name": "呼吸"
+		},
+		{
+			"Id": "ParamHairFront",
+			"GroupId": "",
+			"Name": "髪揺れ　前"
+		},
+		{
+			"Id": "ParamHairFront2",
+			"GroupId": "",
+			"Name": "髪揺れ　前2"
+		},
+		{
+			"Id": "ParamHairSide",
+			"GroupId": "",
+			"Name": "服揺れ"
+		},
+		{
+			"Id": "ParamHairSide2",
+			"GroupId": "",
+			"Name": "髪揺れ　横"
+		},
+		{
+			"Id": "ParamHairBack",
+			"GroupId": "",
+			"Name": "髪揺れ　後"
+		}
+	],
+	"ParameterGroups": [
+		{
+			"Id": "ParamGroup",
+			"GroupId": "",
+			"Name": "目開閉揺れ"
+		},
+		{
+			"Id": "ParamGroup2",
+			"GroupId": "",
+			"Name": "腕動き"
+		}
+	],
+	"Parts": [
+		{
+			"Id": "Part56",
+			"Name": "ドゥ＿キャラクターイラスト血差分.psd（対応無し）"
+		},
+		{
+			"Id": "Part51",
+			"Name": "ドゥ＿キャラクターイラスト血差分.psd（対応無し）"
+		},
+		{
+			"Id": "Part",
+			"Name": "全部"
+		},
+		{
+			"Id": "Part25",
+			"Name": "全部"
+		},
+		{
+			"Id": "Part16",
+			"Name": "全部"
+		},
+		{
+			"Id": "Part2",
+			"Name": "体"
+		},
+		{
+			"Id": "Part17",
+			"Name": "撃たれた傷"
+		},
+		{
+			"Id": "Part7",
+			"Name": "頭"
+		},
+		{
+			"Id": "Part24",
+			"Name": "動かない体️"
+		},
+		{
+			"Id": "Part34",
+			"Name": "頭"
+		},
+		{
+			"Id": "Part31",
+			"Name": "頭"
+		},
+		{
+			"Id": "Part3",
+			"Name": "左腕️"
+		},
+		{
+			"Id": "Part5",
+			"Name": "右腕"
+		},
+		{
+			"Id": "Part6",
+			"Name": "リボン"
+		},
+		{
+			"Id": "Part8",
+			"Name": "髪1"
+		},
+		{
+			"Id": "Part35",
+			"Name": "青ざめ"
+		},
+		{
+			"Id": "Part11",
+			"Name": "顔パーツ"
+		},
+		{
+			"Id": "Part22",
+			"Name": "髪2️"
+		},
+		{
+			"Id": "Part23",
+			"Name": "後ろ髪"
+		},
+		{
+			"Id": "Part39",
+			"Name": "青ざめ"
+		},
+		{
+			"Id": "Part4",
+			"Name": "手"
+		},
+		{
+			"Id": "Part9",
+			"Name": "前髪"
+		},
+		{
+			"Id": "Part10",
+			"Name": "横髪、つむじ"
+		},
+		{
+			"Id": "Part12",
+			"Name": "口"
+		},
+		{
+			"Id": "Part15",
+			"Name": "右目️"
+		},
+		{
+			"Id": "Part26",
+			"Name": "瞳、白目⭕️"
+		},
+		{
+			"Id": "Part18",
+			"Name": "左目️"
+		},
+		{
+			"Id": "Part21",
+			"Name": "耳、顔全体、鼻、首⭕️"
+		},
+		{
+			"Id": "Part13",
+			"Name": "口外"
+		},
+		{
+			"Id": "Part14",
+			"Name": "口内"
+		},
+		{
+			"Id": "Part19",
+			"Name": "まつげ、眉、瞼⭕️"
+		},
+		{
+			"Id": "Part20",
+			"Name": "瞳、白目⭕️"
+		}
+	],
+	"CombinedParameters": [
+		[
+			"ParamAngleX",
+			"ParamAngleY"
+		],
+		[
+			"ParamEyeBallX",
+			"ParamEyeBallY"
+		],
+		[
+			"ParamMouthForm",
+			"ParamMouthOpenY"
+		]
+	]
+}

@@ -1,0 +1,78 @@
+#command    | Dialogue command: {write dialogue async}                                                                          | 
+#token      | Dialogue token code: {$standard}                                                                                  | 
+            |                                                                                                                   | 
+#define     | {Center} means {(0, -3, 0)}.                                                                                      | 
+#define     | {Left} means {(-3, -3, 0)}.                                                                                       | 
+#define     | {Leftmost} means {(-5, -3, 0)}.                                                                                   | 
+#define     | {Right} means {(3, -3, 0)}.                                                                                       | 
+#define     | {Rightmost} means {(5, -3, 0)}.                                                                                   | 
+#define     | {OutsideL} means {(-12, -3, 0)}.                                                                                  | 
+#define     | {OutsideR} means {(12, -3, 0)}.                                                                                   | 
+            |                                                                                                                   | 
+//          | Load resources ============                                                                                       | 
+$parallel   | load sprites async                                                                                                | 
+            | Load sprites at {Background}.                                                                                     | 
+//$parallel   | load sprites async                                                                                                | 
+            | Load sprites at {Do}.                                                                                         | 
+            |                                                                                                                  | 
+$sync       | change background                                                                                                 | 
+            | Change the background image to {背景}.                                                                             | 
+//$sync       | add character                                                                                                     | 
+            | Add a new character {Do}.                                                                                     | 
+//$sync       | move character                                                                                                    | 
+            | Move the character {Do} to {Center}.                                                                          | 
+//$sync       | change character's image                                                                                          | 
+            | Change {Do}'s image to {Do}.                                                           | 
+            |                                                                                                                   | 
+$f-forced   | delay seconds async                                                                                               | 
+            | Wait for {1} seconds.                                                                                             | 
+            |                                                                                                                   | 
+【ドゥ】     | .........？                   |
+            |                               |
+【ドゥ】     | 状況が理解できない...いや、理解しているけれど |
+            | <br>それを認めたくない。 |
+            |                               |
+【ドゥ】     | だってこれは、これはだれがどう見たって...。 |
+            |                               |
+【ドゥ】     | し、たい...だろ。                   |
+            |                               |
+【ドゥ】     | 一瞬で血の気が引いていくのがわかる。 |
+            | <br>血と、肉が焦げたような臭いが鼻をかすめていく。 |
+            |                               |
+【ドゥ】     | どうして死体がロッカーにあるんだ？ |
+            | <br>結局ドアの鍵はなかったし...まさか、僕も殺されるのか？ |
+            |                               |
+【ドゥ】     | 臭いによる気持ち悪さと、現実を受け止めたくない気持ちで |
+            | <br>頭が混乱してきた。 |
+            |                               |
+【ドゥ】     | おぼつかない足取りで死体から離れると、 |
+            | <br>片足に何かが当たる感覚がした。 |
+            |                               |
+【ドゥ】     | それと同時に、ピッ...という電子音がした。 |
+            |                               |
+【ドゥ】     | はっ...？！                     |
+            | <br>マズい...マズいマズい！！        |
+            |                               |
+【ドゥ】     | 足元を見ると、そこにはすでに動き出していた |
+            | <br>爆弾らしき物があった。 |
+            |                               |
+【ドゥ】     | もしこれが本物、いや本物でなくても、 |
+            | <br>このままでは僕はここの家主に殺されてしまう！ |
+            |                               |
+【ドゥ】     | 落ち着け冷静になれ、焦っても無駄だ...。  |
+            | <br>時間切れになる前に、ここから脱出しないと！   |
+            |                               |
+【ドゥ】     | 僕がここにいる理由も、家主の目的もその後でいい！！  |
+            |                                                                                                                   | 
+$sync       | hide dialogue box                                                                                                 | 
+            | Hide the dialogue box.                                                                                            | 
+$f-forced   | enter scene transition async                                                                                      | 
+            | Close the curtain in {2} seconds.                                                                                 | 
+$sync       | log message     | 
+            | {end} |
+$sync       | log end | 
+            | {true}       | 
+$f-forced   | delay seconds async                                                                                               | 
+            | Wait for {3} seconds.                                                                                             | 
+//$f-promised | unload all sprites async                                                                                          | 
+            | Unload all sprites.                                                                                               | 

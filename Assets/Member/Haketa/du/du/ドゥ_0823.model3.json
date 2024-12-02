@@ -1,0 +1,75 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "ドゥ_0823.moc3",
+		"Textures": [
+			"ドゥ_0823.8192/texture_00.png"
+		],
+		"DisplayInfo": "ドゥ_0823.cdi3.json",
+		"Motions": {
+			"": [
+				{
+					"File": "../ドゥ/delighted.motion3.json"
+				},
+				{
+					"File": "motion/Bad End.motion3.json"
+				},
+				{
+					"File": "motion/True End.motion3.json"
+				},
+				{
+					"File": "motion/delighted.motion3.json"
+				},
+				{
+					"File": "motion/delighted_blood.motion3.json"
+				},
+				{
+					"File": "motion/suffer.motion3.json"
+				},
+				{
+					"File": "motion/suffer_blood.motion3.json"
+				},
+				{
+					"File": "motion/think.motion3.json"
+				},
+				{
+					"File": "motion/think_blood.motion3.json"
+				},
+				{
+					"File": "motion/think_pv.motion3.json"
+				},
+				{
+					"File": "motion/understanding.motion3.json"
+				},
+				{
+					"File": "motion/understanding_.motion3.json"
+				},
+				{
+					"File": "motion/usually.motion3.json"
+				},
+				{
+					"File": "motion/usually_.motion3.json"
+				},
+				{
+					"File": "motion/usually_left hand.motion3.json"
+				},
+				{
+					"File": "motion/usually_pv.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		}
+	],
+	"HitAreas": []
+}
